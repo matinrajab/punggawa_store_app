@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/pages/profile/widgets/profile_menu.dart';
 import 'package:shoe_store_app/pages/widgets/header.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
+import 'package:shoe_store_app/routes/routes.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -12,15 +14,17 @@ class ProfilePage extends StatelessWidget {
       children: [
         AppBar(
           backgroundColor: backgroundColor1,
-          title: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+          flexibleSpace: Padding(
+            padding: const EdgeInsets.all(pagePadding),
             child: Row(
               children: [
                 Image.asset(
                   'assets/image/image_profile.png',
                   height: 64,
                 ),
-                SizedBox(width: 16,),
+                SizedBox(
+                  width: 16,
+                ),
                 Expanded(
                   child: Header(
                     title: 'Halo, User',
@@ -28,17 +32,42 @@ class ProfilePage extends StatelessWidget {
                     subtitleFontSize: 16,
                   ),
                 ),
-                Image.asset('assets/button/button_exit.png', height: 20,),
+                IconButton(
+                  onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                      context, signInPage, (route) => false),
+                  icon: Image.asset(
+                    'assets/button/button_exit.png',
+                    height: 20,
+                  ),
+                ),
               ],
             ),
           ),
-          centerTitle: true,
-          toolbarHeight: 120,
         ),
         Expanded(
           child: Container(
             width: double.infinity,
             color: backgroundColor3,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: pagePadding),
+              child: Column(
+                children: [
+                  ProfileMenu(
+                    title: 'Account',
+                    options: ['Edit Profile', 'Your Order', 'Help'],
+                    routes: [() => Navigator.pushNamed(context, editProfilePage), (){}, (){}],
+                  ),
+                  ProfileMenu(
+                    title: 'General',
+                    options: [
+                      'Privacy & Policy',
+                      'Term of Service',
+                      'Rate App'
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ],

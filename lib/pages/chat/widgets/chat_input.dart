@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/pages/widgets/icon_box_button.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class ChatInput extends StatelessWidget {
@@ -46,27 +47,10 @@ class ChatInput extends StatelessWidget {
         SizedBox(
           width: 20,
         ),
-        Container(
-          height: 50,
-          width: 50,
-          decoration: BoxDecoration(
-            borderRadius: generalBorderRadius,
-            color: primaryColor,
-          ),
-          child: Material(
-            borderRadius: generalBorderRadius,
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: generalBorderRadius,
-              onTap: onTap,
-              child: Center(
-                child: Image.asset(
-                  'assets/icon/icon_submit.png',
-                  width: 20,
-                ),
-              ),
-            ),
-          ),
+        IconBoxButton(
+          imageAsset: 'assets/icon/icon_submit.png',
+          imageWidth: 20,
+          onTap: onTap,
         ),
       ],
     );

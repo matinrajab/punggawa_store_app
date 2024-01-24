@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
-import 'package:shoe_store_app/pages/widgets/my_back_icon_button.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class CartPage extends StatelessWidget {
@@ -21,7 +20,10 @@ class CartPage extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        leading: MyBackIconButton(),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.close_rounded, color: primaryTextColor,),
+        ),
       ),
       body: Container(
         width: double.infinity,

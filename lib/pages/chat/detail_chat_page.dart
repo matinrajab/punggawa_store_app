@@ -3,7 +3,6 @@ import 'package:shoe_store_app/pages/chat/widgets/chat_bottom_nav_bar.dart';
 import 'package:shoe_store_app/pages/chat/widgets/chat_bubble.dart';
 import 'package:shoe_store_app/pages/chat/widgets/product_preview.dart';
 import 'package:shoe_store_app/pages/chat/widgets/product_preview_bubble.dart';
-import 'package:shoe_store_app/pages/widgets/my_back_icon_button.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class DetailChatPage extends StatelessWidget {
@@ -17,7 +16,10 @@ class DetailChatPage extends StatelessWidget {
       backgroundColor: backgroundColor3,
       appBar: AppBar(
         backgroundColor: backgroundColor1,
-        leading: MyBackIconButton(),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.close_rounded, color: primaryTextColor,),
+        ),
         toolbarHeight: 70,
         title: Row(
           children: [

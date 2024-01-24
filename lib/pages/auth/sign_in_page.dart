@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoe_store_app/pages/auth/widgets/auth_form.dart';
+import 'package:shoe_store_app/pages/auth/widgets/auth_text_form.dart';
 import 'package:shoe_store_app/pages/auth/widgets/footer.dart';
 import 'package:shoe_store_app/pages/widgets/header.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
@@ -30,7 +30,7 @@ class SignInPage extends StatelessWidget {
                 SizedBox(
                   height: 70,
                 ),
-                AuthForm(
+                AuthTextForm(
                   fieldName: 'Email Address',
                   controller: _emailController,
                   hintText: 'Your Email Address',
@@ -39,7 +39,7 @@ class SignInPage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                AuthForm(
+                AuthTextForm(
                   fieldName: 'Password',
                   controller: _passwordController,
                   obscureText: true,

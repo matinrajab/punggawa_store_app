@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor1,
+      backgroundColor: _currentIndex == 0 ? backgroundColor1 : backgroundColor3,
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
@@ -102,9 +102,7 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
       ),
-      body: SafeArea(
-        child: _body[_currentIndex],
-      ),
+      body: _body[_currentIndex],
     );
   }
 }

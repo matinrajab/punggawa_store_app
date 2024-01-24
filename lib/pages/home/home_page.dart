@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     return ListView(
       children: [
         Padding(
-          padding: const EdgeInsets.all(30),
+          padding: const EdgeInsets.all(pagePadding),
           child: Row(
             children: [
               Expanded(
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 30, top: 30, bottom: 14),
+          padding: const EdgeInsets.only(left: pagePadding, top: pagePadding, bottom: 14),
           child: Text(
             _categorySelected == 0 ? 'Popular Products' : 'For You',
             style: primaryTextStyle.copyWith(
@@ -127,8 +127,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                      left: 30,
-                      top: 30,
+                      left: pagePadding,
+                      top: pagePadding,
                       bottom: 14,
                     ),
                     child: Text(
@@ -143,21 +143,23 @@ class _HomePageState extends State<HomePage> {
               )
             : SizedBox(),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: pagePadding),
           child: Column(
-            children: [
-              for (int i = 0; i < _productList.length; i++)
-                if ((_categorySelected == 0 ||
-                    _categorySelected == _productList[i].categoryId))
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 30),
-                    child: ProductTile(
-                      category: _category[_productList[i].categoryId],
-                      productName: _productList[i].name,
-                      price: _productList[i].price,
-                    ),
-                  ),
-            ],
+            children: _productList.map((product) {
+              return (_categorySelected == 0 ||
+                      _categorySelected == product.categoryId)
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: pagePadding),
+                      child: ProductTile(
+                        category: _category[product.categoryId],
+                        productName: product.name,
+                        price: product.price,
+                      ),
+                    )
+                  : SizedBox(
+                      height: 0,
+                    );
+            }).toList(),
           ),
         )
       ],

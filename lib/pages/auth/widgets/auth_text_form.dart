@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:shoe_store_app/pages/auth/widgets/my_text_form_field.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
-class AuthForm extends StatelessWidget {
+class AuthTextForm extends StatelessWidget {
   final String fieldName;
   final TextEditingController controller;
   final bool obscureText;
   final String prefixIconAsset;
   final String hintText;
 
-  const AuthForm({
+  const AuthTextForm({
     super.key,
     required this.fieldName,
     required this.controller,
