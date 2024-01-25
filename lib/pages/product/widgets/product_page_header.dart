@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:shoe_store_app/routes/routes.dart';
+import 'package:shoe_store_app/theme/theme.dart';
+
+class ProductPageHeader extends StatelessWidget {
+  const ProductPageHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 20,
+        left: pagePadding,
+        right: pagePadding,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: backgroundColor1,
+            ),
+          ),
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, cartPage),
+            child: Image.asset(
+              'assets/icon/icon_cart_action.png',
+              width: 20,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

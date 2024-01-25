@@ -7,12 +7,16 @@ class EmptyItem extends StatelessWidget {
   final String iconAsset;
   final String title;
   final String subtitle;
+  final String textOnButton;
+  final double widthButton;
 
   const EmptyItem({
     super.key,
     required this.iconAsset,
     required this.title,
     required this.subtitle,
+    this.widthButton = 152,
+    this.textOnButton = 'Explore Store',
   });
 
   @override
@@ -37,21 +41,22 @@ class EmptyItem extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          subtitle,
-          style: secondaryTextStyle.copyWith(
-            fontSize: 14,
-            fontWeight: regular,
+        SizedBox(
+          width: MediaQuery.of(context).size.width - (2 * pagePadding),
+          child: Text(
+            subtitle,
+            style: secondaryTextStyle,
+            textAlign: TextAlign.center,
           ),
         ),
         SizedBox(
           height: 20,
         ),
         MyButton(
-          text: 'Explore Store',
+          text: textOnButton,
           onTap: () => Navigator.pushNamedAndRemoveUntil(
               context, mainPage, (route) => false),
-          width: 152,
+          width: widthButton,
           height: 44,
         ),
       ],

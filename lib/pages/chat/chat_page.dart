@@ -25,20 +25,17 @@ class ChatPage extends StatelessWidget {
                     title: 'Opss no message yet?',
                     subtitle: 'You have never done a transaction',
                   )
-                : Padding(
-                    padding: EdgeInsets.symmetric(horizontal: pagePadding),
-                    child: ListView(
-                      padding: EdgeInsets.symmetric(vertical: pagePadding),
-                      children: [
-                        ChatTile(
-                          sender: 'Black People',
-                          content: 'what the fuck are you doing nigga',
-                          onTap: () =>
-                              Navigator.pushNamed(context, detailChatPage),
-                        ),
-                      ],
+                : ListView(
+                  padding: EdgeInsets.all(pagePadding),
+                  children: [
+                    ChatTile(
+                      sender: 'Black People',
+                      content: 'what the fuck are you doing nigga',
+                      onTap: () =>
+                          Navigator.pushNamed(context, detailChatPage),
                     ),
-                  ),
+                  ],
+                ),
           ),
         ),
       ],

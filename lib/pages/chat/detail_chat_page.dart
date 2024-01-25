@@ -18,7 +18,7 @@ class DetailChatPage extends StatelessWidget {
         backgroundColor: backgroundColor1,
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
-          child: Icon(Icons.close_rounded, color: primaryTextColor,),
+          child: Icon(Icons.arrow_back_ios_new_rounded, color: primaryTextColor,),
         ),
         toolbarHeight: 70,
         title: Row(

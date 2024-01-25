@@ -6,3 +6,5 @@ const String cartPage = '/cart';
 const String detailChatPage = '/detail-chat';
 const String editProfilePage = '/edit-profile';
 const String productPage = '/product';
+const String checkoutPage = '/checkout';
+const String checkoutSuccessPage = '/checkout-success';

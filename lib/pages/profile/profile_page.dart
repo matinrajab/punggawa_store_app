@@ -48,25 +48,23 @@ class ProfilePage extends StatelessWidget {
           child: Container(
             width: double.infinity,
             color: backgroundColor3,
-            child: Padding(
+            child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: pagePadding),
-              child: Column(
-                children: [
-                  ProfileMenu(
-                    title: 'Account',
-                    options: ['Edit Profile', 'Your Order', 'Help'],
-                    routes: [() => Navigator.pushNamed(context, editProfilePage), (){}, (){}],
-                  ),
-                  ProfileMenu(
-                    title: 'General',
-                    options: [
-                      'Privacy & Policy',
-                      'Term of Service',
-                      'Rate App'
-                    ],
-                  ),
-                ],
-              ),
+              children: [
+                ProfileMenu(
+                  title: 'Account',
+                  options: ['Edit Profile', 'Your Order', 'Help'],
+                  routes: [() => Navigator.pushNamed(context, editProfilePage), (){}, (){}],
+                ),
+                ProfileMenu(
+                  title: 'General',
+                  options: [
+                    'Privacy & Policy',
+                    'Term of Service',
+                    'Rate App'
+                  ],
+                ),
+              ],
             ),
           ),
         ),

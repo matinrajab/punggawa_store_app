@@ -24,19 +24,16 @@ class WishlistPage extends StatelessWidget {
                     title: 'You don\'t have dream shoes?',
                     subtitle: 'Let\'s find your favorite shoes',
                   )
-                : Padding(
-                    padding: EdgeInsets.symmetric(horizontal: pagePadding),
-                    child: ListView(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      children: [
-                        WishlistTile(
-                          imageAsset: 'assets/image/image_shoe.png',
-                          productName: 'productName',
-                          price: 666,
-                        ),
-                      ],
+                : ListView(
+                  padding: EdgeInsets.symmetric(vertical: 20,horizontal: pagePadding),
+                  children: [
+                    WishlistTile(
+                      imageAsset: 'assets/image/image_shoe.png',
+                      productName: 'productName',
+                      price: 666,
                     ),
-                  ),
+                  ],
+                ),
           ),
         ),
       ],

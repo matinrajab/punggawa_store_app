@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/pages/product/widgets/product_familiar.dart';
+import 'package:shoe_store_app/pages/product/widgets/product_page_header.dart';
+import 'package:shoe_store_app/pages/product/widgets/product_price.dart';
 import 'package:shoe_store_app/pages/widgets/header.dart';
 import 'package:shoe_store_app/pages/widgets/icon_box_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
@@ -30,6 +33,21 @@ class _ProductPageState extends State<ProductPage> {
   ];
 
   int _currentIndex = 0;
+  bool _isWishlist = false;
+
+  void showSnackBar(context, String message) {
+    final snackBar = SnackBar(
+      backgroundColor: _isWishlist ? secondaryColor : alertColor,
+      elevation: 0,
+      duration: const Duration(milliseconds: 1000),
+      content: Text(
+        message,
+        style: primaryTextStyle.copyWith(fontSize: 12),
+        textAlign: TextAlign.center,
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   Widget indicator(int index) {
     return Container(
@@ -51,32 +69,7 @@ class _ProductPageState extends State<ProductPage> {
       backgroundColor: productBackgroundColor,
       body: ListView(
         children: [
-          Padding(
-            padding: EdgeInsets.only(
-              top: 20,
-              left: pagePadding,
-              right: pagePadding,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    color: backgroundColor1,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, cartPage),
-                  child: Image.asset(
-                    'assets/icon/icon_cart_action.png',
-                    width: 20,
-                  ),
-                )
-              ],
-            ),
-          ),
+          ProductPageHeader(),
           CarouselSlider(
             items: _images
                 .map(
@@ -131,36 +124,31 @@ class _ProductPageState extends State<ProductPage> {
                           SizedBox(
                             width: 30,
                           ),
-                          Image.asset('assets/button/button_wishlist.png'),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _isWishlist = !_isWishlist;
+                                showSnackBar(
+                                  context,
+                                  _isWishlist
+                                      ? 'Has Been added to Wishlist'
+                                      : 'Has been removed from the Wishlist',
+                                );
+                              });
+                            },
+                            child: Image.asset(
+                              _isWishlist
+                                  ? 'assets/button/button_wishlist_blue.png'
+                                  : 'assets/button/button_wishlist.png',
+                              height: 46,
+                            ),
+                          ),
                         ],
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: backgroundColor2,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Price starts from',
-                              style: primaryTextStyle,
-                            ),
-                            Text(
-                              '\$666',
-                              style: priceTextStyle.copyWith(
-                                fontSize: 16,
-                                fontWeight: semiBold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      ProductPrice(price: 666),
                       SizedBox(
                         height: 30,
                       ),
@@ -176,45 +164,7 @@ class _ProductPageState extends State<ProductPage> {
                     ],
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: pagePadding,
-                        bottom: 12,
-                      ),
-                      child: Text(
-                        'Familiar Shoes',
-                        style: primaryTextStyle.copyWith(
-                          fontWeight: medium,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 54,
-                      child: ListView.builder(
-                        padding: EdgeInsets.symmetric(horizontal: 22),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: _familiarShoes.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8),
-                            child: SizedBox(
-                              width: 54,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(6),
-                                  child: Image.asset(
-                                    _familiarShoes[index],
-                                    fit: BoxFit.cover,
-                                  )),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                ProductFamiliar(familiarShoes: _familiarShoes),
                 Padding(
                   padding: const EdgeInsets.all(pagePadding),
                   child: Row(
@@ -232,9 +182,68 @@ class _ProductPageState extends State<ProductPage> {
                       Expanded(
                         child: MyButton(
                           text: 'Add to Cart',
-                          onTap: () {},
                           height: 54,
                           fontWeight: semiBold,
+                          onTap: () => showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              backgroundColor: backgroundColor3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              contentPadding: EdgeInsets.all(30),
+                              content: SingleChildScrollView(
+                                child: Stack(
+                                  children: [
+                                    InkWell(
+                                      borderRadius: BorderRadius.circular(20),
+                                      onTap: () => Navigator.pop(context),
+                                      child: Icon(
+                                        Icons.close_rounded,
+                                        color: primaryTextColor,
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Column(
+                                        children: [
+                                          Image.asset(
+                                            'assets/icon/icon_success.png',
+                                            width: 100,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 12),
+                                            child: Text(
+                                              'Hurray :)',
+                                              style: primaryTextStyle.copyWith(
+                                                fontSize: 18,
+                                                fontWeight: semiBold,
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            'Item added successfully',
+                                            style: secondaryTextStyle,
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          MyButton(
+                                            text: 'View My Cart',
+                                            onTap: () =>
+                                                Navigator.popAndPushNamed(
+                                                    context, cartPage),
+                                            height: 44,
+                                            width: 154,
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],

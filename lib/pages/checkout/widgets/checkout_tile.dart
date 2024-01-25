@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
-class WishlistTile extends StatelessWidget {
+class CheckoutTile extends StatelessWidget {
   final String imageAsset;
   final String productName;
   final double price;
+  final int totalItem;
 
-  const WishlistTile({
+  const CheckoutTile({
     super.key,
     required this.imageAsset,
     required this.productName,
     required this.price,
+    required this.totalItem,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.only(top: 12),
       child: Container(
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 12),
         decoration: BoxDecoration(
           borderRadius: generalBorderRadius,
           color: backgroundColor4,
@@ -64,10 +66,7 @@ class WishlistTile extends StatelessWidget {
             SizedBox(
               width: 30,
             ),
-            Image.asset(
-              'assets/button/button_wishlist_blue.png',
-              height: 34,
-            ),
+            Text('$totalItem Items', style: secondaryTextStyle.copyWith(fontSize: 12),),
           ],
         ),
       ),
