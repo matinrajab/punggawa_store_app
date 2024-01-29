@@ -1,4 +1,4 @@
-const String splashPage = '/splash';
+const String splashPage = '/';
 const String signInPage = '/sign-in';
 const String signUpPage = '/sign-up';
 const String mainPage = '/home';

@@ -25,7 +25,7 @@ class ChatTile extends StatelessWidget {
                 'assets/icon/icon_shop_logo.png',
                 height: 54,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 12,
               ),
               Expanded(
@@ -60,10 +60,10 @@ class ChatTile extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
-          Divider(
+          const Divider(
             color: Color(0xff2B2939),
           ),
         ],

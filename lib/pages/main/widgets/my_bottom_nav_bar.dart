@@ -7,12 +7,12 @@ class MyBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.vertical(
+      borderRadius: const BorderRadius.vertical(
         top: Radius.circular(30),
       ),
       child: BottomAppBar(
         color: backgroundColor4,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 12,
         clipBehavior: Clip.antiAlias,
         child: BottomNavigationBar(

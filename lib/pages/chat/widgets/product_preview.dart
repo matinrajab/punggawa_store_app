@@ -18,8 +18,8 @@ class ProductPreview extends StatelessWidget {
     return Container(
       height: 75,
       width: 225,
-      margin: EdgeInsets.only(bottom: 20),
-      padding: EdgeInsets.all(9),
+      margin: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.all(9),
       decoration: BoxDecoration(
         border: Border.all(color: primaryColor),
         borderRadius: generalBorderRadius,
@@ -37,7 +37,7 @@ class ProductPreview extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Expanded(
@@ -50,7 +50,7 @@ class ProductPreview extends StatelessWidget {
                   style: primaryTextStyle,
                   overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 2,
                 ),
                 Text(

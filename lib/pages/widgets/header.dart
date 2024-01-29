@@ -15,9 +15,9 @@ class Header extends StatelessWidget {
     required this.title,
     required this.subtitle,
     this.titleFontSize = 24,
-    this.subtitleFontSize = 14,
+    this.subtitleFontSize,
     this.titleFontWeight = semiBold,
-    this.subtitleFontWeight = regular,
+    this.subtitleFontWeight,
     this.space = 0,
   });
 

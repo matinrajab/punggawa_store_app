@@ -22,26 +22,26 @@ class CheckoutSuccessPage extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            EmptyItem(
+            const EmptyItem(
               iconAsset: 'assets/icon/icon_empty_cart.png',
               title: 'You made a transaction',
               subtitle: 'Stay at home while we prepare your dream shoes',
               textOnButton: 'Order Other Shoes',
               widthButton: 200,
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             MyButton(
               text: 'View My Order',
               onTap: () {},
-              buttonColor: Color(0xff39374B),
-              borderColor: Color(0xff39374B),
+              buttonColor: const Color(0xff39374B),
+              borderColor: const Color(0xff39374B),
               height: 44,
               width: 200,
             ),

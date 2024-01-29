@@ -10,7 +10,7 @@ class CheckoutAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: generalBorderRadius,
         color: backgroundColor4,
@@ -25,15 +25,15 @@ class CheckoutAddress extends StatelessWidget {
               fontWeight: medium,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
-          CheckoutAddressItem(
+          const CheckoutAddressItem(
             imageAssets: 'assets/icon/icon_store_location.png',
             address: 'Store Location',
             information: 'Adidas Core',
           ),
-          SizedBox(height: 30,),
+          const SizedBox(height: 30,),
           CheckoutAddressItem(
             imageAssets: 'assets/icon/icon_your_address.png',
             address: 'Your Address',

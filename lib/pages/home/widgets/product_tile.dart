@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/routes/routes.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class ProductTile extends StatelessWidget {
-  final String category;
-  final String productName;
-  final double price;
+  final ProductModel product;
 
   const ProductTile({
     super.key,
-    required this.category,
-    required this.productName,
-    required this.price,
+    required this.product,
   });
 
   @override
@@ -23,7 +20,11 @@ class ProductTile extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(20),
-          onTap: () => Navigator.pushNamed(context, productPage),
+          onTap: () => Navigator.pushNamed(
+            context,
+            productPage,
+            arguments: product,
+          ),
           child: Row(
             children: [
               ClipRRect(
@@ -31,27 +32,29 @@ class ProductTile extends StatelessWidget {
                 child: SizedBox(
                   height: 120,
                   width: 120,
-                  child: Image.asset(
-                    'assets/image/image_shoe.png',
+                  child: Image.network(
+                    product.galleries![0].url!.substring(25),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              SizedBox(width: 12,),
+              const SizedBox(
+                width: 12,
+              ),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      category,
+                      product.category!.name!,
                       style: secondaryTextStyle.copyWith(
                           fontSize: 12, fontWeight: regular),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 6),
                       child: Text(
-                        productName,
+                        product.name!,
                         style: primaryTextStyle.copyWith(
                           fontSize: 16,
                           fontWeight: semiBold,
@@ -61,7 +64,7 @@ class ProductTile extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$$price',
+                      '\$${product.price}',
                       style: priceTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,

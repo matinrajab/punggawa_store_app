@@ -1,31 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoe_store_app/models/cart_model.dart';
+import 'package:shoe_store_app/models/product_model.dart';
+import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
-class CartTile extends StatefulWidget {
-  final String imageAsset;
-  final String productName;
-  final double price;
+class CartTile extends StatelessWidget {
+  final CartModel cart;
 
-  CartTile({
+  const CartTile({
     super.key,
-    required this.imageAsset,
-    required this.productName,
-    required this.price,
+    required this.cart,
   });
 
   @override
-  State<CartTile> createState() => _CartTileState();
-}
-
-class _CartTileState extends State<CartTile> {
-  int _itemCount = 0;
-
-  @override
   Widget build(BuildContext context) {
+    final ProductModel product = cart.product!;
+    CartProvider cartProvider =
+        Provider.of<CartProvider>(context, listen: false);
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
         decoration: BoxDecoration(
           borderRadius: generalBorderRadius,
           color: backgroundColor4,
@@ -36,14 +33,14 @@ class _CartTileState extends State<CartTile> {
               children: [
                 ClipRRect(
                   borderRadius: generalBorderRadius,
-                  child: Image.asset(
-                    widget.imageAsset,
+                  child: Image.network(
+                    product.galleries![0].url!.substring(25),
                     width: 60,
                     height: 60,
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 12,
                 ),
                 Expanded(
@@ -52,33 +49,29 @@ class _CartTileState extends State<CartTile> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        widget.productName,
+                        product.name!,
                         style: primaryTextStyle.copyWith(
                           fontWeight: semiBold,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 2,
                       ),
                       Text(
-                        '\$${widget.price}',
+                        '\$${product.price}',
                         style: priceTextStyle,
                       )
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 Column(
                   children: [
                     GestureDetector(
-                      onTap: (){
-                        setState(() {
-                          _itemCount++;
-                        });
-                      },
+                      onTap: () => cartProvider.addQuantity(cart),
                       child: Image.asset(
                         'assets/button/button_add.png',
                         width: 16,
@@ -87,17 +80,12 @@ class _CartTileState extends State<CartTile> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2),
                       child: Text(
-                        '$_itemCount',
+                        '${cart.quantity}',
                         style: primaryTextStyle.copyWith(fontWeight: medium),
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){
-                        setState(() {
-                          if(_itemCount > 0)
-                            _itemCount--;
-                        });
-                      },
+                      onTap: () => cartProvider.minQuantity(cart),
                       child: Image.asset(
                         'assets/button/button_min.png',
                         width: 16,
@@ -107,26 +95,29 @@ class _CartTileState extends State<CartTile> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
-            Row(
-              children: [
-                Image.asset(
-                  'assets/icon/icon_trash.png',
-                  width: 10,
-                ),
-                SizedBox(
-                  width: 4,
-                ),
-                Text(
-                  'Remove',
-                  style: alertTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: light,
+            GestureDetector(
+              onTap: () => cartProvider.removeCart(cart),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/icon/icon_trash.png',
+                    width: 10,
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  Text(
+                    'Remove',
+                    style: alertTextStyle.copyWith(
+                      fontSize: 12,
+                      fontWeight: light,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/routes/routes.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class ProductCard extends StatelessWidget {
-  final String category;
-  final String productName;
-  final double price;
+  final ProductModel product;
 
   const ProductCard({
     super.key,
-    required this.category,
-    required this.productName,
-    required this.price,
+    required this.product,
   });
 
   @override
@@ -28,19 +25,21 @@ class ProductCard extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(20),
-          onTap: () => Navigator.pushNamed(context, productPage),
+          onTap: () => Navigator.pushNamed(
+            context,
+            productPage,
+            arguments: product,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30),
-                child: SizedBox(
+                child: Image.network(
+                  product.galleries![0].url!.substring(25),
+                  fit: BoxFit.cover,
                   height: 120,
                   width: 215,
-                  child: Image.asset(
-                    'assets/image/image_shoe.png',
-                    fit: BoxFit.cover,
-                  ),
                 ),
               ),
               Padding(
@@ -49,7 +48,7 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      category,
+                      product.category!.name!,
                       style: secondaryTextStyle.copyWith(
                         fontSize: 12,
                         fontWeight: regular,
@@ -58,16 +57,17 @@ class ProductCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 6),
                       child: Text(
-                        productName,
+                        product.name!,
                         style: blackTextStyle.copyWith(
                           fontSize: 18,
                           fontWeight: semiBold,
                         ),
                         overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                     ),
                     Text(
-                      '\$$price',
+                      '\$${product.price}',
                       style: priceTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: semiBold,

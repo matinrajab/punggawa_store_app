@@ -30,7 +30,7 @@ class AuthTextForm extends StatelessWidget {
             fontWeight: medium,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 12,
         ),
         MyTextFormField(

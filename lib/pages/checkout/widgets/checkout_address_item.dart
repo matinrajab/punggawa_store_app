@@ -21,7 +21,7 @@ class CheckoutAddressItem extends StatelessWidget {
           imageAssets,
           height: 40,
         ),
-        SizedBox(
+        const SizedBox(
           width: 12,
         ),
         Expanded(

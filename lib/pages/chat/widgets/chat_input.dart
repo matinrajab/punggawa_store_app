@@ -25,16 +25,16 @@ class ChatInput extends StatelessWidget {
             style: primaryTextStyle,
             cursorColor: primaryTextColor,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(
+              contentPadding: const EdgeInsets.symmetric(
                 vertical: 12,
                 horizontal: 16,
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: backgroundColor4),
+                borderSide: const BorderSide(color: backgroundColor4),
                 borderRadius: generalBorderRadius,
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: backgroundColor4),
+                borderSide: const BorderSide(color: backgroundColor4),
                 borderRadius: generalBorderRadius,
               ),
               filled: true,
@@ -44,7 +44,7 @@ class ChatInput extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 20,
         ),
         IconBoxButton(

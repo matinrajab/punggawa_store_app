@@ -27,7 +27,7 @@ class ProfileMenu extends StatelessWidget {
               fontWeight: semiBold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 6,
           ),
           for (int i = 0; i < options.length; i++)
@@ -45,7 +45,7 @@ class ProfileMenu extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: secondaryTextColor,
                     ),

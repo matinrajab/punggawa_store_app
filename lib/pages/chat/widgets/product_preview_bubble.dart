@@ -22,15 +22,15 @@ class ProductPreviewBubble extends StatelessWidget {
       constraints: BoxConstraints(
         maxWidth: MediaQuery.of(context).size.width * 0.7,
       ),
-      padding: EdgeInsets.all(12),
-      margin: EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(12),
+      margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
         color: isSender ? backgroundColor5 : backgroundColor4,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(isSender ? generalRadius : 0),
           topRight: Radius.circular(isSender ? 0 : generalRadius),
-          bottomLeft: Radius.circular(generalRadius),
-          bottomRight: Radius.circular(generalRadius),
+          bottomLeft: const Radius.circular(generalRadius),
+          bottomRight: const Radius.circular(generalRadius),
         ),
       ),
       child: Column(
@@ -46,7 +46,7 @@ class ProductPreviewBubble extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               Expanded(
@@ -60,7 +60,7 @@ class ProductPreviewBubble extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 4,
                     ),
                     Text(
@@ -74,7 +74,7 @@ class ProductPreviewBubble extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -86,7 +86,7 @@ class ProductPreviewBubble extends StatelessWidget {
                 buttonColor: backgroundColor5,
                 fontColor: primaryColor,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               MyButton(

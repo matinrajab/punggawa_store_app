@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/auth/widgets/auth_text_form.dart';
 import 'package:shoe_store_app/pages/auth/widgets/footer.dart';
 import 'package:shoe_store_app/pages/widgets/header.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
+import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
+import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
+import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/routes/routes.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
@@ -16,20 +20,41 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+    handleSignUp() async {
+      authProvider.isLoading = true;
+      if (await authProvider.register(
+        name: _nameController.text,
+        username: _usernameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+      )) {
+        Navigator.pushNamedAndRemoveUntil(context, mainPage, (route) => false);
+      } else {
+        MySnackBar.showSnackBar(
+          context: context,
+          message: 'Gagal Register',
+          isSuccess: false,
+        );
+      }
+      authProvider.isLoading = false;
+    }
+
     return Scaffold(
       backgroundColor: backgroundColor1,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(pagePadding),
+            padding: const EdgeInsets.all(pagePadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Header(
+                const Header(
                   title: 'Sign Up',
                   subtitle: 'Register and Happy Shopping',
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 AuthTextForm(
@@ -38,7 +63,7 @@ class SignUpPage extends StatelessWidget {
                   hintText: 'Your Full Name',
                   prefixIconAsset: 'assets/icon/icon_name.png',
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 AuthTextForm(
@@ -47,7 +72,7 @@ class SignUpPage extends StatelessWidget {
                   hintText: 'Your Username',
                   prefixIconAsset: 'assets/icon/icon_username.png',
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 AuthTextForm(
@@ -56,7 +81,7 @@ class SignUpPage extends StatelessWidget {
                   hintText: 'Your Email Address',
                   prefixIconAsset: 'assets/icon/icon_email.png',
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 AuthTextForm(
@@ -66,12 +91,16 @@ class SignUpPage extends StatelessWidget {
                   hintText: 'Your Password',
                   prefixIconAsset: 'assets/icon/icon_password.png',
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                MyButton(
-                  text: 'Sign Up',
-                  onTap: () => Navigator.pushNamedAndRemoveUntil(context, mainPage, (route) => false),
+                Consumer<AuthProvider>(
+                  builder: (context, authProvider, _) => authProvider.isLoading
+                      ? MyCircularIndicator.show()
+                      : MyButton(
+                          text: 'Sign Up',
+                          onTap: handleSignUp,
+                        ),
                 ),
                 Footer(
                   text: 'Already have an account?',

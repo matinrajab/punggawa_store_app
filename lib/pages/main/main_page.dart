@@ -17,10 +17,10 @@ class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
 
   final List<Widget> _body = [
-    HomePage(),
-    ChatPage(),
-    WishlistPage(),
-    ProfilePage(),
+    const HomePage(),
+    const ChatPage(),
+    const WishlistPage(),
+    const ProfilePage(),
   ];
 
   @override
@@ -28,7 +28,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       backgroundColor: _currentIndex == 0 ? backgroundColor1 : backgroundColor3,
       floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(50),
           ),
@@ -42,13 +42,13 @@ class _MainPageState extends State<MainPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.vertical(
+        borderRadius: const BorderRadius.vertical(
           top: Radius.circular(30),
         ),
         child: BottomAppBar(
-          padding: EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 20),
           color: backgroundColor4,
-          shape: CircularNotchedRectangle(),
+          shape: const CircularNotchedRectangle(),
           notchMargin: 10,
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(

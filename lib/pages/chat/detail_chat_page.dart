@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/pages/chat/widgets/chat_bottom_nav_bar.dart';
 import 'package:shoe_store_app/pages/chat/widgets/chat_bubble.dart';
-import 'package:shoe_store_app/pages/chat/widgets/product_preview.dart';
-import 'package:shoe_store_app/pages/chat/widgets/product_preview_bubble.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class DetailChatPage extends StatelessWidget {
@@ -18,7 +16,7 @@ class DetailChatPage extends StatelessWidget {
         backgroundColor: backgroundColor1,
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back_ios_new_rounded, color: primaryTextColor,),
+          child: const Icon(Icons.arrow_back_ios_new_rounded, color: primaryTextColor,),
         ),
         toolbarHeight: 70,
         title: Row(
@@ -27,7 +25,7 @@ class DetailChatPage extends StatelessWidget {
               'assets/icon/icon_shop_online.png',
               height: 50,
             ),
-            SizedBox(
+            const SizedBox(
               width: 12,
             ),
             Expanded(
@@ -58,26 +56,16 @@ class DetailChatPage extends StatelessWidget {
       bottomNavigationBar: ChatBottomNavBar(
         controller: _inputController,
         onTap: () {},
-        widget: ProductPreview(
-          imageAsset: 'assets/image/image_shoe.png',
-          productName: 'productName',
-          price: 666,
-        ),
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: pagePadding),
-        children: [
+        padding: const EdgeInsets.symmetric(horizontal: pagePadding),
+        children: const [
           ChatBubble(
-            text: 'are you nigga?',
+            text: 'Apakah product ini masih tersedia?',
             isSender: true,
             hasProduct: true,
           ),
-          ChatBubble(text: 'right brother',),
-          ChatBubble(
-            text: 'why are you black?',
-            isSender: true,
-          ),
-          ChatBubble(text: 'because i\'m nigga', hasProduct: true,),
+          ChatBubble(text: 'Masih kak',),
         ],
       ),
     );

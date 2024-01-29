@@ -8,7 +8,7 @@ class ProductPageHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         top: 20,
         left: pagePadding,
         right: pagePadding,
@@ -18,7 +18,7 @@ class ProductPageHeader extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () => Navigator.pop(context),
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_ios_new_rounded,
               color: backgroundColor1,
             ),

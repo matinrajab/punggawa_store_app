@@ -24,18 +24,18 @@ class MyTextFormField extends StatelessWidget {
       cursorColor: primaryTextColor,
       decoration: InputDecoration(
         prefixIcon: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
           child: Image.asset(
             prefixIconAsset,
             width: 16,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: backgroundColor2),
+          borderSide: const BorderSide(color: backgroundColor2),
           borderRadius: generalBorderRadius,
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: backgroundColor2),
+          borderSide: const BorderSide(color: backgroundColor2),
           borderRadius: generalBorderRadius,
         ),
         filled: true,

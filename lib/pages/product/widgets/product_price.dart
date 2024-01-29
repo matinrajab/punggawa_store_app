@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class ProductPrice extends StatelessWidget {
-  final double price;
+  final dynamic price;
 
-  const ProductPrice({super.key, required this.price,});
+  const ProductPrice({
+    super.key,
+    required this.price,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class ProductPrice extends StatelessWidget {
         color: backgroundColor2,
         borderRadius: BorderRadius.circular(4),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

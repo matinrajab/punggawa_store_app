@@ -29,7 +29,7 @@ class EmptyItem extends StatelessWidget {
           width: 80,
         ),
         Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             top: 20,
             bottom: 12,
           ),
@@ -49,7 +49,7 @@ class EmptyItem extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         MyButton(

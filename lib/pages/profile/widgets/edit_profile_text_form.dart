@@ -24,7 +24,7 @@ class EditProfileTextForm extends StatelessWidget {
           controller: controller,
           style: primaryTextStyle.copyWith(fontSize: 16),
           cursorColor: primaryTextColor,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: subtitleTextColor),
             ),

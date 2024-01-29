@@ -14,23 +14,23 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        MyAppBar(text: 'Message Support'),
+        const MyAppBar(text: 'Message Support'),
         Expanded(
           child: Container(
             width: double.infinity,
             color: backgroundColor3,
             child: _isEmpty
-                ? EmptyItem(
+                ? const EmptyItem(
                     iconAsset: 'assets/icon/icon_empty_chat.png',
                     title: 'Opss no message yet?',
                     subtitle: 'You have never done a transaction',
                   )
                 : ListView(
-                  padding: EdgeInsets.all(pagePadding),
+                  padding: const EdgeInsets.all(pagePadding),
                   children: [
                     ChatTile(
-                      sender: 'Black People',
-                      content: 'what the fuck are you doing nigga',
+                      sender: 'Shoe Store',
+                      content: 'Good night, This item is on...',
                       onTap: () =>
                           Navigator.pushNamed(context, detailChatPage),
                     ),

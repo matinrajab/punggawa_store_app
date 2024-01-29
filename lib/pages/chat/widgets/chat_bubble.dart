@@ -37,7 +37,7 @@ class ChatBubble extends StatelessWidget {
                 constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width * 0.7,
                 ),
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   vertical: 12,
                   horizontal: 16,
                 ),
@@ -46,8 +46,8 @@ class ChatBubble extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(isSender ? generalRadius : 0),
                     topRight: Radius.circular(isSender ? 0 : generalRadius),
-                    bottomLeft: Radius.circular(generalRadius),
-                    bottomRight: Radius.circular(generalRadius),
+                    bottomLeft: const Radius.circular(generalRadius),
+                    bottomRight: const Radius.circular(generalRadius),
                   ),
                 ),
                 child: Text(

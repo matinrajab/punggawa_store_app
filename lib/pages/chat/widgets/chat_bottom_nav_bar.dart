@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/pages/chat/widgets/chat_input.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/pages/chat/widgets/product_preview.dart';
 
 class ChatBottomNavBar extends StatelessWidget {
   final TextEditingController? controller;
   final GestureTapCallback? onTap;
-  final Widget widget;
+  final bool hasProduct;
 
   const ChatBottomNavBar({
     super.key,
     required this.controller,
     required this.onTap,
-    this.widget = const SizedBox(height: 0,),
+    this.hasProduct = false,
   });
 
   @override
@@ -22,7 +22,15 @@ class ChatBottomNavBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          widget,
+          hasProduct
+              ? const ProductPreview(
+                  imageAsset: 'assets/image/image_shoe.png',
+                  productName: 'productName',
+                  price: 666,
+                )
+              : const SizedBox(
+                  height: 0,
+                ),
           ChatInput(
             controller: controller,
             onTap: onTap,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoe_store_app/models/user_model.dart';
 import 'package:shoe_store_app/pages/profile/widgets/profile_menu.dart';
 import 'package:shoe_store_app/pages/widgets/header.dart';
-import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
+import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/routes/routes.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
@@ -10,6 +12,9 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
+    UserModel user = authProvider.user;
+    
     return Column(
       children: [
         AppBar(
@@ -18,17 +23,22 @@ class ProfilePage extends StatelessWidget {
             padding: const EdgeInsets.all(pagePadding),
             child: Row(
               children: [
-                Image.asset(
-                  'assets/image/image_profile.png',
-                  height: 64,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(32),
+                  child: Image.network(
+                    user.profilePhotoUrl!,
+                    height: 64,
+                    width: 64,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 16,
                 ),
                 Expanded(
                   child: Header(
-                    title: 'Halo, User',
-                    subtitle: '@username',
+                    title: 'Halo, ${user.name}',
+                    subtitle: '@${user.username}',
                     subtitleFontSize: 16,
                   ),
                 ),
@@ -53,10 +63,10 @@ class ProfilePage extends StatelessWidget {
               children: [
                 ProfileMenu(
                   title: 'Account',
-                  options: ['Edit Profile', 'Your Order', 'Help'],
+                  options: const ['Edit Profile', 'Your Order', 'Help'],
                   routes: [() => Navigator.pushNamed(context, editProfilePage), (){}, (){}],
                 ),
-                ProfileMenu(
+                const ProfileMenu(
                   title: 'General',
                   options: [
                     'Privacy & Policy',

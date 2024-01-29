@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoe_store_app/models/cart_model.dart';
+import 'package:shoe_store_app/pages/cart/widgets/cart_bottom_nav_bar.dart';
 import 'package:shoe_store_app/pages/cart/widgets/cart_tile.dart';
-import 'package:shoe_store_app/pages/main/widgets/my_bottom_nav_bar.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
-import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
-import 'package:shoe_store_app/routes/routes.dart';
+import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
-
-  final bool _isEmpty = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,105 +26,42 @@ class CartPage extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(
+          icon: const Icon(
             Icons.close_rounded,
             color: primaryTextColor,
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 180,
-        color: backgroundColor3,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: pagePadding),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Subtotal',
-                    style: primaryTextStyle,
-                  ),
-                  Text(
-                    '\$666',
-                    style: priceTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Divider(
-              thickness: 1,
-              color: subtitleTextColor,
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: pagePadding),
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: generalBorderRadius,
-                  color: primaryColor,
-                ),
-                child: Material(
-                  borderRadius: generalBorderRadius,
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: generalBorderRadius,
-                    onTap: () => Navigator.pushNamed(context, checkoutPage),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Continue to Checkout',
-                            style: primaryTextStyle.copyWith(
-                              fontSize: 16,
-                              fontWeight: semiBold,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_rounded,
-                            color: primaryTextColor,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      body: Container(
-        width: double.infinity,
-        child: _isEmpty
-            ? EmptyItem(
-                iconAsset: 'assets/icon/icon_empty_cart.png',
-                title: 'Opss! Your Cart is Empty',
-                subtitle: 'Let\'s find your favorite shoes',
+      bottomNavigationBar: Consumer<CartProvider>(
+        builder: (context, cartProvider, _) => cartProvider.carts.isEmpty
+            ? const SizedBox(
+                height: 0,
               )
-            : ListView(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 20, horizontal: pagePadding),
-                children: [
-                  CartTile(
-                    imageAsset: 'assets/image/image_shoe.png',
-                    productName: 'Adidas',
-                    price: 666,
+            : CartBottomNavBar(price: cartProvider.totalPrice(),),
+      ),
+      body: Consumer<CartProvider>(
+        builder: (context, cartProvider, _) {
+          List<CartModel> carts = cartProvider.carts;
+          return SizedBox(
+            width: double.infinity,
+            child: carts.isEmpty
+                ? const EmptyItem(
+                    iconAsset: 'assets/icon/icon_empty_cart.png',
+                    title: 'Oops! Your Cart is Empty',
+                    subtitle: 'Let\'s find your favorite shoes',
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: pagePadding,
+                    ),
+                    itemCount: carts.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CartTile(cart: carts[index]);
+                    },
                   ),
-                ],
-              ),
+          );
+        },
       ),
     );
   }

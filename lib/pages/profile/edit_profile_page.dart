@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoe_store_app/models/user_model.dart';
 import 'package:shoe_store_app/pages/profile/widgets/edit_profile_text_form.dart';
-import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
+import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class EditProfile extends StatelessWidget {
-  EditProfile({super.key});
-
-  final TextEditingController _nameController =
-      TextEditingController(text: 'Matin Muhammad');
-  final TextEditingController _usernameController =
-      TextEditingController(text: '@matin');
-  final TextEditingController _emailController =
-      TextEditingController(text: 'matin@gmail.com');
+  const EditProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
+    UserModel user = authProvider.user;
+
+    final TextEditingController nameController = TextEditingController(
+      text: user.name,
+    );
+    final TextEditingController usernameController = TextEditingController(
+      text: user.username,
+    );
+    final TextEditingController emailController = TextEditingController(
+      text: user.email,
+    );
+
     return Scaffold(
       backgroundColor: backgroundColor3,
       appBar: AppBar(
         backgroundColor: backgroundColor1,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(
+          icon: const Icon(
             Icons.close_rounded,
             color: primaryTextColor,
           ),
@@ -37,7 +45,7 @@ class EditProfile extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.check,
               color: primaryColor,
             ),
@@ -50,30 +58,35 @@ class EditProfile extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                Image.asset(
-                  'assets/image/image_profile.png',
-                  height: 100,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.network(
+                    user.profilePhotoUrl!,
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 EditProfileTextForm(
                   title: 'Name',
-                  controller: _nameController,
+                  controller: nameController,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24,
                 ),
                 EditProfileTextForm(
                   title: 'Username',
-                  controller: _usernameController,
+                  controller: usernameController,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24,
                 ),
                 EditProfileTextForm(
                   title: 'Email Address',
-                  controller: _emailController,
+                  controller: emailController,
                 ),
               ],
             ),

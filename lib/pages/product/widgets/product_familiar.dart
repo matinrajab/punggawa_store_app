@@ -29,12 +29,12 @@ class ProductFamiliar extends StatelessWidget {
         SizedBox(
           height: 54,
           child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 22),
+            padding: const EdgeInsets.symmetric(horizontal: 22),
             scrollDirection: Axis.horizontal,
             itemCount: familiarShoes.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: SizedBox(
                   width: 54,
                   child: ClipRRect(
