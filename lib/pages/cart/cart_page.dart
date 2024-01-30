@@ -34,10 +34,10 @@ class CartPage extends StatelessWidget {
       ),
       bottomNavigationBar: Consumer<CartProvider>(
         builder: (context, cartProvider, _) => cartProvider.carts.isEmpty
-            ? const SizedBox(
-                height: 0,
-              )
-            : CartBottomNavBar(price: cartProvider.totalPrice(),),
+            ? const SizedBox()
+            : CartBottomNavBar(
+                price: cartProvider.totalPrice(),
+              ),
       ),
       body: Consumer<CartProvider>(
         builder: (context, cartProvider, _) {

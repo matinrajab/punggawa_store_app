@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/models/message_model.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class ChatTile extends StatelessWidget {
-  final String sender;
-  final String content;
+  final MessageModel message;
   final GestureTapCallback? onTap;
 
   const ChatTile({
     super.key,
-    required this.sender,
-    required this.content,
+    required this.message,
     required this.onTap,
   });
 
@@ -33,7 +32,7 @@ class ChatTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      sender,
+                      'Shoe Store',
                       style: primaryTextStyle.copyWith(
                         fontSize: 15,
                         fontWeight: regular,
@@ -41,7 +40,7 @@ class ChatTile extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      content,
+                      message.message!,
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: light,

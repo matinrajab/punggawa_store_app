@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
+import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/routes/routes.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
@@ -21,6 +23,9 @@ class EmptyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PageProvider pageProvider =
+        Provider.of<PageProvider>(context, listen: false);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -54,8 +59,11 @@ class EmptyItem extends StatelessWidget {
         ),
         MyButton(
           text: textOnButton,
-          onTap: () => Navigator.pushNamedAndRemoveUntil(
-              context, mainPage, (route) => false),
+          onTap: () {
+            pageProvider.currentIndex = 0;
+            Navigator.pushNamedAndRemoveUntil(
+                context, mainPage, (route) => false);
+          },
           width: widthButton,
           height: 44,
         ),

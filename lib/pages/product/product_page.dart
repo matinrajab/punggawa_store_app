@@ -164,7 +164,11 @@ class ProductPage extends StatelessWidget {
                       IconBoxButton(
                         imageAsset: 'assets/icon/icon_chat_primary.png',
                         imageWidth: 23,
-                        onTap: () {},
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          detailChatPage,
+                          arguments: product,
+                        ),
                         size: 54,
                         color: Colors.transparent,
                       ),
@@ -207,7 +211,8 @@ class ProductPage extends StatelessWidget {
                                             Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(
-                                                      vertical: 12),
+                                                vertical: 12,
+                                              ),
                                               child: Text(
                                                 'Hurray :)',
                                                 style:

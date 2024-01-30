@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/chat/chat_page.dart';
 import 'package:shoe_store_app/pages/home/home_page.dart';
 import 'package:shoe_store_app/pages/profile/profile_page.dart';
 import 'package:shoe_store_app/pages/wishlist/wishlist_page.dart';
+import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/routes/routes.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
-
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  int _currentIndex = 0;
+class MainPage extends StatelessWidget {
+  MainPage({super.key});
 
   final List<Widget> _body = [
     const HomePage(),
@@ -25,84 +20,90 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: _currentIndex == 0 ? backgroundColor1 : backgroundColor3,
-      floatingActionButton: FloatingActionButton(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(50),
+    return Consumer<PageProvider>(
+      builder: (context, pageProvider, _) => Scaffold(
+        backgroundColor: pageProvider.currentIndex == 0
+            ? backgroundColor1
+            : backgroundColor3,
+        floatingActionButton: FloatingActionButton(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(50),
+            ),
+          ),
+          backgroundColor: secondaryColor,
+          onPressed: () => Navigator.pushNamed(context, cartPage),
+          child: Image.asset(
+            'assets/icon/icon_cart.png',
+            width: 20,
           ),
         ),
-        backgroundColor: secondaryColor,
-        onPressed: () => Navigator.pushNamed(context, cartPage),
-        child: Image.asset(
-          'assets/icon/icon_cart.png',
-          width: 20,
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(30),
-        ),
-        child: BottomAppBar(
-          padding: const EdgeInsets.only(top: 20),
-          color: backgroundColor4,
-          shape: const CircularNotchedRectangle(),
-          notchMargin: 10,
-          clipBehavior: Clip.antiAlias,
-          child: BottomNavigationBar(
-            backgroundColor: Colors.transparent,
-            type: BottomNavigationBarType.fixed,
-            elevation: 0,
-            currentIndex: _currentIndex,
-            onTap: (value) {
-              setState(() {
-                _currentIndex = value;
-              });
-            },
-            items: [
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icon/icon_home.png',
-                  height: 20,
-                  color:
-                      _currentIndex == 0 ? primaryColor : defaultIconNavColor,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: ClipRRect(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(30),
+          ),
+          child: BottomAppBar(
+            padding: const EdgeInsets.only(top: 20),
+            color: backgroundColor4,
+            shape: const CircularNotchedRectangle(),
+            notchMargin: 10,
+            clipBehavior: Clip.antiAlias,
+            child: BottomNavigationBar(
+              backgroundColor: Colors.transparent,
+              type: BottomNavigationBarType.fixed,
+              elevation: 0,
+              currentIndex: pageProvider.currentIndex,
+              onTap: (value) {
+                pageProvider.currentIndex = value;
+              },
+              items: [
+                BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/icon/icon_home.png',
+                    height: 20,
+                    color: pageProvider.currentIndex == 0
+                        ? primaryColor
+                        : defaultIconNavColor,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icon/icon_chat.png',
-                  width: 20,
-                  color:
-                      _currentIndex == 1 ? primaryColor : defaultIconNavColor,
+                BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/icon/icon_chat.png',
+                    width: 20,
+                    color: pageProvider.currentIndex == 1
+                        ? primaryColor
+                        : defaultIconNavColor,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icon/icon_wishlist.png',
-                  width: 20,
-                  color:
-                      _currentIndex == 2 ? primaryColor : defaultIconNavColor,
+                BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/icon/icon_wishlist.png',
+                    width: 20,
+                    color: pageProvider.currentIndex == 2
+                        ? primaryColor
+                        : defaultIconNavColor,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icon/icon_profile.png',
-                  height: 20,
-                  color:
-                      _currentIndex == 3 ? primaryColor : defaultIconNavColor,
+                BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/icon/icon_profile.png',
+                    height: 20,
+                    color: pageProvider.currentIndex == 3
+                        ? primaryColor
+                        : defaultIconNavColor,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-            ],
+              ],
+            ),
           ),
         ),
+        body: _body[pageProvider.currentIndex],
       ),
-      body: _body[_currentIndex],
     );
   }
 }

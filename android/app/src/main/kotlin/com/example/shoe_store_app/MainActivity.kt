@@ -1,4 +1,4 @@
-package com.example.shoe_store_app
+package com.matin.shoe_store_app
 
 import io.flutter.embedding.android.FlutterActivity
 

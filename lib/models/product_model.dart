@@ -25,26 +25,27 @@ class ProductModel {
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
-    id: json["id"],
-    name: json["name"],
-    price: json["price"],
-    description: json["description"],
-    tags: json["tags"],
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
-    category: CategoryModel.fromJson(json["category"]),
-    galleries: List<GalleryModel>.from(json["galleries"].map((x) => GalleryModel.fromJson(x))),
-  );
+        id: json["id"],
+        name: json["name"],
+        price: json["price"],
+        description: json["description"],
+        tags: json["tags"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        category: CategoryModel.fromJson(json["category"]),
+        galleries: List<GalleryModel>.from(
+            json["galleries"].map((x) => GalleryModel.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "price": price,
-    "description": description,
-    "tags": tags,
-    "created_at": createdAt!.toIso8601String(),
-    "updated_at": updatedAt!.toIso8601String(),
-    "category": category!.toJson(),
-    "galleries": List<dynamic>.from(galleries!.map((x) => x.toJson())),
-  };
+        "id": id,
+        "name": name,
+        "price": price,
+        "description": description,
+        "tags": tags,
+        "created_at": createdAt!.toIso8601String(),
+        "updated_at": updatedAt!.toIso8601String(),
+        "category": category!.toJson(),
+        "galleries": List<dynamic>.from(galleries!.map((x) => x.toJson())),
+      };
 }

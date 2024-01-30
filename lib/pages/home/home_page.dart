@@ -114,7 +114,8 @@ class HomePage extends StatelessWidget {
                             itemCount: products.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 15),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
                                 child: ProductCard(product: products[index]),
                               );
                             },
@@ -150,9 +151,7 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: pagePadding),
                         child: ProductTile(product: product),
                       )
-                    : const SizedBox(
-                        height: 0,
-                      );
+                    : const SizedBox();
               }).toList(),
             ),
           ),

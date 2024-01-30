@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "446300149881",
+    "project_id": "shoe-store-7d0c4",
+    "storage_bucket": "shoe-store-7d0c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446300149881:android:78412968d030911b021ca8",
+        "android_client_info": {
+          "package_name": "com.matin.shoe_store_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDILYZJU1Jq2S1VkhfIfYkcdgS9skCQvR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

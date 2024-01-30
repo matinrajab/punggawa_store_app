@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/models/product_model.dart';
+import 'package:shoe_store_app/models/uninitialized_product_model.dart';
 import 'package:shoe_store_app/pages/chat/widgets/product_preview_bubble.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class ChatBubble extends StatelessWidget {
   final String text;
   final bool isSender;
-  final bool hasProduct;
+  final ProductModel? product;
 
   const ChatBubble({
     super.key,
     required this.text,
     this.isSender = false,
-    this.hasProduct = false,
+    this.product,
   });
 
   @override
@@ -22,13 +24,12 @@ class ChatBubble extends StatelessWidget {
         crossAxisAlignment:
             isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          if (hasProduct)
-            ProductPreviewBubble(
-              imageAsset: 'assets/image/image_shoe.png',
-              productName: 'productName',
-              price: 666,
-              isSender: isSender,
-            ),
+          product is UninitializedProductModel
+              ? const SizedBox()
+              : ProductPreviewBubble(
+                  product: product!,
+                  isSender: isSender,
+                ),
           Row(
             mainAxisAlignment:
                 isSender ? MainAxisAlignment.end : MainAxisAlignment.start,

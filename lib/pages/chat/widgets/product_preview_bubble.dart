@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class ProductPreviewBubble extends StatelessWidget {
-  final String imageAsset;
-  final String productName;
-  final double price;
+  final ProductModel product;
   final bool isSender;
 
   const ProductPreviewBubble({
     super.key,
-    required this.imageAsset,
-    required this.productName,
-    required this.price,
+    required this.product,
     this.isSender = false,
   });
 
@@ -39,8 +36,8 @@ class ProductPreviewBubble extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: generalBorderRadius,
-                child: Image.asset(
-                  imageAsset,
+                child: Image.network(
+                  product.galleries![0].url!.substring(25),
                   height: 70,
                   width: 70,
                   fit: BoxFit.cover,
@@ -55,7 +52,7 @@ class ProductPreviewBubble extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      productName,
+                      product.name!,
                       style: primaryTextStyle,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -64,7 +61,7 @@ class ProductPreviewBubble extends StatelessWidget {
                       height: 4,
                     ),
                     Text(
-                      '\$$price',
+                      '\$${product.price}',
                       style: priceTextStyle.copyWith(
                         fontWeight: medium,
                       ),
