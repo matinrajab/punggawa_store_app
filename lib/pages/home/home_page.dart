@@ -5,7 +5,7 @@ import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/models/user_model.dart';
 import 'package:shoe_store_app/pages/home/widgets/product_tile.dart';
 import 'package:shoe_store_app/pages/home/widgets/product_card.dart';
-import 'package:shoe_store_app/pages/widgets/header.dart';
+import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/category_provider.dart';
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Header(
+                child: TitleAndSubtitle(
                   title: 'Halo, ${user.name}',
                   subtitle: '@${user.username}',
                   subtitleFontSize: 16,
@@ -43,8 +43,8 @@ class HomePage extends StatelessWidget {
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(27),
-                child: Image.network(
-                  user.profilePhotoUrl!,
+                child: Image.asset(
+                  'assets/image/image_profile.png',
                   height: 54,
                   width: 54,
                   fit: BoxFit.cover,

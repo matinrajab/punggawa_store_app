@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shoe_store_app/models/user_model.dart';
+import 'package:shoe_store_app/pages/profile/widgets/logout_alert_dialog.dart';
 import 'package:shoe_store_app/pages/profile/widgets/profile_menu.dart';
-import 'package:shoe_store_app/pages/widgets/header.dart';
+import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
-import 'package:shoe_store_app/routes/routes.dart';
+import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -12,9 +12,13 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
-    UserModel user = authProvider.user;
-    
+    onLogoutTapped() {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => const LogoutAlertDialog(),
+      );
+    }
+
     return Column(
       children: [
         AppBar(
@@ -25,8 +29,8 @@ class ProfilePage extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(32),
-                  child: Image.network(
-                    user.profilePhotoUrl!,
+                  child: Image.asset(
+                    'assets/image/image_profile.png',
                     height: 64,
                     width: 64,
                     fit: BoxFit.cover,
@@ -36,15 +40,16 @@ class ProfilePage extends StatelessWidget {
                   width: 16,
                 ),
                 Expanded(
-                  child: Header(
-                    title: 'Halo, ${user.name}',
-                    subtitle: '@${user.username}',
-                    subtitleFontSize: 16,
+                  child: Consumer<AuthProvider>(
+                    builder: (context, authProvider, _) => TitleAndSubtitle(
+                      title: 'Halo, ${authProvider.user.name}',
+                      subtitle: '@${authProvider.user.username}',
+                      subtitleFontSize: 16,
+                    ),
                   ),
                 ),
                 IconButton(
-                  onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                      context, signInPage, (route) => false),
+                  onPressed: onLogoutTapped,
                   icon: Image.asset(
                     'assets/button/button_exit.png',
                     height: 20,
@@ -64,15 +69,15 @@ class ProfilePage extends StatelessWidget {
                 ProfileMenu(
                   title: 'Account',
                   options: const ['Edit Profile', 'Your Order', 'Help'],
-                  routes: [() => Navigator.pushNamed(context, editProfilePage), (){}, (){}],
+                  routes: [
+                    () => Navigator.pushNamed(context, editProfilePage),
+                    () => Navigator.pushNamed(context, orderPage),
+                    () {}
+                  ],
                 ),
                 const ProfileMenu(
                   title: 'General',
-                  options: [
-                    'Privacy & Policy',
-                    'Term of Service',
-                    'Rate App'
-                  ],
+                  options: ['Privacy & Policy', 'Term of Service', 'Rate App'],
                 ),
               ],
             ),

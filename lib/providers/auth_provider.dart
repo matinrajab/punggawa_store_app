@@ -56,6 +56,25 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  Future<bool> updateProfile({
+    String? key,
+    String? value,
+  }) async {
+    try {
+      UserModel user = await AuthService().updateProfile(
+        key: key,
+        value: value,
+        token: _user.token,
+      );
+
+      _user = user;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Future<bool> fetch() async {
     try {
       UserModel user = await AuthService().fetch();
@@ -67,4 +86,12 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  Future<bool> logout() async {
+    try {
+      await AuthService().logout();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }

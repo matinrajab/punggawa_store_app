@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/category_provider.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
-import 'package:shoe_store_app/routes/routes.dart';
+import 'package:shoe_store_app/providers/transaction_provider.dart';
+import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class SplashPage extends StatefulWidget {
@@ -25,9 +25,13 @@ class _SplashPageState extends State<SplashPage> {
   getInit() async {
     await Provider.of<ProductProvider>(context, listen: false).getProducts();
     await Provider.of<CategoryProvider>(context, listen: false).getCategories();
-    await Provider.of<AuthProvider>(context, listen: false).fetch()
-        ? Navigator.pushReplacementNamed(context, mainPage)
-        : Navigator.pushReplacementNamed(context, signInPage);
+    if (await Provider.of<AuthProvider>(context, listen: false).fetch()) {
+      await Provider.of<TransactionProvider>(context, listen: false)
+          .getTransactions();
+      Navigator.pushReplacementNamed(context, mainPage);
+    } else {
+      Navigator.pushReplacementNamed(context, signInPage);
+    }
   }
 
   @override

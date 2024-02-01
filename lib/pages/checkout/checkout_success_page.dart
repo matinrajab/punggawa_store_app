@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
+import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class CheckoutSuccessPage extends StatelessWidget {
@@ -39,7 +40,7 @@ class CheckoutSuccessPage extends StatelessWidget {
             ),
             MyButton(
               text: 'View My Order',
-              onTap: () {},
+              onTap: () => Navigator.pushNamed(context, orderPage),
               buttonColor: const Color(0xff39374B),
               borderColor: const Color(0xff39374B),
               height: 44,

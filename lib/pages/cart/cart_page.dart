@@ -42,8 +42,7 @@ class CartPage extends StatelessWidget {
       body: Consumer<CartProvider>(
         builder: (context, cartProvider, _) {
           List<CartModel> carts = cartProvider.carts;
-          return SizedBox(
-            width: double.infinity,
+          return Center(
             child: carts.isEmpty
                 ? const EmptyItem(
                     iconAsset: 'assets/icon/icon_empty_cart.png',

@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class ProductFamiliar extends StatelessWidget {
-  final List<String> familiarShoes;
-
-  const ProductFamiliar({
+  ProductFamiliar({
     super.key,
-    required this.familiarShoes,
   });
+
+  final List<String> _familiarShoes = [
+    'assets/image/image_shoe.png',
+    'assets/image/image_shoe2.png',
+    'assets/image/image_shoe3.png',
+    'assets/image/image_shoe.png',
+    'assets/image/image_shoe2.png',
+    'assets/image/image_shoe3.png',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,7 @@ class ProductFamiliar extends StatelessWidget {
           child: ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 22),
             scrollDirection: Axis.horizontal,
-            itemCount: familiarShoes.length,
+            itemCount: _familiarShoes.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -40,7 +46,7 @@ class ProductFamiliar extends StatelessWidget {
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(6),
                       child: Image.asset(
-                        familiarShoes[index],
+                        _familiarShoes[index],
                         fit: BoxFit.cover,
                       )),
                 ),

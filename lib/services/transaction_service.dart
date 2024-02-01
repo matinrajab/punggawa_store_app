@@ -1,13 +1,16 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoe_store_app/api/base_url.dart';
 import 'package:shoe_store_app/models/cart_model.dart';
+import 'package:shoe_store_app/models/transaction_model.dart';
 
 class TransactionService {
   Future checkout(
     String token,
     List<CartModel> carts,
+    String address,
     double totalPrice,
   ) async {
     var url = '${BaseUrl.baseUrl}/checkout';
@@ -16,7 +19,7 @@ class TransactionService {
       'Authorization': token,
     };
     var body = jsonEncode({
-      'address': 'Mexico Utara',
+      'address': address,
       'items': carts
           .map(
             (cart) => {
@@ -42,6 +45,40 @@ class TransactionService {
       return true;
     } else {
       throw Exception('Gagal Melakukan Checkout');
+    }
+  }
+
+  Future<List<TransactionModel>> getTransactions() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    var url = '${BaseUrl.baseUrl}/transactions';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token!,
+    };
+
+    var response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      List data = jsonDecode(response.body)['data'];
+      List<TransactionModel> transactions = [];
+      print('data:: $data');
+      print('sebelum assign transaction');
+      data.map((transaction) {
+        print('pertransaksi: $transaction');
+        transactions.add(
+            TransactionModel.fromJson(transaction));
+      }).toList();
+      print('setelah assign transaction');
+
+      return transactions;
+    } else {
+      throw Exception('Gagal Get Transactions!');
     }
   }
 }

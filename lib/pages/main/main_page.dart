@@ -5,7 +5,7 @@ import 'package:shoe_store_app/pages/home/home_page.dart';
 import 'package:shoe_store_app/pages/profile/profile_page.dart';
 import 'package:shoe_store_app/pages/wishlist/wishlist_page.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
-import 'package:shoe_store_app/routes/routes.dart';
+import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class MainPage extends StatelessWidget {

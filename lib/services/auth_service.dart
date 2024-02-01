@@ -6,13 +6,15 @@ import 'package:shoe_store_app/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
+  late SharedPreferences prefs;
+
   Future<UserModel> register({
     String? name,
     String? username,
     String? email,
     String? password,
   }) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance();
     var url = '${BaseUrl.baseUrl}/register';
     var headers = {'Content-Type': 'application/json'};
     var body = jsonEncode({
@@ -46,7 +48,7 @@ class AuthService {
     String? email,
     String? password,
   }) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance();
     var url = '${BaseUrl.baseUrl}/login';
     var headers = {'Content-Type': 'application/json'};
     var body = jsonEncode({
@@ -74,13 +76,46 @@ class AuthService {
     }
   }
 
+  Future<UserModel> updateProfile({
+    String? key,
+    String? value,
+    String? token,
+  }) async {
+    var url = '${BaseUrl.baseUrl}/user';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token!,
+    };
+    var body = jsonEncode({
+      '$key': value,
+    });
+
+    var response = await http.post(
+      Uri.parse(url),
+      headers: headers,
+      body: body,
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body)['data'];
+      UserModel user = UserModel.fromJson(data['user']);
+      user.token = token;
+
+      return user;
+    } else {
+      throw Exception('Update Profile Failed');
+    }
+  }
+
   Future<UserModel> fetch() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
     var url = '${BaseUrl.baseUrl}/user';
     var headers = {
       'Content-Type': 'application/json',
-      'Authorization' : token!,
+      'Authorization': token!,
     };
 
     var response = await http.get(
@@ -98,6 +133,29 @@ class AuthService {
       return user;
     } else {
       throw Exception('Fetch User Failed');
+    }
+  }
+
+  Future<void> logout() async {
+    prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    var url = '${BaseUrl.baseUrl}/logout';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token!,
+    };
+
+    var response = await http.post(
+      Uri.parse(url),
+      headers: headers,
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      await prefs.remove('token');
+    } else {
+      throw Exception('Logout Failed');
     }
   }
 }

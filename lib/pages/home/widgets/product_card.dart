@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/product_model.dart';
-import 'package:shoe_store_app/routes/routes.dart';
+import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class ProductCard extends StatelessWidget {

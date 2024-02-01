@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
-class Header extends StatelessWidget {
+class TitleAndSubtitle extends StatelessWidget {
   final String title;
   final String subtitle;
   final double? titleFontSize;
@@ -10,7 +10,7 @@ class Header extends StatelessWidget {
   final FontWeight? subtitleFontWeight;
   final double? space;
 
-  const Header({
+  const TitleAndSubtitle({
     super.key,
     required this.title,
     required this.subtitle,

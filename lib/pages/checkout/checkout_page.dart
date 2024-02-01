@@ -4,10 +4,11 @@ import 'package:shoe_store_app/pages/checkout/widgets/checkout_address.dart';
 import 'package:shoe_store_app/pages/checkout/widgets/checkout_payment.dart';
 import 'package:shoe_store_app/pages/checkout/widgets/checkout_tile.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
+import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
-import 'package:shoe_store_app/routes/routes.dart';
+import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class CheckoutPage extends StatelessWidget {
@@ -28,9 +29,16 @@ class CheckoutPage extends StatelessWidget {
         cartProvider.carts,
         cartProvider.totalPrice(),
       )) {
+        await transactionProvider.getTransactions();
         cartProvider.carts.clear();
         Navigator.pushNamedAndRemoveUntil(
             context, checkoutSuccessPage, (route) => false);
+      }else {
+        MySnackBar.showSnackBar(
+          context: context,
+          message: 'Gagal Checkout',
+          isSuccess: false,
+        );
       }
     }
 
@@ -85,9 +93,7 @@ class CheckoutPage extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          const CheckoutAddress(
-            yourAddress: 'Mexico Utara',
-          ),
+          const CheckoutAddress(),
           const SizedBox(
             height: 30,
           ),

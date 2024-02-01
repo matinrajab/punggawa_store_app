@@ -90,7 +90,6 @@ class ProductPreviewBubble extends StatelessWidget {
                 text: 'Buy Now',
                 onTap: () {},
                 height: 40,
-                buttonColor: primaryColor,
                 fontColor: blackTextColor,
               ),
             ],

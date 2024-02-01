@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/auth/widgets/auth_text_form.dart';
 import 'package:shoe_store_app/pages/auth/widgets/footer.dart';
-import 'package:shoe_store_app/pages/widgets/header.dart';
+import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
-import 'package:shoe_store_app/routes/routes.dart';
+import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class SignInPage extends StatelessWidget {
@@ -46,7 +46,7 @@ class SignInPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Header(
+                const TitleAndSubtitle(
                   title: 'Login',
                   subtitle: 'Sign In to Continue',
                 ),

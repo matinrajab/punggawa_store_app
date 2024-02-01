@@ -5,24 +5,11 @@ import 'package:shoe_store_app/pages/profile/widgets/edit_profile_text_form.dart
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
-class EditProfile extends StatelessWidget {
-  const EditProfile({super.key});
+class EditProfilePage extends StatelessWidget {
+  const EditProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
-    UserModel user = authProvider.user;
-
-    final TextEditingController nameController = TextEditingController(
-      text: user.name,
-    );
-    final TextEditingController usernameController = TextEditingController(
-      text: user.username,
-    );
-    final TextEditingController emailController = TextEditingController(
-      text: user.email,
-    );
-
     return Scaffold(
       backgroundColor: backgroundColor3,
       appBar: AppBar(
@@ -30,7 +17,7 @@ class EditProfile extends StatelessWidget {
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(
-            Icons.close_rounded,
+            Icons.arrow_back_ios_new_rounded,
             color: primaryTextColor,
           ),
         ),
@@ -42,53 +29,46 @@ class EditProfile extends StatelessWidget {
             fontWeight: medium,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.check,
-              color: primaryColor,
-            ),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(pagePadding),
           child: Center(
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.network(
-                    user.profilePhotoUrl!,
-                    height: 100,
-                    width: 100,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                EditProfileTextForm(
-                  title: 'Name',
-                  controller: nameController,
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                EditProfileTextForm(
-                  title: 'Username',
-                  controller: usernameController,
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                EditProfileTextForm(
-                  title: 'Email Address',
-                  controller: emailController,
-                ),
-              ],
+            child: Consumer<AuthProvider>(
+              builder: (context, authProvider, _) {
+                UserModel user = authProvider.user;
+                List<Map<String, String>> fields = [
+                  {'title': 'Name', 'value': user.name!},
+                  {'title': 'Username', 'value': user.username!},
+                  {'title': 'Email', 'value': user.email!},
+                ];
+                return Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(
+                        'assets/image/image_profile.png',
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Column(
+                      children: fields
+                          .map(
+                            (field) => EditProfileTextForm(
+                              title: field['title']!,
+                              value: field['value']!,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ),
