@@ -19,7 +19,7 @@ class OrderCard extends StatelessWidget {
     ProductModel product = items![0].product!;
 
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: GestureDetector(
         onTap: () => Navigator.pushNamed(
           context,
@@ -81,40 +81,43 @@ class OrderCard extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               const Divider(
                 thickness: 1,
                 color: subtitleTextColor,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: Text(
-                  'See order details',
-                  style: secondaryTextStyle.copyWith(fontSize: 12),
-                ),
-              ),
-              const Divider(
-                thickness: 1,
-                color: subtitleTextColor,
-              ),
+              transaction.items!.length > 1
+                  ? Column(
+                      children: [
+                        Text(
+                          'See other products',
+                          style: secondaryTextStyle.copyWith(fontSize: 12),
+                        ),
+                        const Divider(
+                          thickness: 1,
+                          color: subtitleTextColor,
+                        ),
+                      ],
+                    )
+                  : const SizedBox(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '${transaction.items!.length}',
+                    '${transaction.items!.length} product',
                     style: secondaryTextStyle.copyWith(fontSize: 12),
                   ),
                   Row(
                     children: [
                       Text(
-                        'Total ',
+                        'Total: ',
                         style: secondaryTextStyle.copyWith(fontSize: 12),
                       ),
                       Text(
-                        '${transaction.totalPrice}',
-                        style: secondaryTextStyle.copyWith(fontSize: 12),
+                        '\$${transaction.totalPrice}',
+                        style: priceTextStyle.copyWith(fontSize: 12),
                       ),
                     ],
                   ),

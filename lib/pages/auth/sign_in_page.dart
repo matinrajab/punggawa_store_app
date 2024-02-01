@@ -7,6 +7,7 @@ import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
+import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
@@ -18,7 +19,8 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
+    AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
 
     handleLogin() async {
       authProvider.isLoading = true;
@@ -26,6 +28,8 @@ class SignInPage extends StatelessWidget {
         email: _emailController.text,
         password: _passwordController.text,
       )) {
+        await Provider.of<TransactionProvider>(context, listen: false)
+            .getTransactions();
         Navigator.pushNamedAndRemoveUntil(context, mainPage, (route) => false);
       } else {
         MySnackBar.showSnackBar(

@@ -19,19 +19,18 @@ class TransactionModel {
     this.items,
   });
 
-  factory TransactionModel.fromJson(Map<String, dynamic> json) {
-    print('pertransaksi json: $json');
-    return TransactionModel(
-      id: json["id"],
-      address: json["address"],
-      paymentMethod: json["payment_method"],
-      totalPrice: json["total_price"],
-      shippingPrice: json["shipping_price"],
-      status: json["status"],
-      items:
-          List<ItemModel>.from(json["items"].map((x) => ItemModel.fromJson(x))),
-    );
-  }
+  factory TransactionModel.fromJson(Map<String, dynamic> json) =>
+      TransactionModel(
+        id: json["id"],
+        address: json["address"],
+        paymentMethod: json["payment_method"],
+        totalPrice: json["total_price"],
+        shippingPrice: json["shipping_price"],
+        status: json["status"],
+        items: List<ItemModel>.from(
+            json["items"].map((x) => ItemModel.fromJson(x))),
+      );
+
   Map<String, dynamic> toJson() => {
         "id": id,
         "address": address,

@@ -14,7 +14,7 @@ class ItemModel {
   factory ItemModel.fromJson(Map<String, dynamic> json) => ItemModel(
         id: json["id"] as int,
         quantity: json["quantity"] as int,
-        product: ProductModel.fromJson(json["product"]) as ProductModel,
+        product: ProductModel.fromJson(json["product"]),
       );
 
   Map<String, dynamic> toJson() => {

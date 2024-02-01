@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
-class CheckoutPaymentItem extends StatelessWidget {
+class PaymentSummaryItem extends StatelessWidget {
   final String type;
   final String information;
 
-  const CheckoutPaymentItem({
+  const PaymentSummaryItem({
     super.key,
     required this.type,
     required this.information,

@@ -3,10 +3,10 @@ import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
-class CheckoutTile extends StatelessWidget {
+class DetailTile extends StatelessWidget {
   final CartModel cart;
 
-  const CheckoutTile({
+  const DetailTile({
     super.key,
     required this.cart,
   });
@@ -57,7 +57,7 @@ class CheckoutTile extends StatelessWidget {
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

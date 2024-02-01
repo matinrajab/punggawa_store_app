@@ -4,6 +4,7 @@ import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
+import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
@@ -16,12 +17,15 @@ class LogoutAlertDialog extends StatelessWidget {
         Provider.of<PageProvider>(context, listen: false);
     AuthProvider authProvider =
         Provider.of<AuthProvider>(context, listen: false);
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context, listen: false);
 
     handleLogout() async {
       if (await authProvider.logout()) {
         Navigator.pushNamedAndRemoveUntil(
             context, signInPage, (route) => false);
         pageProvider.currentIndex = 0;
+        transactionProvider.transactions.clear();
       } else {
         MySnackBar.showSnackBar(
           context: context,
@@ -46,7 +50,7 @@ class LogoutAlertDialog extends StatelessWidget {
                   vertical: 12,
                 ),
                 child: Text(
-                  'Yakin mau keluar? :\')',
+                  'Are you sure you want to logout?',
                   style: primaryTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: semiBold,
@@ -60,20 +64,20 @@ class LogoutAlertDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   MyButton(
-                    text: 'ga jadi',
+                    text: 'No',
                     onTap: () => Navigator.pop(context),
                     height: 44,
-                    fontColor: blackTextColor,
+                    buttonColor: backgroundColor5,
+                    fontColor: primaryColor,
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   MyButton(
-                    text: 'yakin',
+                    text: 'Yes',
                     onTap: handleLogout,
                     height: 44,
-                    buttonColor: backgroundColor5,
-                    fontColor: primaryColor,
+                    fontColor: blackTextColor,
                   ),
                 ],
               )

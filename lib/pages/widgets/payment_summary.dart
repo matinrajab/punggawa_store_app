@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shoe_store_app/pages/checkout/widgets/checkout_payment_item.dart';
+import 'package:shoe_store_app/pages/widgets/payment_summary_item.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
-class CheckoutPayment extends StatelessWidget {
-  const CheckoutPayment({super.key});
+class PaymentSummary extends StatelessWidget {
+  final int quantity;
+  final double productPrice;
+  const PaymentSummary({
+    super.key,
+    required this.quantity,
+    required this.productPrice,
+  });
 
   @override
   Widget build(BuildContext context) {
-    CartProvider cartProvider =
-        Provider.of<CartProvider>(context, listen: false);
-
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -31,16 +34,22 @@ class CheckoutPayment extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-          CheckoutPaymentItem(
-              type: 'Product Quantity', information: '${cartProvider.totalItems()} Items'),
+          PaymentSummaryItem(
+              type: 'Product Quantity', information: '$quantity Items'),
           const SizedBox(
             height: 13,
           ),
-          CheckoutPaymentItem(type: 'Product Price', information: '\$${cartProvider.totalPrice()}'),
+          PaymentSummaryItem(
+            type: 'Product Price',
+            information: '\$$productPrice',
+          ),
           const SizedBox(
             height: 13,
           ),
-          const CheckoutPaymentItem(type: 'Shipping', information: '\$0.0'),
+          const PaymentSummaryItem(
+            type: 'Shipping',
+            information: '\$0.0',
+          ),
           const SizedBox(
             height: 11,
           ),
@@ -59,7 +68,7 @@ class CheckoutPayment extends StatelessWidget {
                 style: priceTextStyle.copyWith(fontWeight: semiBold),
               ),
               Text(
-                '\$${cartProvider.totalPrice()}',
+                '\$$productPrice',
                 style: priceTextStyle.copyWith(fontWeight: semiBold),
               )
             ],

@@ -67,14 +67,10 @@ class TransactionService {
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data'];
       List<TransactionModel> transactions = [];
-      print('data:: $data');
-      print('sebelum assign transaction');
-      data.map((transaction) {
-        print('pertransaksi: $transaction');
-        transactions.add(
-            TransactionModel.fromJson(transaction));
-      }).toList();
-      print('setelah assign transaction');
+      data
+          .map((transaction) =>
+              transactions.add(TransactionModel.fromJson(transaction)))
+          .toList();
 
       return transactions;
     } else {

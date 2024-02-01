@@ -15,7 +15,6 @@ class OrderPage extends StatelessWidget {
         Provider.of<TransactionProvider>(context, listen: false);
     List<TransactionModel> transactions = transactionProvider.transactions;
 
-    print('transaksi: ${transactions}');
     return Scaffold(
       backgroundColor: backgroundColor3,
       appBar: AppBar(
@@ -45,7 +44,7 @@ class OrderPage extends StatelessWidget {
               )
             : ListView.builder(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 10,
+                  vertical: 20,
                   horizontal: pagePadding,
                 ),
                 itemCount: transactions.length,

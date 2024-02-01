@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/checkout/widgets/checkout_address.dart';
-import 'package:shoe_store_app/pages/checkout/widgets/checkout_payment.dart';
-import 'package:shoe_store_app/pages/checkout/widgets/checkout_tile.dart';
+import 'package:shoe_store_app/pages/widgets/payment_summary.dart';
+import 'package:shoe_store_app/pages/widgets/detail_tile.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
@@ -33,7 +33,7 @@ class CheckoutPage extends StatelessWidget {
         cartProvider.carts.clear();
         Navigator.pushNamedAndRemoveUntil(
             context, checkoutSuccessPage, (route) => false);
-      }else {
+      } else {
         MySnackBar.showSnackBar(
           context: context,
           message: 'Gagal Checkout',
@@ -84,7 +84,7 @@ class CheckoutPage extends StatelessWidget {
           Column(
             children: cartProvider.carts
                 .map(
-                  (cart) => CheckoutTile(
+                  (cart) => DetailTile(
                     cart: cart,
                   ),
                 )
@@ -97,7 +97,10 @@ class CheckoutPage extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          const CheckoutPayment(),
+          PaymentSummary(
+            quantity: cartProvider.totalItems(),
+            productPrice: cartProvider.totalPrice(),
+          ),
         ],
       ),
     );
