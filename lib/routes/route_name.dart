@@ -11,3 +11,4 @@ const String checkoutSuccessPage = '/checkout-success';
 const String editAddressPage = '/edit-address';
 const String orderPage = 'order';
 const String detailOrderPage = 'detail-order';
+const String paymentPage = 'payment';

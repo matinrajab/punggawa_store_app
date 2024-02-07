@@ -31,8 +31,7 @@ class CheckoutPage extends StatelessWidget {
       )) {
         await transactionProvider.getTransactions();
         cartProvider.carts.clear();
-        Navigator.pushNamedAndRemoveUntil(
-            context, checkoutSuccessPage, (route) => false);
+        Navigator.pushNamed(context, paymentPage);
       } else {
         MySnackBar.showSnackBar(
           context: context,

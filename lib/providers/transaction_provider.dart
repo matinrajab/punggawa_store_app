@@ -5,11 +5,18 @@ import 'package:shoe_store_app/services/transaction_service.dart';
 
 class TransactionProvider with ChangeNotifier {
   String _address = 'Mexico Utara';
+  String _snapToken = '';
   List<TransactionModel> _transactions = [];
 
   String get address => _address;
   set address(String address) {
     _address = address;
+    notifyListeners();
+  }
+
+  String get snapToken => _snapToken;
+  set snapToken(String snapToken) {
+    _snapToken = snapToken;
     notifyListeners();
   }
 
@@ -25,12 +32,15 @@ class TransactionProvider with ChangeNotifier {
     double totalPrice,
   ) async {
     try {
-      if (await TransactionService()
-          .checkout(token, carts, _address, totalPrice)) {
-        return true;
-      } else {
-        return false;
-      }
+      String snapToken = await TransactionService().checkout(
+        token,
+        carts,
+        _address,
+        totalPrice,
+      );
+
+      _snapToken = snapToken;
+      return true;
     } catch (e) {
       print(e);
       return false;

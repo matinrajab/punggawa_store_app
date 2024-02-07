@@ -7,7 +7,7 @@ import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
 
 class TransactionService {
-  Future checkout(
+  Future<String> checkout(
     String token,
     List<CartModel> carts,
     String address,
@@ -42,9 +42,13 @@ class TransactionService {
     print(response.body);
 
     if (response.statusCode == 200) {
-      return true;
+      var data = jsonDecode(response.body)['data'];
+      String snapToken = data['snapToken'];
+      print('haniptoken: $snapToken');
+
+      return snapToken;
     } else {
-      throw Exception('Gagal Melakukan Checkout');
+      throw Exception('Pesanan gagal dibuat');
     }
   }
 
