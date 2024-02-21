@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
+import 'package:shoe_store_app/pages/checkout/checkout_page.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class CartBottomNavBar extends StatelessWidget {
@@ -55,7 +55,7 @@ class CartBottomNavBar extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   borderRadius: generalBorderRadius,
-                  onTap: () => Navigator.pushNamed(context, checkoutPage),
+                  onTap: () => Navigator.pushNamed(context, CheckoutPage.routeName),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(

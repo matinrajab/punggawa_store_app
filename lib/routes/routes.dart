@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/models/product_model.dart';
+import 'package:shoe_store_app/models/transaction_model.dart';
 import 'package:shoe_store_app/pages/auth/sign_in_page.dart';
 import 'package:shoe_store_app/pages/auth/sign_up_page.dart';
 import 'package:shoe_store_app/pages/cart/cart_page.dart';
@@ -13,21 +15,29 @@ import 'package:shoe_store_app/pages/profile/edit_profile_page.dart';
 import 'package:shoe_store_app/pages/splash/splash_page.dart';
 import 'package:shoe_store_app/pages/transaction/detail_order_page.dart';
 import 'package:shoe_store_app/pages/transaction/order_page.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 
 final Map<String, WidgetBuilder> routes = {
-  splashPage: (context) => const SplashPage(),
-  signInPage: (context) => SignInPage(),
-  signUpPage: (context) => SignUpPage(),
-  mainPage: (context) => MainPage(),
-  cartPage: (context) => const CartPage(),
-  detailChatPage: (context) => DetailChatPage(),
-  editProfilePage: (context) => const EditProfilePage(),
-  checkoutPage: (context) => const CheckoutPage(),
-  productPage: (context) => const ProductPage(),
-  checkoutSuccessPage: (context) => const CheckoutSuccessPage(),
-  editAddressPage: (context) => const EditAddressPage(),
-  orderPage: (context) => const OrderPage(),
-  detailOrderPage: (context) => const DetailOrderPage(),
-  paymentPage: (context) => const PaymentPage(),
+  SplashPage.routeName: (context) => const SplashPage(),
+  SignInPage.routeName: (context) => SignInPage(),
+  SignUpPage.routeName: (context) => SignUpPage(),
+  MainPage.routeName: (context) => MainPage(),
+  CartPage.routeName: (context) => const CartPage(),
+  DetailChatPage.routeName: (context) => DetailChatPage(
+        product: ModalRoute.of(context)?.settings.arguments as ProductModel,
+      ),
+  EditProfilePage.routeName: (context) => const EditProfilePage(),
+  CheckoutPage.routeName: (context) => const CheckoutPage(),
+  ProductPage.routeName: (context) => ProductPage(
+        product: ModalRoute.of(context)?.settings.arguments as ProductModel,
+      ),
+  CheckoutSuccessPage.routeName: (context) => const CheckoutSuccessPage(),
+  EditAddressPage.routeName: (context) => const EditAddressPage(),
+  OrderPage.routeName: (context) => OrderPage(
+        initial: ModalRoute.of(context)?.settings.arguments as int,
+      ),
+  DetailOrderPage.routeName: (context) => DetailOrderPage(
+        transaction:
+            ModalRoute.of(context)?.settings.arguments as TransactionModel,
+      ),
+  PaymentPage.routeName: (context) => const PaymentPage(),
 };

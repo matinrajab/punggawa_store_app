@@ -12,13 +12,19 @@ import 'package:shoe_store_app/services/message_service.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class DetailChatPage extends StatelessWidget {
-  DetailChatPage({super.key});
+  static const routeName = '/detail-chat';
+
+  ProductModel product;
+
+  DetailChatPage({
+    super.key,
+    required this.product,
+  });
 
   final TextEditingController _messageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var product = ModalRoute.of(context)!.settings.arguments as ProductModel;
     AuthProvider authProvider =
         Provider.of<AuthProvider>(context, listen: false);
     ProductProvider productProvider =

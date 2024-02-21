@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/product_model.dart';
+import 'package:shoe_store_app/pages/chat/detail_chat_page.dart';
 import 'package:shoe_store_app/pages/product/widgets/success_alert_dialog.dart';
 import 'package:shoe_store_app/pages/widgets/icon_box_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class ProductPageFooter extends StatelessWidget {
@@ -30,7 +30,7 @@ class ProductPageFooter extends StatelessWidget {
             imageWidth: 23,
             onTap: () => Navigator.pushNamed(
               context,
-              detailChatPage,
+              DetailChatPage.routeName,
               arguments: product,
             ),
             size: 54,

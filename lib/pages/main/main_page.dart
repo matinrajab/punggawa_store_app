@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/pages/cart/cart_page.dart';
 import 'package:shoe_store_app/pages/chat/chat_page.dart';
 import 'package:shoe_store_app/pages/home/home_page.dart';
 import 'package:shoe_store_app/pages/profile/profile_page.dart';
 import 'package:shoe_store_app/pages/wishlist/wishlist_page.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class MainPage extends StatelessWidget {
+  static const routeName = '/home';
+
   MainPage({super.key});
 
   final List<Widget> _body = [
@@ -32,7 +34,7 @@ class MainPage extends StatelessWidget {
             ),
           ),
           backgroundColor: secondaryColor,
-          onPressed: () => Navigator.pushNamed(context, cartPage),
+          onPressed: () => Navigator.pushNamed(context, CartPage.routeName),
           child: Image.asset(
             'assets/icon/icon_cart.png',
             width: 20,

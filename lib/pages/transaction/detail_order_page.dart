@@ -8,13 +8,17 @@ import 'package:shoe_store_app/pages/widgets/detail_tile.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class DetailOrderPage extends StatelessWidget {
-  const DetailOrderPage({super.key});
+  static const routeName = '/detail-order';
+
+  final TransactionModel transaction;
+
+  const DetailOrderPage({
+    super.key,
+    required this.transaction,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final transaction =
-        ModalRoute.of(context)!.settings.arguments as TransactionModel;
-
     totalItems() {
       int total = 0;
       for (var item in transaction.items!) {

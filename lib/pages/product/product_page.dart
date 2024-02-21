@@ -10,12 +10,17 @@ import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class ProductPage extends StatelessWidget {
-  const ProductPage({super.key});
+  static const routeName = '/detail-product';
+
+  final ProductModel product;
+
+  const ProductPage({
+    super.key,
+    required this.product,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final product = ModalRoute.of(context)!.settings.arguments as ProductModel;
-
     return Scaffold(
       backgroundColor: productBackgroundColor,
       body: ListView(

@@ -8,6 +8,8 @@ import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class CartPage extends StatelessWidget {
+  static const routeName = '/cart';
+
   const CartPage({super.key});
 
   @override

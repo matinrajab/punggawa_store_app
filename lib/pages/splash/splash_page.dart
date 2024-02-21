@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/pages/auth/sign_in_page.dart';
+import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/category_provider.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class SplashPage extends StatefulWidget {
+  static const routeName = '/';
+
   const SplashPage({super.key});
 
   @override
@@ -17,7 +20,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    // TODO: implement initState
     getInit();
     super.initState();
   }
@@ -28,9 +30,9 @@ class _SplashPageState extends State<SplashPage> {
     if (await Provider.of<AuthProvider>(context, listen: false).fetch()) {
       await Provider.of<TransactionProvider>(context, listen: false)
           .getTransactions();
-      Navigator.pushReplacementNamed(context, mainPage);
+      Navigator.pushReplacementNamed(context, MainPage.routeName);
     } else {
-      Navigator.pushReplacementNamed(context, signInPage);
+      Navigator.pushReplacementNamed(context, SignInPage.routeName);
     }
   }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
+import 'package:shoe_store_app/pages/cart/cart_page.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class ProductPageHeader extends StatelessWidget {
@@ -24,7 +24,7 @@ class ProductPageHeader extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, cartPage),
+            onTap: () => Navigator.pushNamed(context, CartPage.routeName),
             child: Image.asset(
               'assets/icon/icon_cart_action.png',
               width: 20,

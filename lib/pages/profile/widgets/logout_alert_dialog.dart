@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/pages/auth/sign_in_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_alert_dialog.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 
 class LogoutAlertDialog extends StatelessWidget {
   const LogoutAlertDialog({super.key});
@@ -22,7 +22,7 @@ class LogoutAlertDialog extends StatelessWidget {
     handleLogout() async {
       if (await authProvider.logout()) {
         Navigator.pushNamedAndRemoveUntil(
-            context, signInPage, (route) => false);
+            context, SignInPage.routeName, (route) => false);
         pageProvider.currentIndex = 0;
         transactionProvider.transactions.clear();
       } else {

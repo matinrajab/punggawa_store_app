@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/auth/widgets/auth_text_form.dart';
 import 'package:shoe_store_app/pages/auth/widgets/footer.dart';
+import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class SignUpPage extends StatelessWidget {
+  static const routeName = '/sign-up';
+
   SignUpPage({super.key});
 
   final TextEditingController _nameController = TextEditingController();
@@ -31,7 +33,7 @@ class SignUpPage extends StatelessWidget {
         email: _emailController.text,
         password: _passwordController.text,
       )) {
-        Navigator.pushNamedAndRemoveUntil(context, mainPage, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, MainPage.routeName, (route) => false);
       } else {
         MySnackBar.showSnackBar(
           context: context,

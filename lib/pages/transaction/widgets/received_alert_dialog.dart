@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/pages/transaction/order_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_alert_dialog.dart';
 import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/order_status.dart';
 
 class ReceivedAlertDialog extends StatelessWidget {
@@ -50,7 +50,7 @@ class ReceivedAlertDialog extends StatelessWidget {
                     if (await handleReceived()) {
                       Navigator.pushReplacementNamed(
                         context,
-                        orderPage,
+                        OrderPage.routeName,
                         arguments: 2,
                       );
                     }

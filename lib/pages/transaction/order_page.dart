@@ -4,12 +4,17 @@ import 'package:shoe_store_app/shared/order_status.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class OrderPage extends StatelessWidget {
-  const OrderPage({super.key});
+  static const routeName = '/order';
+
+  final int initial;
+
+  const OrderPage({
+    super.key,
+    required this.initial,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final initial = ModalRoute.of(context)!.settings.arguments as int;
-
     List<String> tabBarItems = [
       'Pending',
       'Shipping',
@@ -50,7 +55,7 @@ class OrderPage extends StatelessWidget {
                 .toList(),
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             OrderPageBody(
               status: pendingOrder,

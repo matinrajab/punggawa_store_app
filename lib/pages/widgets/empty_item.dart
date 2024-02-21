@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class EmptyItem extends StatelessWidget {
@@ -62,7 +62,7 @@ class EmptyItem extends StatelessWidget {
           onTap: () {
             pageProvider.currentIndex = 0;
             Navigator.pushNamedAndRemoveUntil(
-                context, mainPage, (route) => false);
+                context, MainPage.routeName, (route) => false);
           },
           width: widthButton,
           height: 44,

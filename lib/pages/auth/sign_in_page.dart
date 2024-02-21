@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/pages/auth/sign_up_page.dart';
 import 'package:shoe_store_app/pages/auth/widgets/auth_text_form.dart';
 import 'package:shoe_store_app/pages/auth/widgets/footer.dart';
+import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class SignInPage extends StatelessWidget {
+  static const routeName = '/sign-in';
+
   SignInPage({super.key});
 
   final TextEditingController _emailController = TextEditingController();
@@ -30,7 +33,7 @@ class SignInPage extends StatelessWidget {
       )) {
         await Provider.of<TransactionProvider>(context, listen: false)
             .getTransactions();
-        Navigator.pushNamedAndRemoveUntil(context, mainPage, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, MainPage.routeName, (route) => false);
       } else {
         MySnackBar.showSnackBar(
           context: context,
@@ -87,7 +90,7 @@ class SignInPage extends StatelessWidget {
                 Footer(
                   text: 'Don\'t have an account?',
                   textButton: 'Sign up',
-                  onTap: () => Navigator.pushNamed(context, signUpPage),
+                  onTap: () => Navigator.pushNamed(context, SignUpPage.routeName),
                 ),
               ],
             ),

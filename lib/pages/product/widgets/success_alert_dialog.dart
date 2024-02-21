@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/pages/cart/cart_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class SuccessAlertDialog extends StatelessWidget {
@@ -55,7 +55,7 @@ class SuccessAlertDialog extends StatelessWidget {
                     text: 'View My Cart',
                     onTap: () => Navigator.popAndPushNamed(
                       context,
-                      cartPage,
+                      CartPage.routeName,
                     ),
                     height: 44,
                     width: 154,

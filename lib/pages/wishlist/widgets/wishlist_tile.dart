@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/product_model.dart';
+import 'package:shoe_store_app/pages/product/product_page.dart';
 import 'package:shoe_store_app/providers/wishlist_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class WishlistTile extends StatelessWidget {
@@ -23,7 +23,7 @@ class WishlistTile extends StatelessWidget {
       child: GestureDetector(
         onTap: () => Navigator.pushNamed(
           context,
-          productPage,
+          ProductPage.routeName,
           arguments: product,
         ),
         child: Container(

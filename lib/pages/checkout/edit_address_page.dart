@@ -4,6 +4,8 @@ import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class EditAddressPage extends StatelessWidget {
+  static const routeName = '/edit-address';
+
   const EditAddressPage({super.key});
 
   @override

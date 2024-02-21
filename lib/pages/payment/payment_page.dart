@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/pages/checkout/checkout_success_page.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentPage extends StatelessWidget {
+  static const routeName = '/payment';
+
   const PaymentPage({super.key});
 
   @override
@@ -30,7 +32,7 @@ class PaymentPage extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             Navigator.pushNamedAndRemoveUntil(
-                context, checkoutSuccessPage, (route) => false);
+                context, CheckoutSuccessPage.routeName, (route) => false);
           },
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,

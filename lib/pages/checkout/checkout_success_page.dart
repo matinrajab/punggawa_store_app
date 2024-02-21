@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/pages/transaction/order_page.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class CheckoutSuccessPage extends StatelessWidget {
+  static const routeName = '/checkout-success';
+
   const CheckoutSuccessPage({super.key});
 
   @override
@@ -14,7 +16,7 @@ class CheckoutSuccessPage extends StatelessWidget {
     handleViewOrder() async {
       await Provider.of<TransactionProvider>(context, listen: false)
           .getTransactions();
-      return Navigator.pushNamed(context, orderPage);
+      return Navigator.pushNamed(context, OrderPage.routeName, arguments: 1);
     }
 
     return Scaffold(

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/item_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
+import 'package:shoe_store_app/pages/transaction/detail_order_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class OrderCard extends StatelessWidget {
@@ -30,7 +30,7 @@ class OrderCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () => Navigator.pushNamed(
           context,
-          detailOrderPage,
+          DetailOrderPage.routeName,
           arguments: transaction,
         ),
         child: Container(

@@ -6,6 +6,8 @@ import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class EditProfilePage extends StatelessWidget {
+  static const routeName = '/edit-profile';
+
   const EditProfilePage({super.key});
 
   @override

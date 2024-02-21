@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/checkout/widgets/checkout_address.dart';
+import 'package:shoe_store_app/pages/payment/payment_page.dart';
 import 'package:shoe_store_app/pages/widgets/payment_summary.dart';
 import 'package:shoe_store_app/pages/widgets/detail_tile.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
@@ -8,10 +9,11 @@ import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
-import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class CheckoutPage extends StatelessWidget {
+  static const routeName = '/checkout';
+
   const CheckoutPage({super.key});
 
   @override
@@ -31,7 +33,7 @@ class CheckoutPage extends StatelessWidget {
       )) {
         await transactionProvider.getTransactions();
         cartProvider.carts.clear();
-        Navigator.pushNamed(context, paymentPage);
+        Navigator.pushNamed(context, PaymentPage.routeName);
       } else {
         MySnackBar.showSnackBar(
           context: context,
