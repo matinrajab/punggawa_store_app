@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class MyAppBar extends StatelessWidget {
   final String text;

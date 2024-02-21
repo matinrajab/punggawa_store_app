@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class ProductPreview extends StatelessWidget {
   final ProductModel product;

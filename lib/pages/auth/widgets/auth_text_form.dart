@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/pages/auth/widgets/my_text_form_field.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class AuthTextForm extends StatelessWidget {
   final String fieldName;

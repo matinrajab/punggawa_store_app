@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class TitleAndSubtitle extends StatelessWidget {
   final String title;
@@ -34,7 +34,9 @@ class TitleAndSubtitle extends StatelessWidget {
           ),
           overflow: TextOverflow.ellipsis,
         ),
-        SizedBox(height: space,),
+        SizedBox(
+          height: space,
+        ),
         Text(
           subtitle,
           style: subtitleTextStyle.copyWith(

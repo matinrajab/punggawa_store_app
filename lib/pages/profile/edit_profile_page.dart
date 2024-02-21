@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/user_model.dart';
 import 'package:shoe_store_app/pages/profile/widgets/edit_profile_text_form.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});

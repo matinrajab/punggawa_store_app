@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/pages/widgets/icon_box_button.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class ChatInput extends StatelessWidget {
   final TextEditingController? controller;

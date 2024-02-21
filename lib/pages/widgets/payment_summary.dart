@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/widgets/payment_summary_item.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class PaymentSummary extends StatelessWidget {
   final int quantity;

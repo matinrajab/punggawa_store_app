@@ -5,7 +5,7 @@ import 'package:shoe_store_app/pages/cart/widgets/cart_bottom_nav_bar.dart';
 import 'package:shoe_store_app/pages/cart/widgets/cart_tile.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});

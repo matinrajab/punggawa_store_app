@@ -5,7 +5,7 @@ import 'package:shoe_store_app/pages/transaction/widgets/title_and_desc.dart';
 import 'package:shoe_store_app/pages/widgets/payment_summary.dart';
 import 'package:shoe_store_app/pages/transaction/widgets/order_address.dart';
 import 'package:shoe_store_app/pages/widgets/detail_tile.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class DetailOrderPage extends StatelessWidget {
   const DetailOrderPage({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/routes/route_name.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class SuccessAlertDialog extends StatelessWidget {
   const SuccessAlertDialog({super.key});
@@ -33,14 +33,12 @@ class SuccessAlertDialog extends StatelessWidget {
                     width: 100,
                   ),
                   Padding(
-                    padding:
-                    const EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       vertical: 12,
                     ),
                     child: Text(
                       'Hurray :)',
-                      style:
-                      primaryTextStyle.copyWith(
+                      style: primaryTextStyle.copyWith(
                         fontSize: 18,
                         fontWeight: semiBold,
                       ),
@@ -55,11 +53,10 @@ class SuccessAlertDialog extends StatelessWidget {
                   ),
                   MyButton(
                     text: 'View My Cart',
-                    onTap: () =>
-                        Navigator.popAndPushNamed(
-                          context,
-                          cartPage,
-                        ),
+                    onTap: () => Navigator.popAndPushNamed(
+                      context,
+                      cartPage,
+                    ),
                     height: 44,
                     width: 154,
                   )

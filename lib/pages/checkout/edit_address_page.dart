@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class EditAddressPage extends StatelessWidget {
   const EditAddressPage({super.key});
@@ -10,7 +10,8 @@ class EditAddressPage extends StatelessWidget {
   Widget build(BuildContext context) {
     TransactionProvider transactionProvider =
         Provider.of<TransactionProvider>(context, listen: false);
-    TextEditingController textEditingController = TextEditingController(text: transactionProvider.address);
+    TextEditingController textEditingController =
+        TextEditingController(text: transactionProvider.address);
 
     return Scaffold(
       backgroundColor: backgroundColor3,

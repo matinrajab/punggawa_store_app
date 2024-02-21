@@ -5,7 +5,7 @@ import 'package:shoe_store_app/pages/transaction/widgets/order_card.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/shared/order_status.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class OrderPageBody extends StatelessWidget {
   final String status;
@@ -30,13 +30,9 @@ class OrderPageBody extends StatelessWidget {
       }
     }).toList();
 
-    executePayNow(){
+    executePayNow() {}
 
-    }
-
-    executeOrderReceived(){
-
-    }
+    executeOrderReceived() {}
 
     return Center(
       child: transactions.isEmpty
@@ -55,8 +51,8 @@ class OrderPageBody extends StatelessWidget {
                 transaction: transactions[index],
                 isButtonAppear: status != 'SUCCESS',
                 textButton: textButton,
-                onButtonTap: (){
-                  switch(transactions[index].status){
+                onButtonTap: () {
+                  switch (transactions[index].status) {
                     case pendingOrder:
                       executePayNow();
                       break;

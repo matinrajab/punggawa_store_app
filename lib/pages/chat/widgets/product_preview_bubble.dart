@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class ProductPreviewBubble extends StatelessWidget {
   final ProductModel product;

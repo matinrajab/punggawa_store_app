@@ -10,7 +10,7 @@ import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/category_provider.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

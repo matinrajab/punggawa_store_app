@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/routes/route_name.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class ProductPageHeader extends StatelessWidget {
   const ProductPageHeader({super.key});

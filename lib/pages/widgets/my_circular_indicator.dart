@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
-class MyCircularIndicator{
-  static Widget show(){
+class MyCircularIndicator {
+  static Widget show() {
     return const Center(
       child: SizedBox(
         height: 50,

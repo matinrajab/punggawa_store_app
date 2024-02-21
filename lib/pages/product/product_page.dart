@@ -7,7 +7,7 @@ import 'package:shoe_store_app/pages/product/widgets/product_page_header.dart';
 import 'package:shoe_store_app/pages/product/widgets/product_price.dart';
 import 'package:shoe_store_app/pages/product/widgets/wishlist_button.dart';
 import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/pages/transaction/widgets/order_page_body.dart';
 import 'package:shoe_store_app/shared/order_status.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class OrderPage extends StatelessWidget {
   const OrderPage({super.key});

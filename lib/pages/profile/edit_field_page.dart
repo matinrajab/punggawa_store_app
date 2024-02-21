@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class EditFieldPage extends StatelessWidget {
   final String title;
@@ -16,7 +16,8 @@ class EditFieldPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController textEditingController = TextEditingController(text: value);
+    TextEditingController textEditingController =
+        TextEditingController(text: value);
 
     AuthProvider authProvider =
         Provider.of<AuthProvider>(context, listen: false);

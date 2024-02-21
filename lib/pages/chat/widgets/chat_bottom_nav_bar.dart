@@ -4,7 +4,7 @@ import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/pages/chat/widgets/chat_input.dart';
 import 'package:shoe_store_app/pages/chat/widgets/product_preview.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class ChatBottomNavBar extends StatelessWidget {
   final TextEditingController? controller;

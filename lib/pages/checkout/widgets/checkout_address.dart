@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/checkout/widgets/checkout_address_item.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/routes/route_name.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class CheckoutAddress extends StatelessWidget {
   const CheckoutAddress({super.key});

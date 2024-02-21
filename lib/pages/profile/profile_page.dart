@@ -5,7 +5,7 @@ import 'package:shoe_store_app/pages/profile/widgets/profile_menu.dart';
 import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/routes/route_name.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

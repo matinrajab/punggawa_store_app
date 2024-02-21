@@ -5,7 +5,7 @@ import 'package:shoe_store_app/providers/category_provider.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/routes/route_name.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

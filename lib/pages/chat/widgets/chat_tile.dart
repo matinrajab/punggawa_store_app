@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/message_model.dart';
-import 'package:shoe_store_app/theme/theme.dart';
+import 'package:shoe_store_app/shared/theme.dart';
 
 class ChatTile extends StatelessWidget {
   final MessageModel message;
