@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
 import 'package:shoe_store_app/services/transaction_service.dart';
+import 'package:shoe_store_app/services/transaction_status_service.dart';
 
 class TransactionProvider with ChangeNotifier {
   String _address = 'Mexico Utara';
   String _snapToken = '';
   List<TransactionModel> _transactions = [];
+  bool _isLoading = false;
 
   String get address => _address;
   set address(String address) {
@@ -17,6 +19,12 @@ class TransactionProvider with ChangeNotifier {
   String get snapToken => _snapToken;
   set snapToken(String snapToken) {
     _snapToken = snapToken;
+    notifyListeners();
+  }
+
+  bool get isLoading => _isLoading;
+  set isLoading(bool isLoading) {
+    _isLoading = isLoading;
     notifyListeners();
   }
 
@@ -55,6 +63,23 @@ class TransactionProvider with ChangeNotifier {
       _transactions = transactions;
     } catch (e) {
       print(e);
+    }
+  }
+
+  Future<bool> updateStatus({
+    required String status,
+    required int id,
+  }) async {
+    try {
+      await TransactionStatusService().updateStatus(
+        status: status,
+        id: id,
+      );
+
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
     }
   }
 }

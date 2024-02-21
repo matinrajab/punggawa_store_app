@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
 import 'package:shoe_store_app/pages/transaction/widgets/order_card.dart';
+import 'package:shoe_store_app/pages/transaction/widgets/received_alert_dialog.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/shared/order_status.dart';
@@ -30,9 +31,12 @@ class OrderPageBody extends StatelessWidget {
       }
     }).toList();
 
-    executePayNow() {}
-
-    executeOrderReceived() {}
+    onOrderReceivedTapped(int id) {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => ReceivedAlertDialog(id),
+      );
+    }
 
     return Center(
       child: transactions.isEmpty
@@ -54,10 +58,10 @@ class OrderPageBody extends StatelessWidget {
                 onButtonTap: () {
                   switch (transactions[index].status) {
                     case pendingOrder:
-                      executePayNow();
+                      () {};
                       break;
                     case shippingOrder:
-                      executeOrderReceived();
+                      onOrderReceivedTapped(transactions[index].id!);
                       break;
                   }
                 },

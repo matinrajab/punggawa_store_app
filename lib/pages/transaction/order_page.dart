@@ -8,6 +8,8 @@ class OrderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final initial = ModalRoute.of(context)!.settings.arguments as int;
+
     List<String> tabBarItems = [
       'Pending',
       'Shipping',
@@ -15,6 +17,7 @@ class OrderPage extends StatelessWidget {
     ];
 
     return DefaultTabController(
+      initialIndex: initial,
       length: 3,
       child: Scaffold(
         backgroundColor: backgroundColor3,

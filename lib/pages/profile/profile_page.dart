@@ -71,7 +71,7 @@ class ProfilePage extends StatelessWidget {
                   options: const ['Edit Profile', 'Your Order', 'Help'],
                   routes: [
                     () => Navigator.pushNamed(context, editProfilePage),
-                    () => Navigator.pushNamed(context, orderPage),
+                    () => Navigator.pushNamed(context, orderPage, arguments: 0),
                     () {}
                   ],
                 ),
