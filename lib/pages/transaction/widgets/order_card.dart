@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/item_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
+import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
 class OrderCard extends StatelessWidget {
   final TransactionModel transaction;
+  final String textButton;
+  final GestureTapCallback? onButtonTap;
+  final bool isButtonAppear;
 
   const OrderCard({
     super.key,
     required this.transaction,
+    this.textButton = '',
+    this.onButtonTap,
+    this.isButtonAppear = false,
   });
 
   @override
@@ -123,6 +130,20 @@ class OrderCard extends StatelessWidget {
                   ),
                 ],
               ),
+              isButtonAppear
+                  ? Column(
+                      children: [
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        MyButton(
+                          text: textButton,
+                          onTap: onButtonTap,
+                          height: 44,
+                        ),
+                      ],
+                    )
+                  : const SizedBox(),
             ],
           ),
         ),

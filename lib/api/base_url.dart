@@ -1,4 +1,4 @@
 class BaseUrl {
-  // static const String baseUrl = 'http://127.0.0.1:8000/api';
-  static const String baseUrl = 'http://192.168.1.10:80/api';
+  static const String baseUrl = 'https://18f9-202-80-215-167.ngrok-free.app/api';
+  static const String addressUrl = 'https://alamat.thecloudalert.com/api';
 }

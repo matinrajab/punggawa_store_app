@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
+import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/routes/route_name.dart';
 import 'package:shoe_store_app/theme/theme.dart';
 
@@ -9,6 +11,12 @@ class CheckoutSuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    handleViewOrder() async {
+      await Provider.of<TransactionProvider>(context, listen: false)
+          .getTransactions();
+      return Navigator.pushNamed(context, orderPage);
+    }
+
     return Scaffold(
       backgroundColor: backgroundColor3,
       appBar: AppBar(
@@ -40,7 +48,7 @@ class CheckoutSuccessPage extends StatelessWidget {
             ),
             MyButton(
               text: 'View My Order',
-              onTap: () => Navigator.pushNamed(context, orderPage),
+              onTap: handleViewOrder,
               buttonColor: const Color(0xff39374B),
               borderColor: const Color(0xff39374B),
               height: 44,

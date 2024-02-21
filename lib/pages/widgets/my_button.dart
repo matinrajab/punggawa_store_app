@@ -9,8 +9,8 @@ class MyButton extends StatelessWidget {
   final Color? fontColor;
   final Color? buttonColor;
   final Color borderColor;
-  final String? text;
-  final GestureTapCallback onTap;
+  final String text;
+  final GestureTapCallback? onTap;
 
   const MyButton({
     super.key,
@@ -21,8 +21,8 @@ class MyButton extends StatelessWidget {
     this.fontColor,
     this.buttonColor = primaryColor,
     this.borderColor = primaryColor,
-    this.text,
-    required this.onTap,
+    required this.text,
+    this.onTap,
   });
 
   @override
@@ -45,7 +45,7 @@ class MyButton extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(
-                text!,
+                text,
                 style: primaryTextStyle.copyWith(
                   fontSize: fontSize,
                   fontWeight: fontWeight,

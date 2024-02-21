@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Consumer<CategoryProvider>(
                 builder: (context, categoryProvider, _) => MyButton(
-                  text: categories[index].name,
+                  text: categories[index].name!,
                   onTap: () {
                     categoryProvider.categorySelected = index;
                   },

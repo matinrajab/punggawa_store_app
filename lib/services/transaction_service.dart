@@ -44,7 +44,6 @@ class TransactionService {
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];
       String snapToken = data['snapToken'];
-      print('haniptoken: $snapToken');
 
       return snapToken;
     } else {

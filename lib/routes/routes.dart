@@ -6,7 +6,7 @@ import 'package:shoe_store_app/pages/chat/detail_chat_page.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_page.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_success_page.dart';
 import 'package:shoe_store_app/pages/checkout/edit_address_page.dart';
-import 'package:shoe_store_app/pages/checkout/payment_page.dart';
+import 'package:shoe_store_app/pages/payment/payment_page.dart';
 import 'package:shoe_store_app/pages/product/product_page.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/profile/edit_profile_page.dart';
