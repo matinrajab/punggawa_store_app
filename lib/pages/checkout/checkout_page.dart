@@ -31,7 +31,6 @@ class CheckoutPage extends StatelessWidget {
         cartProvider.carts,
         cartProvider.totalPrice(),
       )) {
-        await transactionProvider.getTransactions();
         cartProvider.carts.clear();
         Navigator.pushNamed(context, PaymentPage.routeName);
       } else {

@@ -59,7 +59,6 @@ class OrderPage extends StatelessWidget {
           children: [
             OrderPageBody(
               status: pendingOrder,
-              textButton: 'Pay Now',
             ),
             OrderPageBody(
               status: shippingOrder,

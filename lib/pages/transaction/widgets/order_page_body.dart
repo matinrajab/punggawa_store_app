@@ -53,13 +53,10 @@ class OrderPageBody extends StatelessWidget {
               itemCount: transactions.length,
               itemBuilder: (BuildContext context, int index) => OrderCard(
                 transaction: transactions[index],
-                isButtonAppear: status != 'SUCCESS',
+                isButtonAppear: status == shippingOrder,
                 textButton: textButton,
                 onButtonTap: () {
                   switch (transactions[index].status) {
-                    case pendingOrder:
-                      () {};
-                      break;
                     case shippingOrder:
                       onOrderReceivedTapped(transactions[index].id!);
                       break;
