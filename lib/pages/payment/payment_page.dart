@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/config/config.dart';
 import 'package:shoe_store_app/midtrans/midtrans.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_success_page.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
@@ -153,7 +154,7 @@ class PaymentPage extends StatelessWidget {
         <script 
           type="text/javascript"
           src="https://app.sandbox.midtrans.com/snap/snap.js"
-          data-client-key="data-client-key"
+          data-client-key="${Config.clientKey}"
         ></script>
       </head>
       <body onload="setTimeout(function(){pay()}, 1000)">

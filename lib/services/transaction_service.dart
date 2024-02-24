@@ -1,19 +1,20 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shoe_store_app/api/base_url.dart';
+import 'package:shoe_store_app/config/config.dart';
 import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
 
 class TransactionService {
+  final String baseUrl = Config.baseUrl;
+
   Future<String> checkout(
     String token,
     List<CartModel> carts,
     String address,
     double totalPrice,
   ) async {
-    var url = '${BaseUrl.baseUrl}/checkout';
+    var url = '$baseUrl/checkout';
     var headers = {
       'Content-Type': 'application/json',
       'Authorization': token,
@@ -54,7 +55,7 @@ class TransactionService {
   Future<List<TransactionModel>> getTransactions() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
-    var url = '${BaseUrl.baseUrl}/transactions';
+    var url = '$baseUrl/transactions';
     var headers = {
       'Content-Type': 'application/json',
       'Authorization': token!,
