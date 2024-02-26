@@ -7,6 +7,7 @@ import 'package:shoe_store_app/pages/cart/cart_page.dart';
 import 'package:shoe_store_app/pages/chat/detail_chat_page.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_page.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_success_page.dart';
+import 'package:shoe_store_app/pages/checkout/choose_payment_method_page.dart';
 import 'package:shoe_store_app/pages/checkout/edit_address_page.dart';
 import 'package:shoe_store_app/pages/payment/payment_page.dart';
 import 'package:shoe_store_app/pages/product/product_page.dart';
@@ -15,6 +16,9 @@ import 'package:shoe_store_app/pages/profile/edit_profile_page.dart';
 import 'package:shoe_store_app/pages/splash/splash_page.dart';
 import 'package:shoe_store_app/pages/transaction/detail_order_page.dart';
 import 'package:shoe_store_app/pages/transaction/order_page.dart';
+import 'package:shoe_store_app/pages/wallet/top_up_page.dart';
+import 'package:shoe_store_app/pages/wallet/top_up_payment_page.dart';
+import 'package:shoe_store_app/pages/wallet/wallet_page.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SplashPage.routeName: (context) => const SplashPage(),
@@ -40,4 +44,9 @@ final Map<String, WidgetBuilder> routes = {
             ModalRoute.of(context)?.settings.arguments as TransactionModel,
       ),
   PaymentPage.routeName: (context) => const PaymentPage(),
+  WalletPage.routeName: (context) => const WalletPage(),
+  TopUpPage.routeName: (context) => TopUpPage(),
+  TopUpPaymentPage.routeName: (context) => const TopUpPaymentPage(),
+  ChoosePaymentMethodPage.routeName: (context) =>
+      const ChoosePaymentMethodPage(),
 };

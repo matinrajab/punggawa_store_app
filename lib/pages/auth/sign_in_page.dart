@@ -90,7 +90,7 @@ class SignInPage extends StatelessWidget {
                 Footer(
                   text: 'Don\'t have an account?',
                   textButton: 'Sign up',
-                  onTap: () => Navigator.pop(context, SignUpPage.routeName),
+                  onTap: () => Navigator.pushNamed(context, SignUpPage.routeName),
                 ),
               ],
             ),

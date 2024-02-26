@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/cart_model.dart';
+import 'package:shoe_store_app/models/payment_method_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
 import 'package:shoe_store_app/services/transaction_service.dart';
 import 'package:shoe_store_app/services/transaction_status_service.dart';
@@ -22,30 +23,46 @@ class TransactionProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  bool get isLoading => _isLoading;
-  set isLoading(bool isLoading) {
-    _isLoading = isLoading;
-    notifyListeners();
-  }
-
   List<TransactionModel> get transactions => _transactions;
   set transactions(List<TransactionModel> transactions) {
     _transactions = transactions;
     notifyListeners();
   }
 
-  Future<bool> checkout(
-    String token,
-    List<CartModel> carts,
-    double totalPrice,
+  bool get isLoading => _isLoading;
+  set isLoading(bool isLoading) {
+    _isLoading = isLoading;
+    notifyListeners();
+  }
+
+  Future<bool> checkout({
+    required String token,
+    required List<CartModel> carts,
+    required double totalPrice,
+    required PaymentMethodModel paymentMethod,
+  }) async {
+    try {
+      String? snapToken = await TransactionService().checkout(
+        token: token,
+        carts: carts,
+        address: _address,
+        totalPrice: totalPrice,
+        paymentMethod: paymentMethod,
+      );
+
+      _snapToken = snapToken ?? '';
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<bool> topUp(
+    int amount,
   ) async {
     try {
-      String snapToken = await TransactionService().checkout(
-        token,
-        carts,
-        _address,
-        totalPrice,
-      );
+      String snapToken = await TransactionService().topUp(amount: amount);
 
       _snapToken = snapToken;
       return true;

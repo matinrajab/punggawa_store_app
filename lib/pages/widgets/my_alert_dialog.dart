@@ -23,6 +23,7 @@ class MyAlertDialog extends StatelessWidget {
       content: SingleChildScrollView(
         child: Center(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -34,6 +35,7 @@ class MyAlertDialog extends StatelessWidget {
                     fontSize: 18,
                     fontWeight: semiBold,
                   ),
+                  textAlign: TextAlign.start,
                 ),
               ),
               const SizedBox(
@@ -50,7 +52,7 @@ class MyAlertDialog extends StatelessWidget {
                     fontColor: primaryColor,
                   ),
                   const SizedBox(
-                    width: 8,
+                    width: 10,
                   ),
                   MyButton(
                     text: 'Yes',

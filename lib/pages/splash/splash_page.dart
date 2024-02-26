@@ -4,6 +4,7 @@ import 'package:shoe_store_app/pages/auth/sign_in_page.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/category_provider.dart';
+import 'package:shoe_store_app/providers/payment_method_provider.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
@@ -27,6 +28,8 @@ class _SplashPageState extends State<SplashPage> {
   getInit() async {
     await Provider.of<ProductProvider>(context, listen: false).getProducts();
     await Provider.of<CategoryProvider>(context, listen: false).getCategories();
+    await Provider.of<PaymentMethodProvider>(context, listen: false)
+        .getPaymentMethods();
     if (await Provider.of<AuthProvider>(context, listen: false).fetch()) {
       await Provider.of<TransactionProvider>(context, listen: false)
           .getTransactions();

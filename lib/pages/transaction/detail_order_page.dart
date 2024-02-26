@@ -100,7 +100,7 @@ class DetailOrderPage extends StatelessWidget {
           ),
           TitleAndDesc(
             title: 'Payment Method',
-            desc: transaction.paymentMethod!,
+            desc: transaction.paymentMethod!.name!,
           ),
         ],
       ),

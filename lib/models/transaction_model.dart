@@ -1,9 +1,10 @@
 import 'package:shoe_store_app/models/item_model.dart';
+import 'package:shoe_store_app/models/payment_method_model.dart';
 
 class TransactionModel {
   int? id;
   String? address;
-  String? paymentMethod;
+  PaymentMethodModel? paymentMethod;
   num? totalPrice;
   num? shippingPrice;
   String? status;
@@ -23,7 +24,7 @@ class TransactionModel {
       TransactionModel(
         id: json["id"],
         address: json["address"],
-        paymentMethod: json["payment_method"],
+        paymentMethod: PaymentMethodModel.fromJson(json["payment_method"]),
         totalPrice: json["total_price"],
         shippingPrice: json["shipping_price"],
         status: json["status"],

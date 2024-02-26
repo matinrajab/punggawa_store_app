@@ -4,19 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/config/config.dart';
 import 'package:shoe_store_app/midtrans/midtrans.dart';
+import 'package:shoe_store_app/pages/checkout/checkout_success_page.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/payment/widgets/payment_back_dialog.dart';
-import 'package:shoe_store_app/pages/transaction/order_page.dart';
+import 'package:shoe_store_app/pages/wallet/wallet_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
+import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class PaymentPage extends StatelessWidget {
-  static const routeName = '/payment';
+class TopUpPaymentPage extends StatelessWidget {
+  static const routeName = '/top-up-payment';
 
-  const PaymentPage({super.key});
+  const TopUpPaymentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,14 +59,12 @@ class PaymentPage extends StatelessWidget {
               message: 'Something went wrong!',
               isSuccess: false);
         } else {
-          await Provider.of<TransactionProvider>(context, listen: false)
-              .getTransactions();
+          await Provider.of<AuthProvider>(context, listen: false).fetch();
           pageProvider.currentIndex = 3;
           Navigator.pushNamedAndRemoveUntil(
             context,
-            OrderPage.routeName,
+            WalletPage.routeName,
             ModalRoute.withName(MainPage.routeName),
-            arguments: message == 'pending' ? 0 : 1,
           );
         }
       } catch (e) {

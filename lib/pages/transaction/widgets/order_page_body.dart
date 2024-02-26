@@ -22,7 +22,6 @@ class OrderPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     TransactionProvider transactionProvider =
         Provider.of<TransactionProvider>(context, listen: false);
-
     List<TransactionModel> transactions = [];
 
     transactionProvider.transactions.map((transaction) {
@@ -30,6 +29,8 @@ class OrderPageBody extends StatelessWidget {
         transactions.add(transaction);
       }
     }).toList();
+
+    print('transactions = $transactions');
 
     onOrderReceivedTapped(int id) {
       showDialog<String>(

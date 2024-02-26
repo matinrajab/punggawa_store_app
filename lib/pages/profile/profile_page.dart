@@ -4,6 +4,7 @@ import 'package:shoe_store_app/pages/profile/edit_profile_page.dart';
 import 'package:shoe_store_app/pages/profile/widgets/logout_alert_dialog.dart';
 import 'package:shoe_store_app/pages/profile/widgets/profile_menu.dart';
 import 'package:shoe_store_app/pages/transaction/order_page.dart';
+import 'package:shoe_store_app/pages/wallet/wallet_page.dart';
 import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
@@ -69,16 +70,25 @@ class ProfilePage extends StatelessWidget {
               children: [
                 ProfileMenu(
                   title: 'Account',
-                  options: const ['Edit Profile', 'Your Order', 'Help'],
+                  options: const [
+                    'Edit Profile',
+                  ],
                   routes: [
-                    () => Navigator.pushNamed(context, EditProfilePage.routeName),
-                    () => Navigator.pushNamed(context, OrderPage.routeName, arguments: 0),
-                    () {}
+                    () =>
+                        Navigator.pushNamed(context, EditProfilePage.routeName),
                   ],
                 ),
-                const ProfileMenu(
-                  title: 'General',
-                  options: ['Privacy & Policy', 'Term of Service', 'Rate App'],
+                ProfileMenu(
+                  title: 'Transaction',
+                  options: const [
+                    'Order History',
+                    'My Wallet',
+                  ],
+                  routes: [
+                    () => Navigator.pushNamed(context, OrderPage.routeName,
+                        arguments: 0),
+                    () => Navigator.pushNamed(context, WalletPage.routeName),
+                  ],
                 ),
               ],
             ),

@@ -29,7 +29,7 @@ class OrderPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: backgroundColor1,
           title: Text(
-            'Your Order',
+            'Order History',
             style: primaryTextStyle.copyWith(
               fontSize: 18,
               fontWeight: medium,

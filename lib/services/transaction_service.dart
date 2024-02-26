@@ -3,17 +3,20 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoe_store_app/config/config.dart';
 import 'package:shoe_store_app/models/cart_model.dart';
+import 'package:shoe_store_app/models/payment_method_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
+import 'package:shoe_store_app/shared/order_status.dart';
 
 class TransactionService {
   final String baseUrl = Config.baseUrl;
 
-  Future<String> checkout(
-    String token,
-    List<CartModel> carts,
-    String address,
-    double totalPrice,
-  ) async {
+  checkout({
+    required String token,
+    required List<CartModel> carts,
+    required String address,
+    required double totalPrice,
+    required PaymentMethodModel paymentMethod,
+  }) async {
     var url = '$baseUrl/checkout';
     var headers = {
       'Content-Type': 'application/json',
@@ -29,9 +32,43 @@ class TransactionService {
             },
           )
           .toList(),
-      'status': 'PENDING',
+      'status': paymentMethod.name == 'Transfer' ? pendingOrder : shippingOrder,
       'total_price': totalPrice,
       'shipping_price': 0,
+      'payment_method_id': paymentMethod.id,
+    });
+
+    var response = await http.post(
+      Uri.parse(url),
+      headers: headers,
+      body: body,
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      if(paymentMethod.name == 'Transfer'){
+        var data = jsonDecode(response.body)['data'];
+        String snapToken = data['snapToken'];
+        return snapToken;
+      }
+    } else {
+      throw Exception('Pesanan gagal dibuat');
+    }
+  }
+
+  Future<String> topUp({
+    required int amount,
+  }) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    var url = '$baseUrl/topup';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token!,
+    };
+    var body = jsonEncode({
+      'amount': amount,
     });
 
     var response = await http.post(

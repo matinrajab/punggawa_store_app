@@ -7,6 +7,7 @@ import 'package:shoe_store_app/shared/theme.dart';
 class PaymentSummary extends StatelessWidget {
   final int quantity;
   final double productPrice;
+
   const PaymentSummary({
     super.key,
     required this.quantity,
