@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/user_model.dart';
 import 'package:shoe_store_app/pages/profile/widgets/edit_profile_text_form.dart';
+import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
@@ -14,23 +15,9 @@ class EditProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor3,
-      appBar: AppBar(
-        backgroundColor: backgroundColor1,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: primaryTextColor,
-          ),
-        ),
-        centerTitle: true,
-        title: Text(
-          'Edit Profile',
-          style: primaryTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: medium,
-          ),
-        ),
+      appBar: const MyAppBar(
+        text: 'Edit Profile',
+        leadingIcon: Icons.arrow_back_ios_new_rounded,
       ),
       body: SingleChildScrollView(
         child: Padding(

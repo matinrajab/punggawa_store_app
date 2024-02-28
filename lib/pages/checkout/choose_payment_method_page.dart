@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/payment_method_model.dart';
 import 'package:shoe_store_app/pages/checkout/widgets/payment_method_item.dart';
+import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
@@ -25,23 +26,9 @@ class ChoosePaymentMethodPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: backgroundColor3,
-      appBar: AppBar(
-        backgroundColor: backgroundColor1,
-        title: Text(
-          'Payment Method',
-          style: primaryTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: medium,
-          ),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: primaryTextColor,
-          ),
-        ),
+      appBar: const MyAppBar(
+        text: 'Payment Method',
+        leadingIcon: Icons.arrow_back_ios_new_rounded,
       ),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -60,10 +47,10 @@ class ChoosePaymentMethodPage extends StatelessWidget {
                       message: 'Your balance is not enough',
                       isSuccess: false,
                     );
-                  }else{
+                  } else {
                     paymentProvider.methodSelected = index;
                   }
-                }else{
+                } else {
                   paymentProvider.methodSelected = index;
                 }
               },

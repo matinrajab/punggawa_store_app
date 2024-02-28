@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
@@ -42,22 +43,9 @@ class EditFieldPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: backgroundColor3,
-      appBar: AppBar(
-        backgroundColor: backgroundColor1,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(
-            Icons.close_rounded,
-            color: primaryTextColor,
-          ),
-        ),
-        title: Text(
-          title,
-          style: primaryTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: medium,
-          ),
-        ),
+      appBar: MyAppBar(
+        text: title,
+        leadingIcon: Icons.close_rounded,
         actions: [
           Consumer<AuthProvider>(
             builder: (context, authProvider, _) => authProvider.isLoading

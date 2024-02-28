@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/pages/transaction/order_page.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
+import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
@@ -13,17 +14,8 @@ class CheckoutSuccessPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor3,
-      appBar: AppBar(
-        backgroundColor: backgroundColor1,
-        title: Text(
-          'Checkout Success',
-          style: primaryTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: medium,
-          ),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
+      appBar: const MyAppBar(
+        text: 'Checkout Success',
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -42,7 +34,8 @@ class CheckoutSuccessPage extends StatelessWidget {
             ),
             MyButton(
               text: 'View My Order',
-              onTap: () => Navigator.pushNamed(context, OrderPage.routeName, arguments: 1),
+              onTap: () => Navigator.pushNamed(context, OrderPage.routeName,
+                  arguments: 1),
               buttonColor: const Color(0xff39374B),
               borderColor: const Color(0xff39374B),
               height: 44,

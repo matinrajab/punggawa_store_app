@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
-class MyAppBar extends StatelessWidget {
+class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String text;
+  final IconData? leadingIcon;
+  final VoidCallback? onLeadingPressed;
+  final PreferredSizeWidget? bottom;
+  final List<Widget>? actions;
 
   const MyAppBar({
     super.key,
     required this.text,
+    this.leadingIcon,
+    this.onLeadingPressed,
+    this.bottom,
+    this.actions,
   });
 
   @override
@@ -21,6 +29,21 @@ class MyAppBar extends StatelessWidget {
         ),
       ),
       centerTitle: true,
+      leading: leadingIcon != null
+          ? IconButton(
+              onPressed: onLeadingPressed ?? () => Navigator.pop(context),
+              icon: Icon(
+                leadingIcon,
+                color: primaryTextColor,
+              ),
+            )
+          : null,
+      automaticallyImplyLeading: false,
+      bottom: bottom,
+      actions: actions,
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

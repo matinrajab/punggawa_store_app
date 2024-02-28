@@ -4,6 +4,7 @@ import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/pages/cart/widgets/cart_bottom_nav_bar.dart';
 import 'package:shoe_store_app/pages/cart/widgets/cart_tile.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
+import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
@@ -16,23 +17,9 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor3,
-      appBar: AppBar(
-        backgroundColor: backgroundColor1,
-        title: Text(
-          'Your Cart',
-          style: primaryTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: medium,
-          ),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(
-            Icons.close_rounded,
-            color: primaryTextColor,
-          ),
-        ),
+      appBar: const MyAppBar(
+        text: 'Your Cart',
+        leadingIcon: Icons.close_rounded,
       ),
       bottomNavigationBar: Consumer<CartProvider>(
         builder: (context, cartProvider, _) => cartProvider.carts.isEmpty

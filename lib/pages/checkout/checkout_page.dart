@@ -6,6 +6,7 @@ import 'package:shoe_store_app/pages/checkout/widgets/checkout_payment.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/payment/payment_page.dart';
 import 'package:shoe_store_app/pages/transaction/order_page.dart';
+import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/payment_summary.dart';
 import 'package:shoe_store_app/pages/widgets/detail_tile.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
@@ -72,23 +73,9 @@ class CheckoutPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: backgroundColor3,
-      appBar: AppBar(
-        backgroundColor: backgroundColor1,
-        title: Text(
-          'Checkout Details',
-          style: primaryTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: medium,
-          ),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: primaryTextColor,
-          ),
-        ),
+      appBar: const MyAppBar(
+        text: 'Checkout Details',
+        leadingIcon: Icons.arrow_back_ios_new_rounded,
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(pagePadding),

@@ -30,8 +30,6 @@ class OrderPageBody extends StatelessWidget {
       }
     }).toList();
 
-    print('transactions = $transactions');
-
     onOrderReceivedTapped(int id) {
       showDialog<String>(
         context: context,

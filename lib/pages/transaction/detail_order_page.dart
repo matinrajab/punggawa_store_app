@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
 import 'package:shoe_store_app/pages/transaction/widgets/title_and_desc.dart';
+import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/payment_summary.dart';
 import 'package:shoe_store_app/pages/transaction/widgets/order_address.dart';
 import 'package:shoe_store_app/pages/widgets/detail_tile.dart';
@@ -37,23 +38,9 @@ class DetailOrderPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: backgroundColor3,
-      appBar: AppBar(
-        backgroundColor: backgroundColor1,
-        title: Text(
-          'Order Details',
-          style: primaryTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: medium,
-          ),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: primaryTextColor,
-          ),
-        ),
+      appBar: const MyAppBar(
+        text: 'Order Details',
+        leadingIcon: Icons.arrow_back_ios_new_rounded,
       ),
       body: ListView(
         padding: const EdgeInsets.all(pagePadding),

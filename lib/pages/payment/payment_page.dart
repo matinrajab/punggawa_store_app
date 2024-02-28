@@ -7,6 +7,7 @@ import 'package:shoe_store_app/midtrans/midtrans.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/payment/widgets/payment_back_dialog.dart';
 import 'package:shoe_store_app/pages/transaction/order_page.dart';
+import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
@@ -90,26 +91,10 @@ class PaymentPage extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: backgroundColor3,
-        appBar: AppBar(
-          backgroundColor: backgroundColor1,
-          title: Text(
-            'Payment',
-            style: primaryTextStyle.copyWith(
-              fontSize: 18,
-              fontWeight: medium,
-            ),
-          ),
-          centerTitle: true,
-          automaticallyImplyLeading: false,
-          leading: IconButton(
-            onPressed: () {
-              showBackDialog();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: primaryTextColor,
-            ),
-          ),
+        appBar: MyAppBar(
+          text: 'Payment',
+          leadingIcon: Icons.arrow_back_ios_new_rounded,
+          onLeadingPressed: () => showBackDialog(),
         ),
         body: WebViewWidget(
           controller: webViewController
