@@ -8,6 +8,8 @@ import 'package:shoe_store_app/shared/api_url.dart';
 import 'package:shoe_store_app/shared/order_status.dart';
 
 class TransactionService {
+  late SharedPreferences prefs;
+
   checkout({
     required String token,
     required List<CartModel> carts,
@@ -58,7 +60,7 @@ class TransactionService {
   Future<String> topUp({
     required int amount,
   }) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
     var url = topUpUrl;
     var headers = {
@@ -87,8 +89,35 @@ class TransactionService {
     }
   }
 
+  addBonus({
+    required int amount,
+  }) async {
+    prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    var url = addBonusUrl;
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token!,
+    };
+    var body = jsonEncode({
+      'amount': amount,
+    });
+
+    var response = await http.put(
+      Uri.parse(url),
+      headers: headers,
+      body: body,
+    );
+
+    print(response.body);
+
+    if (response.statusCode != 200) {
+      throw Exception('Gagal mendapat bonus');
+    }
+  }
+
   Future<List<TransactionModel>> getTransactions() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
     var url = transactionsUrl;
     var headers = {

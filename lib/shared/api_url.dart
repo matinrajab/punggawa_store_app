@@ -14,3 +14,4 @@ var checkoutUrl = '$baseUrl/checkout';
 var topUpUrl = '$baseUrl/top-up';
 var transactionsUrl = '$baseUrl/transactions';
 var transactionStatusUrl = '$baseUrl/transaction-status';
+var addBonusUrl = '$baseUrl/bonus';

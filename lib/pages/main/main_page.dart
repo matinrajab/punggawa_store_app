@@ -58,13 +58,13 @@ class MainPage extends StatelessWidget {
               elevation: 0,
               currentIndex: pageProvider.currentIndex,
               onTap: (value) {
-                if(value == 1){
+                if (value == 1) {
                   Navigator.pushNamed(
                     context,
                     DetailChatPage.routeName,
                     arguments: UninitializedProductModel(),
                   );
-                }else{
+                } else {
                   pageProvider.currentIndex = value;
                 }
               },

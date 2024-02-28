@@ -72,6 +72,19 @@ class TransactionProvider with ChangeNotifier {
     }
   }
 
+  Future<bool> addBonus(
+    int amount,
+  ) async {
+    try {
+      await TransactionService().addBonus(amount: amount);
+
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   Future<void> getTransactions() async {
     try {
       List<TransactionModel> transactions =
