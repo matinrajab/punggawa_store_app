@@ -1,15 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shoe_store_app/config/config.dart';
 import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/models/payment_method_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
+import 'package:shoe_store_app/shared/api_url.dart';
 import 'package:shoe_store_app/shared/order_status.dart';
 
 class TransactionService {
-  final String baseUrl = Config.baseUrl;
-
   checkout({
     required String token,
     required List<CartModel> carts,
@@ -17,7 +15,7 @@ class TransactionService {
     required double totalPrice,
     required PaymentMethodModel paymentMethod,
   }) async {
-    var url = '$baseUrl/checkout';
+    var url = checkoutUrl;
     var headers = {
       'Content-Type': 'application/json',
       'Authorization': token,
@@ -62,7 +60,7 @@ class TransactionService {
   }) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
-    var url = '$baseUrl/topup';
+    var url = topUpUrl;
     var headers = {
       'Content-Type': 'application/json',
       'Authorization': token!,
@@ -92,7 +90,7 @@ class TransactionService {
   Future<List<TransactionModel>> getTransactions() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
-    var url = '$baseUrl/transactions';
+    var url = transactionsUrl;
     var headers = {
       'Content-Type': 'application/json',
       'Authorization': token!,

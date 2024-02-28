@@ -1,16 +1,11 @@
 import 'dart:convert';
-import 'package:shoe_store_app/config/config.dart';
-import 'package:shoe_store_app/models/category_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:shoe_store_app/models/payment_method_model.dart';
-import 'package:shoe_store_app/models/payment_method_model.dart';
-import 'package:shoe_store_app/models/payment_method_model.dart';
+import 'package:shoe_store_app/shared/api_url.dart';
 
 class PaymentMethodService {
-  final String baseUrl = Config.baseUrl;
-
   Future<List<PaymentMethodModel>> getPaymentMethods() async {
-    var url = '$baseUrl/payment_methods';
+    var url = paymentMethodsUrl;
     var headers = {'Content-Type': 'application/json'};
 
     var response = await http.get(

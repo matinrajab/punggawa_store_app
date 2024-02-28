@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shoe_store_app/config/config.dart';
 import 'package:shoe_store_app/models/user_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:shoe_store_app/shared/api_url.dart';
 
 class AuthService {
-  final String baseUrl = Config.baseUrl;
   late SharedPreferences prefs;
 
   Future<UserModel> register({
@@ -15,7 +14,7 @@ class AuthService {
     String? password,
   }) async {
     prefs = await SharedPreferences.getInstance();
-    var url = '$baseUrl/register';
+    var url = registerUrl;
     var headers = {'Content-Type': 'application/json'};
     var body = jsonEncode({
       'name': name,
@@ -49,7 +48,7 @@ class AuthService {
     String? password,
   }) async {
     prefs = await SharedPreferences.getInstance();
-    var url = '$baseUrl/login';
+    var url = loginUrl;
     var headers = {'Content-Type': 'application/json'};
     var body = jsonEncode({
       'email': email,
@@ -81,7 +80,7 @@ class AuthService {
     String? value,
     String? token,
   }) async {
-    var url = '$baseUrl/user';
+    var url = updateProfileUrl;
     var headers = {
       'Content-Type': 'application/json',
       'Authorization': token!,
@@ -112,7 +111,7 @@ class AuthService {
   Future<UserModel> fetch() async {
     prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
-    var url = '$baseUrl/user';
+    var url = fetchUserUrl;
     var headers = {
       'Content-Type': 'application/json',
       'Authorization': token!,
@@ -139,7 +138,7 @@ class AuthService {
   Future<void> logout() async {
     prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
-    var url = '$baseUrl/logout';
+    var url = logoutUrl;
     var headers = {
       'Content-Type': 'application/json',
       'Authorization': token!,
