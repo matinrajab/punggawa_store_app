@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/models/uninitialized_product_model.dart';
 import 'package:shoe_store_app/pages/cart/cart_page.dart';
-import 'package:shoe_store_app/pages/chat/chat_page.dart';
+import 'package:shoe_store_app/pages/chat/detail_chat_page.dart';
 import 'package:shoe_store_app/pages/home/home_page.dart';
 import 'package:shoe_store_app/pages/profile/profile_page.dart';
 import 'package:shoe_store_app/pages/wishlist/wishlist_page.dart';
@@ -15,7 +16,7 @@ class MainPage extends StatelessWidget {
 
   final List<Widget> _body = [
     const HomePage(),
-    const ChatPage(),
+    const SizedBox(),
     const WishlistPage(),
     const ProfilePage(),
   ];
@@ -57,7 +58,15 @@ class MainPage extends StatelessWidget {
               elevation: 0,
               currentIndex: pageProvider.currentIndex,
               onTap: (value) {
-                pageProvider.currentIndex = value;
+                if(value == 1){
+                  Navigator.pushNamed(
+                    context,
+                    DetailChatPage.routeName,
+                    arguments: UninitializedProductModel(),
+                  );
+                }else{
+                  pageProvider.currentIndex = value;
+                }
               },
               items: [
                 BottomNavigationBarItem(
