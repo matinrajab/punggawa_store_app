@@ -32,7 +32,7 @@ class ProductModel {
         tags: json["tags"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        category: CategoryModel.fromJson(json["category"]),
+        category: CategoryModel.fromJson(json["product_category"]),
         galleries: List<GalleryModel>.from(
             json["galleries"].map((x) => GalleryModel.fromJson(x))),
       );
@@ -45,7 +45,7 @@ class ProductModel {
         "tags": tags,
         "created_at": createdAt!.toIso8601String(),
         "updated_at": updatedAt!.toIso8601String(),
-        "category": category!.toJson(),
+        "product_category": category!.toJson(),
         "galleries": List<dynamic>.from(galleries!.map((x) => x.toJson())),
       };
 }

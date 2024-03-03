@@ -83,8 +83,8 @@ class PaymentPage extends StatelessWidget {
 
     return PopScope(
       canPop: false,
-      onPopInvoked: (bool didPop){
-        if(didPop){
+      onPopInvoked: (bool didPop) {
+        if (didPop) {
           return;
         }
         showBackDialog();
@@ -93,7 +93,7 @@ class PaymentPage extends StatelessWidget {
         backgroundColor: backgroundColor3,
         appBar: MyAppBar(
           text: 'Payment',
-          leadingIcon: Icons.arrow_back_ios_new_rounded,
+          leadingIcon: backIcon,
           onLeadingPressed: () => showBackDialog(),
         ),
         body: WebViewWidget(

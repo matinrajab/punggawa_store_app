@@ -40,7 +40,7 @@ class DetailOrderPage extends StatelessWidget {
       backgroundColor: backgroundColor3,
       appBar: const MyAppBar(
         text: 'Order Details',
-        leadingIcon: Icons.arrow_back_ios_new_rounded,
+        leadingIcon: backIcon,
       ),
       body: ListView(
         padding: const EdgeInsets.all(pagePadding),
@@ -74,7 +74,7 @@ class DetailOrderPage extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          OrderAddress(shippingAddress: transaction.address!),
+          OrderAddress(name: transaction.name!, phone: transaction.phone!, address: transaction.address!),
           const SizedBox(
             height: 30,
           ),

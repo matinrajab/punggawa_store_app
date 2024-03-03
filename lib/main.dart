@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/my_http_overrides.dart';
 import 'package:shoe_store_app/providers/providers.dart';
 import 'package:shoe_store_app/routes/routes.dart';
 import 'firebase_options.dart';
@@ -13,6 +15,7 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await dotenv.load(fileName: ".env");
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 

@@ -5,7 +5,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String text;
   final IconData? leadingIcon;
   final VoidCallback? onLeadingPressed;
-  final PreferredSizeWidget? bottom;
   final List<Widget>? actions;
 
   const MyAppBar({
@@ -13,7 +12,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.text,
     this.leadingIcon,
     this.onLeadingPressed,
-    this.bottom,
     this.actions,
   });
 
@@ -39,7 +37,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             )
           : null,
       automaticallyImplyLeading: false,
-      bottom: bottom,
       actions: actions,
     );
   }

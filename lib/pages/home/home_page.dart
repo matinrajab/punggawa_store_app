@@ -8,7 +8,7 @@ import 'package:shoe_store_app/pages/home/widgets/product_card.dart';
 import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
-import 'package:shoe_store_app/providers/category_provider.dart';
+import 'package:shoe_store_app/providers/product_category_provider.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
@@ -21,8 +21,8 @@ class HomePage extends StatelessWidget {
         Provider.of<AuthProvider>(context, listen: false);
     ProductProvider productProvider =
         Provider.of<ProductProvider>(context, listen: false);
-    CategoryProvider categoryProvider =
-        Provider.of<CategoryProvider>(context, listen: false);
+    ProductCategoryProvider categoryProvider =
+        Provider.of<ProductCategoryProvider>(context, listen: false);
 
     UserModel user = authProvider.user;
     List<ProductModel> products = productProvider.products;
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
             itemCount: categories.length,
             itemBuilder: (BuildContext context, int index) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Consumer<CategoryProvider>(
+              child: Consumer<ProductCategoryProvider>(
                 builder: (context, categoryProvider, _) => MyButton(
                   text: categories[index].name!,
                   onTap: () {
@@ -69,7 +69,7 @@ class HomePage extends StatelessWidget {
                   },
                   borderColor: index == categoryProvider.categorySelected
                       ? primaryColor
-                      : const Color(0xff302F37),
+                      : subtitleTextColor,
                   buttonColor: index == categoryProvider.categorySelected
                       ? primaryColor
                       : Colors.transparent,
@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(
               left: pagePadding, top: pagePadding, bottom: 14),
-          child: Consumer<CategoryProvider>(
+          child: Consumer<ProductCategoryProvider>(
             builder: (context, categoryProvider, _) => Text(
               categoryProvider.categorySelected == 0
                   ? 'Popular Products'
@@ -100,7 +100,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        Consumer<CategoryProvider>(
+        Consumer<ProductCategoryProvider>(
           builder: (context, categoryProvider, _) =>
               categoryProvider.categorySelected == 0
                   ? Column(
@@ -141,7 +141,7 @@ class HomePage extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: pagePadding),
-          child: Consumer<CategoryProvider>(
+          child: Consumer<ProductCategoryProvider>(
             builder: (context, categoryProvider, _) => Column(
               children: products.map((product) {
                 return (categoryProvider.categorySelected == 0 ||

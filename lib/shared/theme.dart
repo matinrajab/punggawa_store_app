@@ -16,6 +16,7 @@ const Color secondaryTextColor = Color(0xff999999);
 const Color priceTextColor = Color(0xff2C96F1);
 const Color subtitleTextColor = Color(0xff504F5E);
 const Color blackTextColor = Color(0xff2E2E2E);
+const Color redColor = Color(0xffB0251E);
 
 TextStyle primaryTextStyle = GoogleFonts.poppins(
   color: primaryTextColor,
@@ -55,3 +56,7 @@ const double pagePadding = 30.0;
 const double generalRadius = 12.0;
 
 BorderRadius generalBorderRadius = BorderRadius.circular(generalRadius);
+
+const IconData backIcon = Icons.arrow_back_ios_new_rounded;
+const IconData closeIcon = Icons.close_rounded;
+const IconData forwardIcon = Icons.arrow_forward_ios_rounded;

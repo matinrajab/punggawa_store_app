@@ -13,9 +13,9 @@ class TransactionService {
   checkout({
     required String token,
     required List<CartModel> carts,
-    required String address,
     required double totalPrice,
     required PaymentMethodModel paymentMethod,
+    required int addressId,
   }) async {
     var url = checkoutUrl;
     var headers = {
@@ -23,7 +23,7 @@ class TransactionService {
       'Authorization': token,
     };
     var body = jsonEncode({
-      'address': address,
+      'address_id': addressId,
       'items': carts
           .map(
             (cart) => {
@@ -119,6 +119,7 @@ class TransactionService {
   Future<List<TransactionModel>> getTransactions() async {
     prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
+
     var url = transactionsUrl;
     var headers = {
       'Content-Type': 'application/json',

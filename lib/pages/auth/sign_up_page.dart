@@ -28,9 +28,9 @@ class SignUpPage extends StatelessWidget {
     handleSignUp() async {
       authProvider.isLoading = true;
       if (await authProvider.register(
-        name: _nameController.text,
-        username: _usernameController.text,
-        email: _emailController.text,
+        name: _nameController.text.trim(),
+        username: _usernameController.text.trim(),
+        email: _emailController.text.trim(),
         password: _passwordController.text,
       )) {
         Navigator.pushNamedAndRemoveUntil(context, MainPage.routeName, (route) => false);

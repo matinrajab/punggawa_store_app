@@ -39,7 +39,10 @@ class TopUpPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: backgroundColor3,
-      appBar: const MyAppBar(text: 'Top Up', leadingIcon: Icons.arrow_back_ios_new_rounded,),
+      appBar: const MyAppBar(
+        text: 'Top Up',
+        leadingIcon: backIcon,
+      ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(pagePadding),
         color: backgroundColor3,

@@ -1,8 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:shoe_store_app/pages/checkout/edit_address_page.dart';
-import 'package:shoe_store_app/pages/checkout/widgets/checkout_address_item.dart';
-import 'package:shoe_store_app/providers/transaction_provider.dart';
+import 'package:shoe_store_app/models/address_model.dart';
+import 'package:shoe_store_app/pages/checkout/select_address_page.dart';
+import 'package:shoe_store_app/pages/widgets/address_card_content.dart';
+import 'package:shoe_store_app/providers/address_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class CheckoutAddress extends StatelessWidget {
@@ -11,57 +14,62 @@ class CheckoutAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(10, 20, 20, 20),
       decoration: BoxDecoration(
         borderRadius: generalBorderRadius,
         color: backgroundColor4,
       ),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Address Detail',
-            style: primaryTextStyle.copyWith(
-              fontSize: 16,
-              fontWeight: medium,
+          Image.asset(
+            'assets/icon/icon_your_address.png',
+            height: 40,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Shipping Address',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: medium,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(
+                          context, SelectAddressPage.routeName),
+                      child: Text(
+                        'Edit',
+                        style: priceTextStyle.copyWith(
+                          fontSize: 12,
+                          fontWeight: light,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Consumer<AddressProvider>(
+                  builder: (context, addressProvider, _) {
+                    AddressModel address = addressProvider
+                        .addresses[addressProvider.addressSelected];
+                    return AddressCardContent(
+                      address: address,
+                    );
+                  },
+                ),
+              ],
             ),
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          const CheckoutAddressItem(
-            imageAssets: 'assets/icon/icon_store_location.png',
-            address: 'Store Location',
-            information: 'Adidas Core',
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Consumer<TransactionProvider>(
-                  builder: (context, transactionProvider, _) =>
-                      CheckoutAddressItem(
-                    imageAssets: 'assets/icon/icon_your_address.png',
-                    address: 'Shipping Address',
-                    information: transactionProvider.address,
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () =>
-                    Navigator.pushNamed(context, EditAddressPage.routeName),
-                child: Text(
-                  'Edit',
-                  style: priceTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: light,
-                  ),
-                ),
-              ),
-            ],
           ),
         ],
       ),

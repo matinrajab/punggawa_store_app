@@ -1,40 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:shoe_store_app/pages/checkout/widgets/checkout_address_item.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class OrderAddress extends StatelessWidget {
-  final String shippingAddress;
+  final String name;
+  final String phone;
+  final String address;
 
   const OrderAddress({
     super.key,
-    required this.shippingAddress,
+    required this.name,
+    required this.phone,
+    required this.address,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(10, 20, 20, 20),
       decoration: BoxDecoration(
         borderRadius: generalBorderRadius,
         color: backgroundColor4,
       ),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Address Detail',
-            style: primaryTextStyle.copyWith(
-              fontSize: 16,
-              fontWeight: medium,
+          Image.asset(
+            'assets/icon/icon_your_address.png',
+            height: 40,
+          ),
+          const SizedBox(width: 10,),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Shipping Address',
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: medium,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  name,
+                  style: primaryTextStyle.copyWith(
+                    fontWeight: medium,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(
+                  height: 6,
+                ),
+                Text(
+                  phone,
+                  style: secondaryTextStyle.copyWith(
+                    fontWeight: medium,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(
+                  height: 6,
+                ),
+                Text(
+                  address,
+                  style: secondaryTextStyle.copyWith(
+                    fontSize: 12,
+                  ),
+                ),
+              ],
             ),
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          CheckoutAddressItem(
-            imageAssets: 'assets/icon/icon_your_address.png',
-            address: 'Shipping Address',
-            information: shippingAddress,
           ),
         ],
       ),

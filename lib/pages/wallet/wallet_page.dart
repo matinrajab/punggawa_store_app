@@ -23,7 +23,7 @@ class WalletPage extends StatelessWidget {
       backgroundColor: backgroundColor3,
       appBar: const MyAppBar(
         text: 'My Wallet',
-        leadingIcon: Icons.arrow_back_ios_new_rounded,
+        leadingIcon: backIcon,
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(pagePadding),

@@ -51,7 +51,7 @@ class DetailChatPage extends StatelessWidget {
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
           child: const Icon(
-            Icons.arrow_back_ios_new_rounded,
+            backIcon,
             color: primaryTextColor,
           ),
         ),

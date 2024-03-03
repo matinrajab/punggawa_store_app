@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
+import 'package:shoe_store_app/pages/address/add_address_page.dart';
+import 'package:shoe_store_app/pages/address/address_page.dart';
+import 'package:shoe_store_app/pages/address/select_region_page.dart';
 import 'package:shoe_store_app/pages/auth/sign_in_page.dart';
 import 'package:shoe_store_app/pages/auth/sign_up_page.dart';
 import 'package:shoe_store_app/pages/cart/cart_page.dart';
@@ -8,7 +11,7 @@ import 'package:shoe_store_app/pages/chat/detail_chat_page.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_page.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_success_page.dart';
 import 'package:shoe_store_app/pages/checkout/choose_payment_method_page.dart';
-import 'package:shoe_store_app/pages/checkout/edit_address_page.dart';
+import 'package:shoe_store_app/pages/checkout/select_address_page.dart';
 import 'package:shoe_store_app/pages/payment/payment_page.dart';
 import 'package:shoe_store_app/pages/product/product_page.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
@@ -35,7 +38,7 @@ final Map<String, WidgetBuilder> routes = {
         product: ModalRoute.of(context)?.settings.arguments as ProductModel,
       ),
   CheckoutSuccessPage.routeName: (context) => const CheckoutSuccessPage(),
-  EditAddressPage.routeName: (context) => const EditAddressPage(),
+  SelectAddressPage.routeName: (context) => const SelectAddressPage(),
   OrderPage.routeName: (context) => OrderPage(
         initial: ModalRoute.of(context)?.settings.arguments as int,
       ),
@@ -49,4 +52,7 @@ final Map<String, WidgetBuilder> routes = {
   TopUpPaymentPage.routeName: (context) => const TopUpPaymentPage(),
   ChoosePaymentMethodPage.routeName: (context) =>
       const ChoosePaymentMethodPage(),
+  AddressPage.routeName: (context) => const AddressPage(),
+  AddAddressPage.routeName: (context) => AddAddressPage(),
+  SelectRegionPage.routeName: (context) => SelectRegionPage(),
 };

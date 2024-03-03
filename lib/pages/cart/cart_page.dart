@@ -19,7 +19,7 @@ class CartPage extends StatelessWidget {
       backgroundColor: backgroundColor3,
       appBar: const MyAppBar(
         text: 'Your Cart',
-        leadingIcon: Icons.close_rounded,
+        leadingIcon: closeIcon,
       ),
       bottomNavigationBar: Consumer<CartProvider>(
         builder: (context, cartProvider, _) => cartProvider.carts.isEmpty

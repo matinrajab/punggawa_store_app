@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/pages/address/address_page.dart';
 import 'package:shoe_store_app/pages/profile/edit_profile_page.dart';
 import 'package:shoe_store_app/pages/profile/widgets/logout_alert_dialog.dart';
 import 'package:shoe_store_app/pages/profile/widgets/profile_menu.dart';
@@ -72,10 +73,12 @@ class ProfilePage extends StatelessWidget {
                   title: 'Account',
                   options: const [
                     'Edit Profile',
+                    'My Addresses',
                   ],
                   routes: [
                     () =>
                         Navigator.pushNamed(context, EditProfilePage.routeName),
+                    () => Navigator.pushNamed(context, AddressPage.routeName),
                   ],
                 ),
                 ProfileMenu(

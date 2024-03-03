@@ -18,7 +18,7 @@ class OrderPage extends StatelessWidget {
     List<String> tabBarItems = [
       'Pending',
       'Shipping',
-      'Complete',
+      'Completed',
     ];
 
     return DefaultTabController(
@@ -39,7 +39,7 @@ class OrderPage extends StatelessWidget {
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(
-              Icons.arrow_back_ios_new_rounded,
+              backIcon,
               color: primaryTextColor,
             ),
           ),

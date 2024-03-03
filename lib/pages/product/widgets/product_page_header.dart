@@ -19,7 +19,7 @@ class ProductPageHeader extends StatelessWidget {
           GestureDetector(
             onTap: () => Navigator.pop(context),
             child: const Icon(
-              Icons.arrow_back_ios_new_rounded,
+              backIcon,
               color: backgroundColor1,
             ),
           ),

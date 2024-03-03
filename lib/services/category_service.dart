@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'package:shoe_store_app/models/category_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:shoe_store_app/shared/api_url.dart';
 
 class CategoryService {
-  Future<List<CategoryModel>> getCategories() async {
-    var url = categoriesUrl;
+  Future<List<CategoryModel>> getCategories(String url) async {
     var headers = {'Content-Type': 'application/json'};
 
     var response = await http.get(

@@ -40,12 +40,13 @@ class TransactionProvider with ChangeNotifier {
     required List<CartModel> carts,
     required double totalPrice,
     required PaymentMethodModel paymentMethod,
+    required int addressId,
   }) async {
     try {
       String? snapToken = await TransactionService().checkout(
         token: token,
         carts: carts,
-        address: _address,
+        addressId: addressId,
         totalPrice: totalPrice,
         paymentMethod: paymentMethod,
       );

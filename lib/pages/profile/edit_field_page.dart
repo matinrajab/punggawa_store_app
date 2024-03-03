@@ -45,7 +45,7 @@ class EditFieldPage extends StatelessWidget {
       backgroundColor: backgroundColor3,
       appBar: MyAppBar(
         text: title,
-        leadingIcon: Icons.close_rounded,
+        leadingIcon: closeIcon,
         actions: [
           Consumer<AuthProvider>(
             builder: (context, authProvider, _) => authProvider.isLoading

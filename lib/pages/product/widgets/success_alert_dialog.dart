@@ -21,7 +21,7 @@ class SuccessAlertDialog extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               onTap: () => Navigator.pop(context),
               child: const Icon(
-                Icons.close_rounded,
+                closeIcon,
                 color: primaryTextColor,
               ),
             ),

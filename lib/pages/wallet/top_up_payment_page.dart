@@ -92,7 +92,7 @@ class TopUpPaymentPage extends StatelessWidget {
         backgroundColor: backgroundColor3,
         appBar: MyAppBar(
           text: 'Payment',
-          leadingIcon: Icons.arrow_back_ios_new_rounded,
+          leadingIcon: backIcon,
           onLeadingPressed: () => showBackDialog(),
         ),
         body: WebViewWidget(

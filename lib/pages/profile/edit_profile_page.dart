@@ -17,7 +17,7 @@ class EditProfilePage extends StatelessWidget {
       backgroundColor: backgroundColor3,
       appBar: const MyAppBar(
         text: 'Edit Profile',
-        leadingIcon: Icons.arrow_back_ios_new_rounded,
+        leadingIcon: backIcon,
       ),
       body: SingleChildScrollView(
         child: Padding(

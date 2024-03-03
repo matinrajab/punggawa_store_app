@@ -8,6 +8,7 @@ import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
+import 'package:shoe_store_app/providers/address_provider.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
@@ -28,12 +29,15 @@ class SignInPage extends StatelessWidget {
     handleLogin() async {
       authProvider.isLoading = true;
       if (await authProvider.login(
-        email: _emailController.text,
+        email: _emailController.text.trim(),
         password: _passwordController.text,
       )) {
         await Provider.of<TransactionProvider>(context, listen: false)
             .getTransactions();
-        Navigator.pushNamedAndRemoveUntil(context, MainPage.routeName, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(
+            context, MainPage.routeName, (route) => false);
+        await Provider.of<AddressProvider>(context, listen: false)
+            .getAddresses();
       } else {
         MySnackBar.showSnackBar(
           context: context,
@@ -90,7 +94,8 @@ class SignInPage extends StatelessWidget {
                 Footer(
                   text: 'Don\'t have an account?',
                   textButton: 'Sign up',
-                  onTap: () => Navigator.pushNamed(context, SignUpPage.routeName),
+                  onTap: () =>
+                      Navigator.pushNamed(context, SignUpPage.routeName),
                 ),
               ],
             ),

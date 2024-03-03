@@ -11,6 +11,7 @@ import 'package:shoe_store_app/pages/widgets/payment_summary.dart';
 import 'package:shoe_store_app/pages/widgets/detail_tile.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
+import 'package:shoe_store_app/providers/address_provider.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
@@ -35,6 +36,8 @@ class CheckoutPage extends StatelessWidget {
         Provider.of<AuthProvider>(context, listen: false);
     PageProvider pageProvider =
         Provider.of<PageProvider>(context, listen: false);
+    AddressProvider addressProvider =
+        Provider.of<AddressProvider>(context, listen: false);
 
     handleCheckout() async {
       PaymentMethodModel paymentMethod =
@@ -44,6 +47,8 @@ class CheckoutPage extends StatelessWidget {
         carts: cartProvider.carts,
         totalPrice: cartProvider.totalPrice(),
         paymentMethod: paymentMethod,
+        addressId:
+            addressProvider.addresses[addressProvider.addressSelected].id!,
       )) {
         cartProvider.carts.clear();
         if (paymentMethod.name == 'Transfer') {
@@ -75,7 +80,7 @@ class CheckoutPage extends StatelessWidget {
       backgroundColor: backgroundColor3,
       appBar: const MyAppBar(
         text: 'Checkout Details',
-        leadingIcon: Icons.arrow_back_ios_new_rounded,
+        leadingIcon: backIcon,
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(pagePadding),
