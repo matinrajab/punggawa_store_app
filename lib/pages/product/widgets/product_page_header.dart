@@ -26,7 +26,7 @@ class ProductPageHeader extends StatelessWidget {
           GestureDetector(
             onTap: () => Navigator.pushNamed(context, CartPage.routeName),
             child: Image.asset(
-              'assets/icon/icon_cart_action.png',
+              'assets/icon/cart_action.png',
               width: 20,
             ),
           )

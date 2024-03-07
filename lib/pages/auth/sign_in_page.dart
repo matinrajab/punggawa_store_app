@@ -67,7 +67,7 @@ class SignInPage extends StatelessWidget {
                   fieldName: 'Email Address',
                   controller: _emailController,
                   hintText: 'Your Email Address',
-                  prefixIconAsset: 'assets/icon/icon_email.png',
+                  prefixIconAsset: 'assets/icon/email.png',
                 ),
                 const SizedBox(
                   height: 20,
@@ -77,7 +77,7 @@ class SignInPage extends StatelessWidget {
                   controller: _passwordController,
                   obscureText: true,
                   hintText: 'Your Password',
-                  prefixIconAsset: 'assets/icon/icon_password.png',
+                  prefixIconAsset: 'assets/icon/password.png',
                 ),
                 const SizedBox(
                   height: 30,

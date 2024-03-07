@@ -64,7 +64,7 @@ class SignUpPage extends StatelessWidget {
                   fieldName: 'Full Name',
                   controller: _nameController,
                   hintText: 'Your Full Name',
-                  prefixIconAsset: 'assets/icon/icon_name.png',
+                  prefixIconAsset: 'assets/icon/name.png',
                 ),
                 const SizedBox(
                   height: 20,
@@ -73,7 +73,7 @@ class SignUpPage extends StatelessWidget {
                   fieldName: 'Username',
                   controller: _usernameController,
                   hintText: 'Your Username',
-                  prefixIconAsset: 'assets/icon/icon_username.png',
+                  prefixIconAsset: 'assets/icon/username.png',
                 ),
                 const SizedBox(
                   height: 20,
@@ -82,7 +82,7 @@ class SignUpPage extends StatelessWidget {
                   fieldName: 'Email Address',
                   controller: _emailController,
                   hintText: 'Your Email Address',
-                  prefixIconAsset: 'assets/icon/icon_email.png',
+                  prefixIconAsset: 'assets/icon/email.png',
                 ),
                 const SizedBox(
                   height: 20,
@@ -92,7 +92,7 @@ class SignUpPage extends StatelessWidget {
                   controller: _passwordController,
                   obscureText: true,
                   hintText: 'Your Password',
-                  prefixIconAsset: 'assets/icon/icon_password.png',
+                  prefixIconAsset: 'assets/icon/password.png',
                 ),
                 const SizedBox(
                   height: 30,

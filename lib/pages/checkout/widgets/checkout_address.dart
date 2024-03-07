@@ -23,7 +23,7 @@ class CheckoutAddress extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
-            'assets/icon/icon_your_address.png',
+            'assets/icon/your_address.png',
             height: 30,
           ),
           const SizedBox(

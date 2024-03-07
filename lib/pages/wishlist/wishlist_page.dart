@@ -24,7 +24,7 @@ class WishlistPage extends StatelessWidget {
                 color: backgroundColor3,
                 child: wishlist.isEmpty
                     ? const EmptyItem(
-                        iconAsset: 'assets/icon/icon_empty_wishlist.png',
+                        iconAsset: 'assets/icon/empty_wishlist.png',
                         title: 'You don\'t have dream shoes?',
                         subtitle: 'Let\'s find your favorite shoes',
                       )

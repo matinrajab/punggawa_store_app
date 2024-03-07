@@ -23,7 +23,7 @@ class CheckoutSuccessPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const EmptyItem(
-              iconAsset: 'assets/icon/icon_empty_cart.png',
+              iconAsset: 'assets/icon/empty_cart.png',
               title: 'You made a transaction',
               subtitle: 'Stay at home while we prepare your dream shoes',
               textOnButton: 'Order Other Shoes',

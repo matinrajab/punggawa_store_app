@@ -78,7 +78,7 @@ class WishlistTile extends StatelessWidget {
                   wishlistProvider.setProduct(product);
                 },
                 child: Image.asset(
-                  'assets/button/button_wishlist_blue.png',
+                  'assets/button/wishlist_blue.png',
                   height: 34,
                 ),
               ),

@@ -33,8 +33,8 @@ class WishlistButton extends StatelessWidget {
       child: Consumer<WishlistProvider>(
         builder: (context, wishlistProvider, _) => Image.asset(
           wishlistProvider.wishlist.contains(product)
-              ? 'assets/button/button_wishlist_blue.png'
-              : 'assets/button/button_wishlist.png',
+              ? 'assets/button/wishlist_blue.png'
+              : 'assets/button/wishlist.png',
           height: 46,
         ),
       ),

@@ -23,11 +23,12 @@ class ProductPageFooter extends StatelessWidget {
 
     return Container(
       color: backgroundColor1,
-      padding: const EdgeInsets.fromLTRB(pagePadding, 0, pagePadding, pagePadding),
+      padding:
+          const EdgeInsets.fromLTRB(pagePadding, 0, pagePadding, pagePadding),
       child: Row(
         children: [
           IconBoxButton(
-            imageAsset: 'assets/icon/icon_chat_primary.png',
+            imageAsset: 'assets/icon/chat_primary.png',
             imageWidth: 23,
             onTap: () => Navigator.pushNamed(
               context,

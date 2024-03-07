@@ -69,7 +69,7 @@ class ProductPreview extends StatelessWidget {
               productProvider.uninitializedProduct = true;
             },
             child: Image.asset(
-              'assets/button/button_close.png',
+              'assets/button/close.png',
               height: 22,
             ),
           ),

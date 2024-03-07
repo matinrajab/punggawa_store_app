@@ -73,7 +73,7 @@ class CartTile extends StatelessWidget {
                     GestureDetector(
                       onTap: () => cartProvider.addQuantity(cart),
                       child: Image.asset(
-                        'assets/button/button_add.png',
+                        'assets/button/add.png',
                         width: 16,
                       ),
                     ),
@@ -87,7 +87,7 @@ class CartTile extends StatelessWidget {
                     GestureDetector(
                       onTap: () => cartProvider.minQuantity(cart),
                       child: Image.asset(
-                        'assets/button/button_min.png',
+                        'assets/button/min.png',
                         width: 16,
                       ),
                     ),
@@ -103,7 +103,7 @@ class CartTile extends StatelessWidget {
               child: Row(
                 children: [
                   Image.asset(
-                    'assets/icon/icon_trash.png',
+                    'assets/icon/trash.png',
                     width: 10,
                   ),
                   const SizedBox(

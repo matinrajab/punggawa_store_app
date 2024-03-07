@@ -40,7 +40,7 @@ class OrderPageBody extends StatelessWidget {
     return Center(
       child: transactions.isEmpty
           ? const EmptyItem(
-              iconAsset: 'assets/icon/icon_empty_cart.png',
+              iconAsset: 'assets/icon/empty_cart.png',
               title: 'Oops! Your Order is Empty',
               subtitle: 'Let\'s find your favorite shoes',
             )

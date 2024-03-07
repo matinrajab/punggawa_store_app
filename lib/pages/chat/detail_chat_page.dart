@@ -59,7 +59,7 @@ class DetailChatPage extends StatelessWidget {
         title: Row(
           children: [
             Image.asset(
-              'assets/icon/icon_shop_online.png',
+              'assets/icon/shop_online.png',
               height: 50,
             ),
             const SizedBox(

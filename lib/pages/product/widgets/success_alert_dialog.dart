@@ -29,7 +29,7 @@ class SuccessAlertDialog extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(
-                    'assets/icon/icon_success.png',
+                    'assets/icon/success.png',
                     width: 100,
                   ),
                   Padding(

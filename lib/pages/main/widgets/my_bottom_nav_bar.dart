@@ -22,28 +22,28 @@ class MyBottomNavBar extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
               icon: Image.asset(
-                'assets/icon/icon_home.png',
+                'assets/icon/home.png',
                 height: 20,
               ),
               label: '',
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
-                'assets/icon/icon_chat.png',
+                'assets/icon/chat.png',
                 width: 20,
               ),
               label: '',
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
-                'assets/icon/icon_wishlist.png',
+                'assets/icon/wishlist.png',
                 width: 20,
               ),
               label: '',
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
-                'assets/icon/icon_profile.png',
+                'assets/icon/profile.png',
                 height: 20,
               ),
               label: '',

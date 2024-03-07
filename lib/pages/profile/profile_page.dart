@@ -33,7 +33,7 @@ class ProfilePage extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(32),
                   child: Image.asset(
-                    'assets/image/image_profile.png',
+                    'assets/image/profile.png',
                     height: 64,
                     width: 64,
                     fit: BoxFit.cover,
@@ -54,7 +54,7 @@ class ProfilePage extends StatelessWidget {
                 IconButton(
                   onPressed: onLogoutTapped,
                   icon: Image.asset(
-                    'assets/button/button_exit.png',
+                    'assets/button/exit.png',
                     height: 20,
                   ),
                 ),

@@ -34,7 +34,7 @@ class CartPage extends StatelessWidget {
           return Center(
             child: carts.isEmpty
                 ? const EmptyItem(
-                    iconAsset: 'assets/icon/icon_empty_cart.png',
+                    iconAsset: 'assets/icon/empty_cart.png',
                     title: 'Oops! Your Cart is Empty',
                     subtitle: 'Let\'s find your favorite shoes',
                   )

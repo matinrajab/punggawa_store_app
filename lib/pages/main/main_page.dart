@@ -37,7 +37,7 @@ class MainPage extends StatelessWidget {
           backgroundColor: secondaryColor,
           onPressed: () => Navigator.pushNamed(context, CartPage.routeName),
           child: Image.asset(
-            'assets/icon/icon_cart.png',
+            'assets/icon/cart.png',
             width: 20,
           ),
         ),
@@ -71,7 +71,7 @@ class MainPage extends StatelessWidget {
               items: [
                 BottomNavigationBarItem(
                   icon: Image.asset(
-                    'assets/icon/icon_home.png',
+                    'assets/icon/home.png',
                     height: 20,
                     color: pageProvider.currentIndex == 0
                         ? primaryColor
@@ -81,7 +81,7 @@ class MainPage extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Image.asset(
-                    'assets/icon/icon_chat.png',
+                    'assets/icon/chat.png',
                     width: 20,
                     color: pageProvider.currentIndex == 1
                         ? primaryColor
@@ -91,7 +91,7 @@ class MainPage extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Image.asset(
-                    'assets/icon/icon_wishlist.png',
+                    'assets/icon/wishlist.png',
                     width: 20,
                     color: pageProvider.currentIndex == 2
                         ? primaryColor
@@ -101,7 +101,7 @@ class MainPage extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Image.asset(
-                    'assets/icon/icon_profile.png',
+                    'assets/icon/profile.png',
                     height: 20,
                     color: pageProvider.currentIndex == 3
                         ? primaryColor

@@ -45,7 +45,7 @@ class ChatPage extends StatelessWidget {
                   );
                 } else {
                   return const EmptyItem(
-                    iconAsset: 'assets/icon/icon_empty_chat.png',
+                    iconAsset: 'assets/icon/empty_chat.png',
                     title: 'Opss no message yet?',
                     subtitle: 'You have never done a transaction',
                   );
