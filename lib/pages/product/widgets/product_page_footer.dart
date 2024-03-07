@@ -21,8 +21,9 @@ class ProductPageFooter extends StatelessWidget {
     CartProvider cartProvider =
         Provider.of<CartProvider>(context, listen: false);
 
-    return Padding(
-      padding: const EdgeInsets.all(pagePadding),
+    return Container(
+      color: backgroundColor1,
+      padding: const EdgeInsets.fromLTRB(pagePadding, 0, pagePadding, pagePadding),
       child: Row(
         children: [
           IconBoxButton(

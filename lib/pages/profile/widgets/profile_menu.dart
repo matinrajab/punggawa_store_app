@@ -32,7 +32,7 @@ class ProfileMenu extends StatelessWidget {
           ),
           for (int i = 0; i < options.length; i++)
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.symmetric(vertical: 12),
               child: InkWell(
                 onTap: routes?[i],
                 child: Row(
@@ -48,6 +48,7 @@ class ProfileMenu extends StatelessWidget {
                     const Icon(
                       forwardIcon,
                       color: secondaryTextColor,
+                      size: 18,
                     ),
                   ],
                 ),

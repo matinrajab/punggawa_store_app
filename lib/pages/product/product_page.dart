@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/product_model.dart';
-import 'package:shoe_store_app/pages/product/widgets/product_familiar.dart';
 import 'package:shoe_store_app/pages/product/widgets/product_galleries.dart';
 import 'package:shoe_store_app/pages/product/widgets/product_page_footer.dart';
 import 'package:shoe_store_app/pages/product/widgets/product_page_header.dart';
@@ -23,64 +22,81 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: productBackgroundColor,
-      body: ListView(
+      bottomNavigationBar: ProductPageFooter(product: product),
+      body: Stack(
         children: [
-          const ProductPageHeader(),
-          ProductGalleries(product: product),
-          const SizedBox(
-            height: 17,
+          Column(
+            children: [
+              Expanded(
+                child: Container(
+                  color: productBackgroundColor,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: backgroundColor1,
+                ),
+              ),
+            ],
           ),
-          Container(
-            decoration: const BoxDecoration(
-              color: backgroundColor1,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(pagePadding),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+          ListView(
+            children: [
+              const ProductPageHeader(),
+              ProductGalleries(product: product),
+              const SizedBox(
+                height: 17,
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: backgroundColor1,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(pagePadding),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: TitleAndSubtitle(
-                              title: product.name!,
-                              subtitle: product.category!.name!,
-                              titleFontSize: 18,
-                              subtitleFontSize: 12,
-                            ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TitleAndSubtitle(
+                                  title: product.name!,
+                                  subtitle: product.category!.name!,
+                                  titleFontSize: 18,
+                                  subtitleFontSize: 12,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 30,
+                              ),
+                              WishlistButton(product: product),
+                            ],
                           ),
                           const SizedBox(
-                            width: 30,
+                            height: 20,
                           ),
-                          WishlistButton(product: product),
+                          ProductPrice(price: product.price),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          TitleAndSubtitle(
+                            title: 'Description',
+                            subtitle: product.description!,
+                            titleFontSize: 14,
+                            titleFontWeight: medium,
+                            subtitleFontWeight: light,
+                            space: 12,
+                          ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      ProductPrice(price: product.price),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      TitleAndSubtitle(
-                        title: 'Description',
-                        subtitle: product.description!,
-                        titleFontSize: 14,
-                        titleFontWeight: medium,
-                        subtitleFontWeight: light,
-                        space: 12,
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                ProductFamiliar(),
-                ProductPageFooter(product: product),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
