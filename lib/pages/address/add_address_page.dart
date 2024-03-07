@@ -3,12 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/region_api_model.dart';
 import 'package:shoe_store_app/models/address_model.dart';
 import 'package:shoe_store_app/models/region_model.dart';
-import 'package:shoe_store_app/pages/address/select_region_page.dart';
+import 'package:shoe_store_app/pages/address/widgets/address_field.dart';
+import 'package:shoe_store_app/pages/address/widgets/contact_field.dart';
+import 'package:shoe_store_app/pages/address/widgets/label_field.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
-import 'package:shoe_store_app/pages/widgets/my_text_field.dart';
 import 'package:shoe_store_app/providers/address_category_provider.dart';
 import 'package:shoe_store_app/providers/region_api_provider.dart';
 import 'package:shoe_store_app/providers/address_provider.dart';
@@ -107,159 +108,21 @@ class AddAddressPage extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.all(pagePadding),
             children: [
-              Text(
-                'Contact',
-                style: primaryTextStyle.copyWith(
-                  fontWeight: medium,
-                ),
-              ),
-              MyTextField(
-                controller: _fullNameController,
-                hintText: 'Full Name',
-                textValidator: 'Required',
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              MyTextField(
-                controller: _phoneController,
-                hintText: 'Phone Number',
-                textValidator: 'Required',
-                keyboardType: TextInputType.number,
+              ContactField(
+                fullNameController: _fullNameController,
+                phoneController: _phoneController,
               ),
               const SizedBox(
                 height: 30,
               ),
-              Text(
-                'Address',
-                style: primaryTextStyle.copyWith(
-                  fontWeight: medium,
-                ),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Consumer<RegionApiProvider>(
-                builder: (context, regionApiProvider, _) {
-                  String province = regionApiProvider.province.text!;
-                  String city = regionApiProvider.city.text!;
-                  String district = regionApiProvider.district.text!;
-                  String postalCode = regionApiProvider.postalCode.text!;
-
-                  return GestureDetector(
-                    onTap: () async {
-                      if (province == '') {
-                        await regionApiProvider.getAddress('provinsi/get/');
-                      }
-                      Navigator.pushNamed(context, SelectRegionPage.routeName);
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: province == ''
-                                  ? Text(
-                                      'Province, City, District, Postal Code',
-                                      style: secondaryTextStyle.copyWith(
-                                          fontSize: 14),
-                                      overflow: TextOverflow.ellipsis,
-                                    )
-                                  : Text(
-                                      '$province\n$city\n$district\n$postalCode',
-                                      style: primaryTextStyle.copyWith(
-                                          fontSize: 14),
-                                    ),
-                            ),
-                            const Icon(
-                              forwardIcon,
-                              color: secondaryTextColor,
-                              size: 18,
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        Divider(
-                            color: regionApiProvider.isRequiredAppear
-                                ? redColor
-                                : secondaryTextColor),
-                        regionApiProvider.isRequiredAppear
-                            ? const Text(
-                                'Required',
-                                style: TextStyle(color: redColor, fontSize: 12),
-                              )
-                            : const SizedBox(),
-                      ],
-                    ),
-                  );
-                },
-              ),
-              MyTextField(
-                controller: _detailController,
-                hintText: 'Street/Building Name, House No.',
-                textValidator: 'Required',
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              MyTextField(
-                controller: _additionalController,
-                hintText: 'Additional Info',
+              AddressField(
+                detailController: _detailController,
+                additionalController: _additionalController,
               ),
               const SizedBox(
                 height: 30,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Label As',
-                    style: primaryTextStyle.copyWith(
-                      fontWeight: medium,
-                    ),
-                  ),
-                  Consumer<AddressCategoryProvider>(
-                    builder: (context, categoryProvider, _) {
-                      int index = 0;
-                      return Row(
-                        children: categoryProvider.categories.map(
-                          (e) {
-                            int indexTemp = index++;
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: MyButton(
-                                text: e.name!,
-                                height: 30,
-                                fontSize: 13,
-                                borderColor:
-                                    categoryProvider.categorySelected ==
-                                            indexTemp
-                                        ? primaryColor
-                                        : subtitleTextColor,
-                                buttonColor:
-                                    categoryProvider.categorySelected ==
-                                            indexTemp
-                                        ? primaryColor
-                                        : Colors.transparent,
-                                fontColor: categoryProvider.categorySelected ==
-                                        indexTemp
-                                    ? primaryTextColor
-                                    : subtitleTextColor,
-                                onTap: () {
-                                  categoryProvider.categorySelected = indexTemp;
-                                },
-                              ),
-                            );
-                          },
-                        ).toList(),
-                      );
-                    },
-                  ),
-                ],
-              ),
+              const LabelField(),
               const SizedBox(
                 height: 30,
               ),
