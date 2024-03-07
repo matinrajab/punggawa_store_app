@@ -32,10 +32,9 @@ class EditFieldPage extends StatelessWidget {
           )) {
         Navigator.pop(context);
       } else {
-        MySnackBar.showSnackBar(
-          context: context,
+        MySnackBar.failed(
+          context,
           message: 'Gagal Update Profile',
-          isSuccess: false,
         );
       }
       authProvider.isLoading = false;

@@ -106,10 +106,9 @@ class EditAddressPage extends StatelessWidget {
         Navigator.pop(context);
         regionApiProvider.resetData();
       } else {
-        MySnackBar.showSnackBar(
-          context: context,
+        MySnackBar.failed(
+          context,
           message: 'Gagal Mengedit Alamat',
-          isSuccess: false,
         );
       }
       addressProvider.isButtonLoading = false;

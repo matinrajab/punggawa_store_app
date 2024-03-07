@@ -54,10 +54,10 @@ class TopUpPaymentPage extends StatelessWidget {
         title = result[0];
         desc = result[1];
         if (title.isEmpty && desc.isEmpty) {
-          MySnackBar.showSnackBar(
-              context: context,
-              message: 'Something went wrong!',
-              isSuccess: false);
+          MySnackBar.failed(
+            context,
+            message: 'Something went wrong!',
+          );
         } else {
           await Provider.of<AuthProvider>(context, listen: false).fetch();
           pageProvider.currentIndex = 3;
@@ -68,8 +68,10 @@ class TopUpPaymentPage extends StatelessWidget {
           );
         }
       } catch (e) {
-        MySnackBar.showSnackBar(
-            context: context, message: e.toString(), isSuccess: false);
+        MySnackBar.failed(
+          context,
+          message: e.toString(),
+        );
       }
     }
 

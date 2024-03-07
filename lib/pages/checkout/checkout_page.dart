@@ -84,10 +84,9 @@ class CheckoutPage extends StatelessWidget {
           await Provider.of<AuthProvider>(context, listen: false).fetch();
         }
       } else {
-        MySnackBar.showSnackBar(
-          context: context,
+        MySnackBar.failed(
+          context,
           message: 'Gagal Checkout',
-          isSuccess: false,
         );
       }
     }

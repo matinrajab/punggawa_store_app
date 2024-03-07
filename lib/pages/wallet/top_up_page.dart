@@ -1,15 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shoe_store_app/pages/payment/payment_page.dart';
 import 'package:shoe_store_app/pages/wallet/top_up_payment_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
-import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
-import 'package:intl/intl.dart';
 
 class TopUpPage extends StatelessWidget {
   static const routeName = '/top-up';
@@ -29,10 +25,9 @@ class TopUpPage extends StatelessWidget {
       if (await transactionProvider.topUp(int.parse(_amountController.text))) {
         Navigator.pushNamed(context, TopUpPaymentPage.routeName);
       } else {
-        MySnackBar.showSnackBar(
-          context: context,
+        MySnackBar.failed(
+          context,
           message: 'Gagal Top Up',
-          isSuccess: false,
         );
       }
     }

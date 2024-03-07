@@ -42,10 +42,9 @@ class ChoosePaymentMethodPage extends StatelessWidget {
               onTap: () {
                 if (paymentMethod.name == 'Wallet') {
                   if (authProvider.user.balance! < cartProvider.totalPrice()) {
-                    MySnackBar.showSnackBar(
-                      context: context,
+                    MySnackBar.failed(
+                      context,
                       message: 'Your balance is not enough',
-                      isSuccess: false,
                     );
                   } else {
                     paymentProvider.methodSelected = index;

@@ -33,12 +33,12 @@ class SignUpPage extends StatelessWidget {
         email: _emailController.text.trim(),
         password: _passwordController.text,
       )) {
-        Navigator.pushNamedAndRemoveUntil(context, MainPage.routeName, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(
+            context, MainPage.routeName, (route) => false);
       } else {
-        MySnackBar.showSnackBar(
-          context: context,
+        MySnackBar.failed(
+          context,
           message: 'Gagal Register',
-          isSuccess: false,
         );
       }
       authProvider.isLoading = false;

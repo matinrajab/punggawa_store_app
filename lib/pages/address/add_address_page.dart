@@ -73,10 +73,9 @@ class AddAddressPage extends StatelessWidget {
         Navigator.pop(context);
         regionApiProvider.resetData();
       } else {
-        MySnackBar.showSnackBar(
-          context: context,
+        MySnackBar.failed(
+          context,
           message: 'Gagal Menambahkan Alamat',
-          isSuccess: false,
         );
       }
       addressProvider.isButtonLoading = false;

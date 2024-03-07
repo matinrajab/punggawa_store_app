@@ -27,19 +27,16 @@ class ReceivedAlertDialog extends StatelessWidget {
           await transactionProvider.addBonus(bonusAmount)) {
         await Provider.of<TransactionProvider>(context, listen: false)
             .getTransactions();
-        await Provider.of<AuthProvider>(context, listen: false)
-            .fetch();
-        MySnackBar.showSnackBar(
-          context: context,
+        await Provider.of<AuthProvider>(context, listen: false).fetch();
+        MySnackBar.success(
+          context,
           message: 'You get Rp. $bonusAmount bonus',
-          isSuccess: true,
         );
         result = true;
       } else {
-        MySnackBar.showSnackBar(
-          context: context,
+        MySnackBar.failed(
+          context,
           message: 'Gagal Received',
-          isSuccess: false,
         );
         result = false;
       }

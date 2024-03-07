@@ -39,10 +39,9 @@ class SignInPage extends StatelessWidget {
         await Provider.of<AddressProvider>(context, listen: false)
             .getAddresses();
       } else {
-        MySnackBar.showSnackBar(
-          context: context,
+        MySnackBar.failed(
+          context,
           message: 'Gagal Login',
-          isSuccess: false,
         );
       }
       authProvider.isLoading = false;

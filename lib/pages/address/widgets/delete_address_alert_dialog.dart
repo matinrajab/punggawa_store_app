@@ -28,10 +28,9 @@ class DeleteAddressAlertDialog extends StatelessWidget {
         Navigator.pop(context);
         regionApiProvider.resetData();
       } else {
-        MySnackBar.showSnackBar(
-          context: context,
+        MySnackBar.failed(
+          context,
           message: 'Gagal Menghapus Alamat',
-          isSuccess: false,
         );
       }
       Navigator.pop(context);

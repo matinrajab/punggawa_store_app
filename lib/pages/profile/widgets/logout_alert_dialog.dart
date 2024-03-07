@@ -30,10 +30,9 @@ class LogoutAlertDialog extends StatelessWidget {
         transactionProvider.transactions.clear();
         addressProvider.addresses.clear();
       } else {
-        MySnackBar.showSnackBar(
-          context: context,
+        MySnackBar.failed(
+          context,
           message: 'Gagal Logout',
-          isSuccess: false,
         );
       }
     }

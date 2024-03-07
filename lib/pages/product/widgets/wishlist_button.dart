@@ -20,13 +20,15 @@ class WishlistButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         wishlistProvider.setProduct(product);
-        MySnackBar.showSnackBar(
-          context: context,
-          message: wishlistProvider.wishlist.contains(product)
-              ? 'Has Been added to Wishlist'
-              : 'Has been removed from the Wishlist',
-          isSuccess: wishlistProvider.wishlist.contains(product),
-        );
+        wishlistProvider.wishlist.contains(product)
+            ? MySnackBar.success(
+                context,
+                message: 'Has Been added to Wishlist',
+              )
+            : MySnackBar.failed(
+                context,
+                message: 'Has been removed from the Wishlist',
+              );
       },
       child: Consumer<WishlistProvider>(
         builder: (context, wishlistProvider, _) => Image.asset(
