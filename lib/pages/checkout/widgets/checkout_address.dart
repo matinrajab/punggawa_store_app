@@ -24,7 +24,7 @@ class CheckoutAddress extends StatelessWidget {
         children: [
           Image.asset(
             'assets/icon/icon_your_address.png',
-            height: 40,
+            height: 30,
           ),
           const SizedBox(
             width: 10,
@@ -61,11 +61,21 @@ class CheckoutAddress extends StatelessWidget {
                 ),
                 Consumer<AddressProvider>(
                   builder: (context, addressProvider, _) {
-                    AddressModel address = addressProvider
-                        .addresses[addressProvider.addressSelected];
-                    return AddressCardContent(
-                      address: address,
-                    );
+                    List<AddressModel> addresses = addressProvider.addresses;
+                    if (addresses.isNotEmpty) {
+                      AddressModel address =
+                          addresses[addressProvider.addressSelected];
+                      return AddressCardContent(
+                        address: address,
+                      );
+                    } else {
+                      return Text(
+                        'You don\'t have shipping address yet',
+                        style: primaryTextStyle.copyWith(
+                          fontWeight: medium,
+                        ),
+                      );
+                    }
                   },
                 ),
               ],

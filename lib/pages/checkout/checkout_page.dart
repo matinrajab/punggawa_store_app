@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/models/address_model.dart';
 import 'package:shoe_store_app/models/payment_method_model.dart';
+import 'package:shoe_store_app/pages/address/add_address_page.dart';
 import 'package:shoe_store_app/pages/checkout/widgets/checkout_address.dart';
 import 'package:shoe_store_app/pages/checkout/widgets/checkout_payment.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/payment/payment_page.dart';
 import 'package:shoe_store_app/pages/transaction/order_page.dart';
+import 'package:shoe_store_app/pages/widgets/my_alert_dialog.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/payment_summary.dart';
 import 'package:shoe_store_app/pages/widgets/detail_tile.dart';
@@ -36,10 +39,24 @@ class CheckoutPage extends StatelessWidget {
         Provider.of<AuthProvider>(context, listen: false);
     PageProvider pageProvider =
         Provider.of<PageProvider>(context, listen: false);
-    AddressProvider addressProvider =
-        Provider.of<AddressProvider>(context, listen: false);
 
     handleCheckout() async {
+      AddressProvider addressProvider =
+          Provider.of<AddressProvider>(context, listen: false);
+      List<AddressModel> addresses = addressProvider.addresses;
+      if (addresses.isEmpty) {
+        showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => MyAlertDialog(
+            text:
+                'You don\'t have a shipping address yet, want to create a new one?',
+            onYesTapped: () =>
+                Navigator.popAndPushNamed(context, AddAddressPage.routeName),
+          ),
+        );
+        return;
+      }
+
       PaymentMethodModel paymentMethod =
           paymentProvider.paymentMethods[paymentProvider.methodSelected];
       if (await transactionProvider.checkout(
@@ -47,8 +64,7 @@ class CheckoutPage extends StatelessWidget {
         carts: cartProvider.carts,
         totalPrice: cartProvider.totalPrice(),
         paymentMethod: paymentMethod,
-        addressId:
-            addressProvider.addresses[addressProvider.addressSelected].id!,
+        addressId: addresses[addressProvider.addressSelected].id!,
       )) {
         cartProvider.carts.clear();
         if (paymentMethod.name == 'Transfer') {

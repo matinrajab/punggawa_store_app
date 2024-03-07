@@ -26,7 +26,7 @@ class OrderAddress extends StatelessWidget {
         children: [
           Image.asset(
             'assets/icon/icon_your_address.png',
-            height: 40,
+            height: 30,
           ),
           const SizedBox(width: 10,),
           Expanded(

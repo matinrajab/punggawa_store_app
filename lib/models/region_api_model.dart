@@ -1,13 +1,13 @@
-class AddressApiModel {
+class RegionApiModel {
   String? id;
   String? text;
 
-  AddressApiModel({
+  RegionApiModel({
     this.id,
     this.text,
   });
 
-  factory AddressApiModel.fromJson(Map<String, dynamic> json) => AddressApiModel(
+  factory RegionApiModel.fromJson(Map<String, dynamic> json) => RegionApiModel(
     id: json["id"],
     text: json["text"],
   );

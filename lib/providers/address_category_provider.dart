@@ -29,4 +29,13 @@ class AddressCategoryProvider with ChangeNotifier {
       print(e);
     }
   }
+
+  int findIndex(int id) {
+    for (int i = 0; i < _categories.length; i++) {
+      if (_categories[i].id == id) {
+        return i;
+      }
+    }
+    return -1;
+  }
 }

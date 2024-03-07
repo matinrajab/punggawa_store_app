@@ -6,7 +6,7 @@ class CartProvider with ChangeNotifier {
   List<CartModel> _carts = [];
 
   List<CartModel> get carts => _carts;
-  set carts(List<CartModel> carts) {
+  set carts(List<CartModel> casrts) {
     _carts = carts;
     notifyListeners();
   }

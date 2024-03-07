@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shoe_store_app/models/address_api_model.dart';
+import 'package:shoe_store_app/models/region_api_model.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
-import 'package:shoe_store_app/providers/address_api_provider.dart';
+import 'package:shoe_store_app/providers/region_api_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class SelectRegionPage extends StatelessWidget {
@@ -12,12 +12,12 @@ class SelectRegionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AddressApiProvider addressApiProvider =
-        Provider.of<AddressApiProvider>(context, listen: false);
-    AddressApiModel province = addressApiProvider.province;
-    AddressApiModel city = addressApiProvider.city;
-    AddressApiModel district = addressApiProvider.district;
-    AddressApiModel postalCode = addressApiProvider.postalCode;
+    RegionApiProvider regionApiProvider =
+        Provider.of<RegionApiProvider>(context, listen: false);
+    RegionApiModel province = regionApiProvider.province;
+    RegionApiModel city = regionApiProvider.city;
+    RegionApiModel district = regionApiProvider.district;
+    RegionApiModel postalCode = regionApiProvider.postalCode;
 
     return PopScope(
       canPop: false,
@@ -26,7 +26,7 @@ class SelectRegionPage extends StatelessWidget {
           return;
         }
         if (postalCode.text == '') {
-          addressApiProvider.resetData();
+          regionApiProvider.resetData();
         }
         Navigator.pop(context);
       },
@@ -37,7 +37,7 @@ class SelectRegionPage extends StatelessWidget {
           leadingIcon: backIcon,
           onLeadingPressed: () {
             if (postalCode.text == '') {
-              addressApiProvider.resetData();
+              regionApiProvider.resetData();
             }
             Navigator.pop(context);
           },
@@ -45,9 +45,19 @@ class SelectRegionPage extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.fromLTRB(
               pagePadding, pagePadding, pagePadding, 0),
-          child: Consumer<AddressApiProvider>(
-            builder: (context, addressApiProvider, _) {
-              List<AddressApiModel> regions = addressApiProvider.regions;
+          child: Consumer<RegionApiProvider>(
+            builder: (context, regionApiProvider, _) {
+              List<RegionApiModel> regions = regionApiProvider.regions;
+
+              if (province.text == '') {
+                regionApiProvider.nowSelected = 'Province';
+              } else if (city.text == '') {
+                regionApiProvider.nowSelected = 'City';
+              } else if (district.text == '') {
+                regionApiProvider.nowSelected = 'District';
+              } else {
+                regionApiProvider.nowSelected = 'Postal Code';
+              }
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,9 +76,9 @@ class SelectRegionPage extends StatelessWidget {
                           ? const SizedBox()
                           : GestureDetector(
                               onTap: () async {
-                                await addressApiProvider
+                                await regionApiProvider
                                     .getAddress('provinsi/get/');
-                                addressApiProvider.resetData();
+                                regionApiProvider.resetData();
                               },
                               child: Text(
                                 'Reset',
@@ -150,7 +160,7 @@ class SelectRegionPage extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    addressApiProvider.nowSelected,
+                    regionApiProvider.nowSelected,
                     style: secondaryTextStyle,
                   ),
                   const SizedBox(
@@ -161,31 +171,28 @@ class SelectRegionPage extends StatelessWidget {
                       key: regions.isNotEmpty ? ObjectKey(regions[0]) : null,
                       itemCount: regions.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final AddressApiModel region = regions[index];
+                        final RegionApiModel region = regions[index];
                         return ListTile(
                           onTap: () async {
                             if (province.text == '') {
                               province.id = region.id!;
                               province.text = region.text!;
-                              await addressApiProvider.getAddress(
+                              await regionApiProvider.getAddress(
                                   'kabkota/get/?d_provinsi_id=${province.id}');
-                              addressApiProvider.nowSelected = 'City';
                             } else if (city.text == '') {
                               city.id = region.id!;
                               city.text = region.text!;
-                              await addressApiProvider.getAddress(
+                              await regionApiProvider.getAddress(
                                   'kecamatan/get/?d_kabkota_id=${city.id}');
-                              addressApiProvider.nowSelected = 'District';
                             } else if (district.text == '') {
                               district.id = region.id!;
                               district.text = region.text!;
-                              await addressApiProvider.getAddress(
+                              await regionApiProvider.getAddress(
                                   'kodepos/get/?d_kabkota_id=${city.id}&d_kecamatan_id=${district.id}');
-                              addressApiProvider.nowSelected = 'Postal Code';
                             } else {
                               postalCode.id = region.id!;
                               postalCode.text = region.text!;
-                              addressApiProvider.notify();
+                              regionApiProvider.notify();
                               Navigator.pop(context);
                             }
                           },

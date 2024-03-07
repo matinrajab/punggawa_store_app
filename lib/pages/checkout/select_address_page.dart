@@ -9,7 +9,7 @@ import 'package:shoe_store_app/providers/address_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class SelectAddressPage extends StatelessWidget {
-  static const routeName = '/edit-address';
+  static const routeName = '/select-address';
 
   const SelectAddressPage({super.key});
 

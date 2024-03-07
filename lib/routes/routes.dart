@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/models/address_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
 import 'package:shoe_store_app/pages/address/add_address_page.dart';
 import 'package:shoe_store_app/pages/address/address_page.dart';
+import 'package:shoe_store_app/pages/address/edit_address_page.dart';
 import 'package:shoe_store_app/pages/address/select_region_page.dart';
 import 'package:shoe_store_app/pages/auth/sign_in_page.dart';
 import 'package:shoe_store_app/pages/auth/sign_up_page.dart';
@@ -54,5 +56,6 @@ final Map<String, WidgetBuilder> routes = {
       const ChoosePaymentMethodPage(),
   AddressPage.routeName: (context) => const AddressPage(),
   AddAddressPage.routeName: (context) => AddAddressPage(),
-  SelectRegionPage.routeName: (context) => SelectRegionPage(),
+  EditAddressPage.routeName: (context) => EditAddressPage(),
+  SelectRegionPage.routeName: (context) => const SelectRegionPage(),
 };

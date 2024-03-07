@@ -4,34 +4,66 @@ import 'package:shoe_store_app/models/region_api_model.dart';
 import 'package:shoe_store_app/models/address_model.dart';
 import 'package:shoe_store_app/models/region_model.dart';
 import 'package:shoe_store_app/pages/address/select_region_page.dart';
+import 'package:shoe_store_app/pages/address/widgets/delete_address_alert_dialog.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_text_field.dart';
-import 'package:shoe_store_app/providers/address_category_provider.dart';
 import 'package:shoe_store_app/providers/region_api_provider.dart';
+import 'package:shoe_store_app/providers/address_category_provider.dart';
 import 'package:shoe_store_app/providers/address_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
-class AddAddressPage extends StatelessWidget {
-  static const routeName = '/add-address';
+class EditAddressPage extends StatelessWidget {
+  static const routeName = '/edit-address';
 
-  AddAddressPage({super.key});
-
-  final TextEditingController _fullNameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _detailController = TextEditingController();
-  final TextEditingController _additionalController = TextEditingController();
+  EditAddressPage({super.key});
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    print('build edit page');
+
     RegionApiProvider regionApiProvider =
         Provider.of<RegionApiProvider>(context, listen: false);
-    AddressCategoryProvider addressCategoryProvider =
+    AddressCategoryProvider categoryProvider =
         Provider.of<AddressCategoryProvider>(context, listen: false);
+    AddressProvider addressProvider =
+        Provider.of<AddressProvider>(context, listen: false);
+
+    AddressModel address =
+        addressProvider.addresses[addressProvider.addressSelectedToEdit];
+
+    final TextEditingController fullNameController =
+        TextEditingController(text: address.name);
+    final TextEditingController phoneController =
+        TextEditingController(text: address.phone);
+    final TextEditingController detailController =
+        TextEditingController(text: address.detail);
+    final TextEditingController additionalController =
+        TextEditingController(text: address.additional);
+
+    regionApiProvider.province.text = address.province!.name;
+    regionApiProvider.province.id = address.province!.idFromApi;
+    regionApiProvider.city.text = address.city!.name;
+    regionApiProvider.city.id = address.city!.idFromApi;
+    regionApiProvider.district.text = address.district!.name;
+    regionApiProvider.district.id = address.district!.idFromApi;
+    regionApiProvider.postalCode.text = address.postalCode!.name;
+    regionApiProvider.postalCode.id = address.postalCode!.idFromApi;
+
+    categoryProvider.categorySelected =
+        categoryProvider.findIndex(address.addressCategory!.id!);
+
+    onDeleteTapped() async {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) =>
+            DeleteAddressAlertDialog(id: address.id!),
+      );
+    }
 
     handleSubmit() async {
       AddressProvider addressProvider =
@@ -43,10 +75,11 @@ class AddAddressPage extends StatelessWidget {
       RegionApiModel postalCode = regionApiProvider.postalCode;
 
       addressProvider.isButtonLoading = true;
-      if (await addressProvider.storeAddress(
+      if (await addressProvider.updateAddress(
         address: AddressModel(
-          name: _fullNameController.text,
-          phone: _phoneController.text,
+          id: address.id,
+          name: fullNameController.text,
+          phone: phoneController.text,
           province: RegionModel(
             name: province.text,
             idFromApi: province.id,
@@ -63,10 +96,10 @@ class AddAddressPage extends StatelessWidget {
             name: postalCode.text,
             idFromApi: postalCode.id,
           ),
-          detail: _detailController.text,
-          additional: _additionalController.text,
-          addressCategory: addressCategoryProvider
-              .categories[addressCategoryProvider.categorySelected],
+          detail: detailController.text,
+          additional: additionalController.text,
+          addressCategory:
+              categoryProvider.categories[categoryProvider.categorySelected],
         ),
       )) {
         await addressProvider.getAddresses();
@@ -75,7 +108,7 @@ class AddAddressPage extends StatelessWidget {
       } else {
         MySnackBar.showSnackBar(
           context: context,
-          message: 'Gagal Menambahkan Alamat',
+          message: 'Gagal Mengedit Alamat',
           isSuccess: false,
         );
       }
@@ -95,7 +128,7 @@ class AddAddressPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: backgroundColor3,
         appBar: MyAppBar(
-          text: 'New Address',
+          text: 'Edit Address',
           leadingIcon: backIcon,
           onLeadingPressed: () {
             Navigator.pop(context);
@@ -115,7 +148,7 @@ class AddAddressPage extends StatelessWidget {
                 ),
               ),
               MyTextField(
-                controller: _fullNameController,
+                controller: fullNameController,
                 hintText: 'Full Name',
                 textValidator: 'Required',
               ),
@@ -123,7 +156,7 @@ class AddAddressPage extends StatelessWidget {
                 height: 6,
               ),
               MyTextField(
-                controller: _phoneController,
+                controller: phoneController,
                 hintText: 'Phone Number',
                 textValidator: 'Required',
                 keyboardType: TextInputType.number,
@@ -142,16 +175,17 @@ class AddAddressPage extends StatelessWidget {
               ),
               Consumer<RegionApiProvider>(
                 builder: (context, regionApiProvider, _) {
-                  String province = regionApiProvider.province.text!;
-                  String city = regionApiProvider.city.text!;
-                  String district = regionApiProvider.district.text!;
-                  String postalCode = regionApiProvider.postalCode.text!;
+                  RegionApiModel province = regionApiProvider.province;
+                  RegionApiModel city = regionApiProvider.city;
+                  RegionApiModel district = regionApiProvider.district;
+                  RegionApiModel postalCode = regionApiProvider.postalCode;
 
                   return GestureDetector(
                     onTap: () async {
-                      if (province == '') {
-                        await regionApiProvider.getAddress('provinsi/get/');
-                      }
+                      province.text == ''
+                          ? await regionApiProvider.getAddress('provinsi/get/')
+                          : await regionApiProvider.getAddress(
+                              'kodepos/get/?d_kabkota_id=${city.id}&d_kecamatan_id=${district.id}');
                       Navigator.pushNamed(context, SelectRegionPage.routeName);
                     },
                     child: Column(
@@ -160,7 +194,7 @@ class AddAddressPage extends StatelessWidget {
                         Row(
                           children: [
                             Expanded(
-                              child: province == ''
+                              child: province.text == ''
                                   ? Text(
                                       'Province, City, District, Postal Code',
                                       style: secondaryTextStyle.copyWith(
@@ -168,7 +202,7 @@ class AddAddressPage extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                     )
                                   : Text(
-                                      '$province\n$city\n$district\n$postalCode',
+                                      '${province.text}\n${city.text}\n${district.text}\n${postalCode.text}',
                                       style: primaryTextStyle.copyWith(
                                           fontSize: 14),
                                     ),
@@ -199,7 +233,7 @@ class AddAddressPage extends StatelessWidget {
                 },
               ),
               MyTextField(
-                controller: _detailController,
+                controller: detailController,
                 hintText: 'Street/Building Name, House No.',
                 textValidator: 'Required',
               ),
@@ -207,7 +241,7 @@ class AddAddressPage extends StatelessWidget {
                 height: 6,
               ),
               MyTextField(
-                controller: _additionalController,
+                controller: additionalController,
                 hintText: 'Additional Info',
               ),
               const SizedBox(
@@ -260,6 +294,15 @@ class AddAddressPage extends StatelessWidget {
                     },
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              MyButton(
+                text: 'Delete Address',
+                buttonColor: Colors.transparent,
+                fontColor: primaryColor,
+                onTap: onDeleteTapped,
               ),
               const SizedBox(
                 height: 30,
