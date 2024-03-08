@@ -80,6 +80,7 @@ class AuthProvider with ChangeNotifier {
       UserModel user = await AuthService().fetch();
 
       _user = user;
+      notifyListeners();
       return true;
     } catch (e) {
       return false;

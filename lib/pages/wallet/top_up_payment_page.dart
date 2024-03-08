@@ -6,14 +6,12 @@ import 'package:shoe_store_app/config/config.dart';
 import 'package:shoe_store_app/midtrans/midtrans.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/payment/widgets/payment_back_dialog.dart';
-import 'package:shoe_store_app/pages/wallet/wallet_page.dart';
+import 'package:shoe_store_app/pages/wallet/punggawa_pay_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/providers/top_up_provider.dart';
-import 'package:shoe_store_app/providers/top_up_provider.dart';
-import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -65,7 +63,7 @@ class TopUpPaymentPage extends StatelessWidget {
           pageProvider.currentIndex = 3;
           Navigator.pushNamedAndRemoveUntil(
             context,
-            WalletPage.routeName,
+            PunggawaPayPage.routeName,
             ModalRoute.withName(MainPage.routeName),
           );
         }

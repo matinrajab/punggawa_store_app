@@ -5,10 +5,10 @@ import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/wallet_card.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
-class WalletPage extends StatelessWidget {
-  static const routeName = '/wallet';
+class PunggawaPayPage extends StatelessWidget {
+  static const routeName = '/punggawa-pay';
 
-  const WalletPage({
+  const PunggawaPayPage({
     super.key,
   });
 
@@ -17,7 +17,7 @@ class WalletPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor3,
       appBar: const MyAppBar(
-        text: 'My Wallet',
+        text: 'PunggawaPay',
         leadingIcon: backIcon,
       ),
       bottomNavigationBar: Container(

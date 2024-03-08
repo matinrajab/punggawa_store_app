@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shoe_store_app/models/address_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
 import 'package:shoe_store_app/pages/address/add_address_page.dart';
@@ -23,7 +22,7 @@ import 'package:shoe_store_app/pages/transaction/detail_order_page.dart';
 import 'package:shoe_store_app/pages/transaction/order_page.dart';
 import 'package:shoe_store_app/pages/wallet/top_up_page.dart';
 import 'package:shoe_store_app/pages/wallet/top_up_payment_page.dart';
-import 'package:shoe_store_app/pages/wallet/wallet_page.dart';
+import 'package:shoe_store_app/pages/wallet/punggawa_pay_page.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SplashPage.routeName: (context) => const SplashPage(),
@@ -49,7 +48,7 @@ final Map<String, WidgetBuilder> routes = {
             ModalRoute.of(context)?.settings.arguments as TransactionModel,
       ),
   PaymentPage.routeName: (context) => const PaymentPage(),
-  WalletPage.routeName: (context) => const WalletPage(),
+  PunggawaPayPage.routeName: (context) => const PunggawaPayPage(),
   TopUpPage.routeName: (context) => TopUpPage(),
   TopUpPaymentPage.routeName: (context) => const TopUpPaymentPage(),
   ChoosePaymentMethodPage.routeName: (context) =>
