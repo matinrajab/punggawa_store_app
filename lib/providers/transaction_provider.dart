@@ -59,20 +59,6 @@ class TransactionProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> topUp(
-    int amount,
-  ) async {
-    try {
-      String snapToken = await TransactionService().topUp(amount: amount);
-
-      _snapToken = snapToken;
-      return true;
-    } catch (e) {
-      print(e);
-      return false;
-    }
-  }
-
   Future<bool> addBonus(
     int amount,
   ) async {

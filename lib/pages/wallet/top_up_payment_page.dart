@@ -11,6 +11,8 @@ import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
+import 'package:shoe_store_app/providers/top_up_provider.dart';
+import 'package:shoe_store_app/providers/top_up_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -22,8 +24,8 @@ class TopUpPaymentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TransactionProvider transactionProvider =
-        Provider.of<TransactionProvider>(context, listen: false);
+    TopUpProvider topUpProvider =
+        Provider.of<TopUpProvider>(context, listen: false);
     PageProvider pageProvider =
         Provider.of<PageProvider>(context, listen: false);
     WebViewController webViewController = WebViewController();
@@ -113,7 +115,7 @@ class TopUpPaymentPage extends StatelessWidget {
         <body onload="setTimeout(function(){pay()}, 1000)">
           <script type="text/javascript">
               function pay() {
-                  snap.pay('${transactionProvider.snapToken}', {
+                  snap.pay('${topUpProvider.snapToken}', {
                     // Optional
                     onSuccess: function(result) {
                       Android.postMessage('ok');

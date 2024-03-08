@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 const Color primaryColor = Color(0xff6C5ECF);
 const Color secondaryColor = Color(0xff38ABBE);
@@ -60,3 +61,16 @@ BorderRadius generalBorderRadius = BorderRadius.circular(generalRadius);
 const IconData backIcon = Icons.arrow_back_ios_new_rounded;
 const IconData closeIcon = Icons.close_rounded;
 const IconData forwardIcon = Icons.arrow_forward_ios_rounded;
+
+final InputBorder outlineInputBorder = OutlineInputBorder(
+  borderSide: const BorderSide(color: backgroundColor2),
+  borderRadius: generalBorderRadius,
+);
+
+String currencyFormat(num number){
+  return NumberFormat.currency(
+    locale: 'id',
+    symbol: 'Rp ',
+    decimalDigits: 0,
+  ).format(number);
+}

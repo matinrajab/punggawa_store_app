@@ -30,14 +30,8 @@ class MyTextFormField extends StatelessWidget {
             width: 16,
           ),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: backgroundColor2),
-          borderRadius: generalBorderRadius,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: backgroundColor2),
-          borderRadius: generalBorderRadius,
-        ),
+        enabledBorder: outlineInputBorder,
+        focusedBorder: outlineInputBorder,
         filled: true,
         fillColor: backgroundColor2,
         hintText: hintText,

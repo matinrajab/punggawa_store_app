@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/category_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/models/user_model.dart';
+import 'package:shoe_store_app/pages/home/widgets/home_page_categories.dart';
 import 'package:shoe_store_app/pages/home/widgets/product_tile.dart';
 import 'package:shoe_store_app/pages/home/widgets/product_card.dart';
 import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
@@ -53,38 +54,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
-          height: 40,
-          child: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 22),
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (BuildContext context, int index) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Consumer<ProductCategoryProvider>(
-                builder: (context, categoryProvider, _) => MyButton(
-                  text: categories[index].name!,
-                  onTap: () {
-                    categoryProvider.categorySelected = index;
-                  },
-                  borderColor: index == categoryProvider.categorySelected
-                      ? primaryColor
-                      : subtitleTextColor,
-                  buttonColor: index == categoryProvider.categorySelected
-                      ? primaryColor
-                      : Colors.transparent,
-                  fontSize: 13,
-                  fontWeight: index == categoryProvider.categorySelected
-                      ? medium
-                      : light,
-                  fontColor: index == categoryProvider.categorySelected
-                      ? primaryTextColor
-                      : subtitleTextColor,
-                ),
-              ),
-            ),
-          ),
-        ),
+        const HomePageCategories(),
         Padding(
           padding: const EdgeInsets.only(
               left: pagePadding, top: pagePadding, bottom: 14),

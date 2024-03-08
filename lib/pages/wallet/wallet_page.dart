@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/wallet/top_up_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
-import 'package:shoe_store_app/providers/auth_provider.dart';
+import 'package:shoe_store_app/pages/widgets/wallet_card.dart';
 import 'package:shoe_store_app/shared/theme.dart';
-import 'package:intl/intl.dart';
 
 class WalletPage extends StatelessWidget {
   static const routeName = '/wallet';
@@ -16,9 +14,6 @@ class WalletPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider =
-        Provider.of<AuthProvider>(context, listen: false);
-
     return Scaffold(
       backgroundColor: backgroundColor3,
       appBar: const MyAppBar(
@@ -34,16 +29,11 @@ class WalletPage extends StatelessWidget {
           fontWeight: semiBold,
         ),
       ),
-      body: Center(
-        child: Text(
-          NumberFormat.currency(
-            locale: 'id',
-            symbol: 'IDR ',
-            decimalDigits: 0,
-          ).format(authProvider.user.balance),
-          style: primaryTextStyle.copyWith(
-            fontSize: 20,
-            fontWeight: semiBold,
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: pagePadding),
+        child: Center(
+          child: SingleChildScrollView(
+            child: WalletCard(),
           ),
         ),
       ),
