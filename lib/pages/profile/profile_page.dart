@@ -98,7 +98,8 @@ class ProfilePage extends StatelessWidget {
                       'PunggawaPay (${currencyFormat(authProvider.user.balance!)})',
                     ],
                     routes: [
-                          () => Navigator.pushNamed(context, PunggawaPayPage.routeName),
+                      () => Navigator.pushNamed(
+                          context, PunggawaPayPage.routeName),
                     ],
                   ),
                 ),

@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/category_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
-import 'package:shoe_store_app/models/user_model.dart';
+import 'package:shoe_store_app/pages/home/search_product_page.dart';
 import 'package:shoe_store_app/pages/home/widgets/home_page_categories.dart';
 import 'package:shoe_store_app/pages/home/widgets/product_tile.dart';
 import 'package:shoe_store_app/pages/home/widgets/product_card.dart';
-import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
-import 'package:shoe_store_app/pages/widgets/my_button.dart';
-import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/product_category_provider.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
@@ -18,40 +15,39 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider =
-        Provider.of<AuthProvider>(context, listen: false);
     ProductProvider productProvider =
         Provider.of<ProductProvider>(context, listen: false);
     ProductCategoryProvider categoryProvider =
         Provider.of<ProductCategoryProvider>(context, listen: false);
 
-    UserModel user = authProvider.user;
     List<ProductModel> products = productProvider.products;
     List<CategoryModel> categories = categoryProvider.categories;
 
     return ListView(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(pagePadding),
-          child: Row(
-            children: [
-              Expanded(
-                child: TitleAndSubtitle(
-                  title: 'Halo, ${user.name}',
-                  subtitle: '@${user.username}',
-                  subtitleFontSize: 16,
+        GestureDetector(
+          onTap: () =>
+              Navigator.pushNamed(context, SearchProductPage.routeName),
+          child: Container(
+            height: 48,
+            margin: const EdgeInsets.all(pagePadding),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            decoration: BoxDecoration(
+              color: backgroundColor2,
+              borderRadius: generalBorderRadius,
+            ),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.search,
+                  color: subtitleTextColor,
                 ),
-              ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(27),
-                child: Image.asset(
-                  'assets/image/profile.png',
-                  height: 54,
-                  width: 54,
-                  fit: BoxFit.cover,
+                Text(
+                  ' Search product',
+                  style: subtitleTextStyle.copyWith(fontSize: 16),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         const HomePageCategories(),

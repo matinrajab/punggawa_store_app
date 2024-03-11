@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/message_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
-import 'package:shoe_store_app/models/uninitialized_product_model.dart';
 import 'package:shoe_store_app/pages/chat/widgets/chat_bottom_nav_bar.dart';
 import 'package:shoe_store_app/pages/chat/widgets/chat_bubble.dart';
 import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';

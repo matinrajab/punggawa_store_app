@@ -4,12 +4,19 @@ import 'package:shoe_store_app/services/product_service.dart';
 
 class ProductProvider with ChangeNotifier {
   List<ProductModel> _products = [];
+  List<ProductModel> _suggestions = [];
 
   late bool _uninitializedProduct;
 
   List<ProductModel> get products => _products;
   set products(List<ProductModel> products) {
     _products = products;
+    notifyListeners();
+  }
+
+  List<ProductModel> get suggestions => _suggestions;
+  set suggestions(List<ProductModel> suggestions) {
+    _suggestions = suggestions;
     notifyListeners();
   }
 
@@ -29,3 +36,5 @@ class ProductProvider with ChangeNotifier {
     }
   }
 }
+
+class UninitializedProductModel extends ProductModel {}

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/product_model.dart';
-import 'package:shoe_store_app/models/uninitialized_product_model.dart';
 import 'package:shoe_store_app/pages/chat/widgets/product_preview_bubble.dart';
+import 'package:shoe_store_app/providers/product_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class ChatBubble extends StatelessWidget {

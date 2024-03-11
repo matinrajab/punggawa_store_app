@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/message_model.dart';
-import 'package:shoe_store_app/models/uninitialized_product_model.dart';
 import 'package:shoe_store_app/pages/chat/detail_chat_page.dart';
 import 'package:shoe_store_app/pages/chat/widgets/chat_tile.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
+import 'package:shoe_store_app/providers/product_provider.dart';
 import 'package:shoe_store_app/services/message_service.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 

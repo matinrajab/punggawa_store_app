@@ -49,6 +49,7 @@ class AmountTextFormField extends StatelessWidget {
       style: primaryTextStyle,
       cursorColor: primaryTextColor,
       decoration: InputDecoration(
+        contentPadding: const EdgeInsets.all(20),
         enabledBorder: outlineInputBorder,
         focusedBorder: outlineInputBorder,
         errorBorder: outlineInputBorder,
