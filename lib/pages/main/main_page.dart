@@ -113,7 +113,9 @@ class MainPage extends StatelessWidget {
             ),
           ),
         ),
-        body: _body[pageProvider.currentIndex],
+        body: SafeArea(
+          child: _body[pageProvider.currentIndex],
+        ),
       ),
     );
   }

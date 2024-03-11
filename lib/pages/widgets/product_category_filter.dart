@@ -5,8 +5,8 @@ import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/providers/product_category_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
-class HomePageCategories extends StatelessWidget {
-  const HomePageCategories({super.key});
+class ProductCategoryFilter extends StatelessWidget {
+  const ProductCategoryFilter({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +34,8 @@ class HomePageCategories extends StatelessWidget {
                     ? primaryColor
                     : Colors.transparent,
                 fontSize: 13,
-                fontWeight: index == categoryProvider.categorySelected
-                    ? medium
-                    : light,
+                fontWeight:
+                    index == categoryProvider.categorySelected ? medium : light,
                 fontColor: index == categoryProvider.categorySelected
                     ? primaryTextColor
                     : subtitleTextColor,

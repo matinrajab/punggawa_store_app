@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/category_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
-import 'package:shoe_store_app/pages/home/search_product_page.dart';
-import 'package:shoe_store_app/pages/home/widgets/home_page_categories.dart';
-import 'package:shoe_store_app/pages/home/widgets/product_tile.dart';
+import 'package:shoe_store_app/pages/home/widgets/fake_search_product_text_field.dart';
+import 'package:shoe_store_app/pages/widgets/product_category_filter.dart';
 import 'package:shoe_store_app/pages/home/widgets/product_card.dart';
+import 'package:shoe_store_app/pages/widgets/product_tile.dart';
 import 'package:shoe_store_app/providers/product_category_provider.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
@@ -25,32 +25,8 @@ class HomePage extends StatelessWidget {
 
     return ListView(
       children: [
-        GestureDetector(
-          onTap: () =>
-              Navigator.pushNamed(context, SearchProductPage.routeName),
-          child: Container(
-            height: 48,
-            margin: const EdgeInsets.all(pagePadding),
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            decoration: BoxDecoration(
-              color: backgroundColor2,
-              borderRadius: generalBorderRadius,
-            ),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.search,
-                  color: subtitleTextColor,
-                ),
-                Text(
-                  ' Search product',
-                  style: subtitleTextStyle.copyWith(fontSize: 16),
-                ),
-              ],
-            ),
-          ),
-        ),
-        const HomePageCategories(),
+        const FakeSearchProductTextField(),
+        const ProductCategoryFilter(),
         Padding(
           padding: const EdgeInsets.only(
               left: pagePadding, top: pagePadding, bottom: 14),
@@ -108,18 +84,24 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: pagePadding),
           child: Consumer<ProductCategoryProvider>(
-            builder: (context, categoryProvider, _) => Column(
-              children: products.map((product) {
-                return (categoryProvider.categorySelected == 0 ||
-                        categories[categoryProvider.categorySelected].id ==
-                            product.category!.id!)
-                    ? Padding(
-                        padding: const EdgeInsets.only(bottom: pagePadding),
-                        child: ProductTile(product: product),
-                      )
-                    : const SizedBox();
-              }).toList(),
-            ),
+            builder: (context, categoryProvider, _) {
+              return Column(
+                children: products.map(
+                  (product) {
+                    final int categorySelected =
+                        categoryProvider.categorySelected;
+                    return (categorySelected == 0 ||
+                            categories[categorySelected].id ==
+                                product.category!.id!)
+                        ? Padding(
+                            padding: const EdgeInsets.only(bottom: pagePadding),
+                            child: ProductTile(product: product),
+                          )
+                        : const SizedBox();
+                  },
+                ).toList(),
+              );
+            },
           ),
         )
       ],
