@@ -44,14 +44,14 @@ class DetailChatPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor3,
+      backgroundColor: backgroundColor1,
       appBar: AppBar(
-        backgroundColor: backgroundColor1,
+        backgroundColor: primaryColor,
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
           child: const Icon(
             backIcon,
-            color: primaryTextColor,
+            color: whiteColor,
           ),
         ),
         toolbarHeight: 70,
@@ -69,8 +69,8 @@ class DetailChatPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Shoe Store',
-                    style: primaryTextStyle.copyWith(
+                    'Punggawa Retail',
+                    style: whiteTextStyle.copyWith(
                       fontSize: 14,
                       fontWeight: medium,
                     ),
@@ -78,7 +78,7 @@ class DetailChatPage extends StatelessWidget {
                   ),
                   Text(
                     'Online',
-                    style: secondaryTextStyle.copyWith(
+                    style: subtitleTextStyle.copyWith(
                       fontSize: 14,
                       fontWeight: light,
                     ),

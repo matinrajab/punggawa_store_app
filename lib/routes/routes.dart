@@ -10,7 +10,6 @@ import 'package:shoe_store_app/pages/auth/sign_up_page.dart';
 import 'package:shoe_store_app/pages/cart/cart_page.dart';
 import 'package:shoe_store_app/pages/chat/detail_chat_page.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_page.dart';
-import 'package:shoe_store_app/pages/checkout/checkout_success_page.dart';
 import 'package:shoe_store_app/pages/checkout/choose_payment_method_page.dart';
 import 'package:shoe_store_app/pages/checkout/select_address_page.dart';
 import 'package:shoe_store_app/pages/search_product/search_product_page.dart';
@@ -40,7 +39,6 @@ final Map<String, WidgetBuilder> routes = {
   ProductPage.routeName: (context) => ProductPage(
         product: ModalRoute.of(context)?.settings.arguments as ProductModel,
       ),
-  CheckoutSuccessPage.routeName: (context) => const CheckoutSuccessPage(),
   SelectAddressPage.routeName: (context) => const SelectAddressPage(),
   OrderPage.routeName: (context) => OrderPage(
         initial: ModalRoute.of(context)?.settings.arguments as int,

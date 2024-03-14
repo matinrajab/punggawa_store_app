@@ -9,7 +9,7 @@ class SuccessAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: backgroundColor3,
+      backgroundColor: backgroundColor1,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
       ),

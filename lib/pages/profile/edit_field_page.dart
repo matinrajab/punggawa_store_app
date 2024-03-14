@@ -41,7 +41,7 @@ class EditFieldPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor3,
+      backgroundColor: backgroundColor1,
       appBar: MyAppBar(
         text: title,
         leadingIcon: closeIcon,
@@ -53,14 +53,14 @@ class EditFieldPage extends StatelessWidget {
                     width: 20,
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
-                      color: primaryColor,
+                      color: secondaryColor,
                     ),
                   )
                 : IconButton(
                     onPressed: handleUpdate,
                     icon: const Icon(
                       Icons.check,
-                      color: primaryColor,
+                      color: secondaryColor,
                     ),
                   ),
           ),

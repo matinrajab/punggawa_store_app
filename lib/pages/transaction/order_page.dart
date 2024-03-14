@@ -25,12 +25,12 @@ class OrderPage extends StatelessWidget {
       initialIndex: initial,
       length: 3,
       child: Scaffold(
-        backgroundColor: backgroundColor3,
+        backgroundColor: backgroundColor1,
         appBar: AppBar(
-          backgroundColor: backgroundColor1,
+          backgroundColor: primaryColor,
           title: Text(
             'Order History',
-            style: primaryTextStyle.copyWith(
+            style: whiteTextStyle.copyWith(
               fontSize: 18,
               fontWeight: medium,
             ),
@@ -40,14 +40,14 @@ class OrderPage extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
             icon: const Icon(
               backIcon,
-              color: primaryTextColor,
+              color: whiteColor,
             ),
           ),
           bottom: TabBar(
-            indicatorColor: primaryColor,
-            dividerColor: backgroundColor1,
-            labelStyle: buttonTextStyle,
-            unselectedLabelStyle: primaryTextStyle,
+            indicatorColor: whiteColor,
+            dividerColor: primaryColor,
+            labelStyle: whiteTextStyle,
+            unselectedLabelStyle: unselectedTextStyle,
             tabs: tabBarItems
                 .map((e) => Tab(
                       text: e,

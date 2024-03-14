@@ -20,13 +20,13 @@ class WalletCardItem extends StatelessWidget {
       children: [
         Text(
           title,
-          style: primaryTextStyle.copyWith(
+          style: subtitleTextStyle.copyWith(
             fontWeight: light,
           ),
         ),
         Text(
           information,
-          style: primaryTextStyle.copyWith(
+          style: whiteTextStyle.copyWith(
             fontSize: informationFontSize,
             fontWeight: medium,
           ),

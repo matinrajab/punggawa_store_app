@@ -25,7 +25,7 @@ class CartTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
         decoration: BoxDecoration(
           borderRadius: generalBorderRadius,
-          color: backgroundColor4,
+          color: backgroundColor2,
         ),
         child: Column(
           children: [

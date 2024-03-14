@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/widgets/wallet_card_item.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
-import 'package:shoe_store_app/shared/theme.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 
 class WalletCard extends StatelessWidget {
   const WalletCard({super.key});

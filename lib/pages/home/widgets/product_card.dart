@@ -58,7 +58,7 @@ class ProductCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 6),
                       child: Text(
                         product.name!,
-                        style: blackTextStyle.copyWith(
+                        style: primaryTextStyle.copyWith(
                           fontSize: 18,
                           fontWeight: semiBold,
                         ),

@@ -22,7 +22,7 @@ class Footer extends StatelessWidget {
         children: [
           Text(
             '$text ',
-            style: subtitleTextStyle.copyWith(
+            style: primaryTextStyle.copyWith(
               fontSize: 12,
               fontWeight: regular,
             ),

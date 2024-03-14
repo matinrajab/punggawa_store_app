@@ -24,7 +24,7 @@ class ChatPage extends StatelessWidget {
         Expanded(
           child: Container(
             width: double.infinity,
-            color: backgroundColor3,
+            color: backgroundColor1,
             child: StreamBuilder<List<MessageModel>>(
               stream: MessageService()
                   .getMessagesByUserId(userId: authProvider.user.id),

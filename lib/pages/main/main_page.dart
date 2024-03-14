@@ -25,16 +25,14 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PageProvider>(
       builder: (context, pageProvider, _) => Scaffold(
-        backgroundColor: pageProvider.currentIndex == 0
-            ? backgroundColor1
-            : backgroundColor3,
+        backgroundColor: backgroundColor1,
         floatingActionButton: FloatingActionButton(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(50),
             ),
           ),
-          backgroundColor: secondaryColor,
+          backgroundColor: tertiaryColor,
           onPressed: () => Navigator.pushNamed(context, CartPage.routeName),
           child: Image.asset(
             'assets/icon/cart.png',
@@ -48,7 +46,7 @@ class MainPage extends StatelessWidget {
           ),
           child: BottomAppBar(
             padding: const EdgeInsets.only(top: 20),
-            color: backgroundColor4,
+            color: primaryColor,
             shape: const CircularNotchedRectangle(),
             notchMargin: 10,
             clipBehavior: Clip.antiAlias,
@@ -74,8 +72,8 @@ class MainPage extends StatelessWidget {
                     'assets/icon/home.png',
                     height: 20,
                     color: pageProvider.currentIndex == 0
-                        ? primaryColor
-                        : defaultIconNavColor,
+                        ? whiteColor
+                        : unselectedColor,
                   ),
                   label: '',
                 ),
@@ -84,8 +82,8 @@ class MainPage extends StatelessWidget {
                     'assets/icon/chat.png',
                     width: 20,
                     color: pageProvider.currentIndex == 1
-                        ? primaryColor
-                        : defaultIconNavColor,
+                        ? whiteColor
+                        : unselectedColor,
                   ),
                   label: '',
                 ),
@@ -94,8 +92,8 @@ class MainPage extends StatelessWidget {
                     'assets/icon/wishlist.png',
                     width: 20,
                     color: pageProvider.currentIndex == 2
-                        ? primaryColor
-                        : defaultIconNavColor,
+                        ? whiteColor
+                        : unselectedColor,
                   ),
                   label: '',
                 ),
@@ -104,8 +102,8 @@ class MainPage extends StatelessWidget {
                     'assets/icon/profile.png',
                     height: 20,
                     color: pageProvider.currentIndex == 3
-                        ? primaryColor
-                        : defaultIconNavColor,
+                        ? whiteColor
+                        : unselectedColor,
                   ),
                   label: '',
                 ),
@@ -113,9 +111,7 @@ class MainPage extends StatelessWidget {
             ),
           ),
         ),
-        body: SafeArea(
-          child: _body[pageProvider.currentIndex],
-        ),
+        body: _body[pageProvider.currentIndex],
       ),
     );
   }

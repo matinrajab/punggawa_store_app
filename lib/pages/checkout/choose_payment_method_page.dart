@@ -25,7 +25,7 @@ class ChoosePaymentMethodPage extends StatelessWidget {
     List<PaymentMethodModel> paymentMethods = paymentProvider.paymentMethods;
 
     return Scaffold(
-      backgroundColor: backgroundColor3,
+      backgroundColor: backgroundColor1,
       appBar: const MyAppBar(
         text: 'Payment Method',
         leadingIcon: backIcon,

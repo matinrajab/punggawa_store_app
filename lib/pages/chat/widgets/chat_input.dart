@@ -42,9 +42,10 @@ class ChatInput extends StatelessWidget {
           width: 20,
         ),
         IconBoxButton(
-          imageAsset: 'assets/icon/submit.png',
+          imagePath: 'assets/icon/submit.png',
           imageWidth: 20,
           onTap: onTap,
+          color: primaryColor,
         ),
       ],
     );

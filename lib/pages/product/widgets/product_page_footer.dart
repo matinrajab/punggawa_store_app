@@ -22,13 +22,13 @@ class ProductPageFooter extends StatelessWidget {
         Provider.of<CartProvider>(context, listen: false);
 
     return Container(
-      color: backgroundColor1,
+      color: primaryColor,
       padding:
           const EdgeInsets.fromLTRB(pagePadding, 0, pagePadding, pagePadding),
       child: Row(
         children: [
           IconBoxButton(
-            imageAsset: 'assets/icon/chat_primary.png',
+            imagePath: 'assets/icon/chat_primary.png',
             imageWidth: 23,
             onTap: () => Navigator.pushNamed(
               context,
@@ -36,7 +36,6 @@ class ProductPageFooter extends StatelessWidget {
               arguments: product,
             ),
             size: 54,
-            color: Colors.transparent,
           ),
           const SizedBox(
             width: 16,
@@ -46,6 +45,9 @@ class ProductPageFooter extends StatelessWidget {
               text: 'Add to Cart',
               height: 54,
               fontWeight: semiBold,
+              borderColor: whiteColor,
+              buttonColor: whiteColor,
+              fontColor: tertiaryColor,
               onTap: () {
                 cartProvider.addCart(product);
                 showDialog<String>(

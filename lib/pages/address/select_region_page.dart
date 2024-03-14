@@ -31,7 +31,7 @@ class SelectRegionPage extends StatelessWidget {
         Navigator.pop(context);
       },
       child: Scaffold(
-        backgroundColor: backgroundColor3,
+        backgroundColor: backgroundColor1,
         appBar: MyAppBar(
           text: 'Select Region',
           leadingIcon: backIcon,
@@ -94,7 +94,7 @@ class SelectRegionPage extends StatelessWidget {
                     children: [
                       province.text == ''
                           ? ListTile(
-                              tileColor: backgroundColor4,
+                              tileColor: backgroundColor2,
                               title: Text(
                                 'Select Province',
                                 style: buttonTextStyle,
@@ -110,7 +110,7 @@ class SelectRegionPage extends StatelessWidget {
                           ? const SizedBox()
                           : city.text == ''
                               ? ListTile(
-                                  tileColor: backgroundColor4,
+                                  tileColor: backgroundColor2,
                                   title: Text(
                                     'Select City',
                                     style: buttonTextStyle,
@@ -126,7 +126,7 @@ class SelectRegionPage extends StatelessWidget {
                           ? const SizedBox()
                           : district.text == ''
                               ? ListTile(
-                                  tileColor: backgroundColor4,
+                                  tileColor: backgroundColor2,
                                   title: Text(
                                     'Select District',
                                     style: buttonTextStyle,
@@ -142,7 +142,7 @@ class SelectRegionPage extends StatelessWidget {
                           ? const SizedBox()
                           : postalCode.text == ''
                               ? ListTile(
-                                  tileColor: backgroundColor4,
+                                  tileColor: backgroundColor2,
                                   title: Text(
                                     'Select Postal Code',
                                     style: buttonTextStyle,

@@ -37,7 +37,7 @@ class ProductCategoryFilter extends StatelessWidget {
                 fontWeight:
                     index == categoryProvider.categorySelected ? medium : light,
                 fontColor: index == categoryProvider.categorySelected
-                    ? primaryTextColor
+                    ? whiteColor
                     : subtitleTextColor,
               ),
             ),

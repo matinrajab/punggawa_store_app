@@ -40,7 +40,7 @@ class LabelField extends StatelessWidget {
                               ? primaryColor
                               : Colors.transparent,
                       fontColor: categoryProvider.categorySelected == indexTemp
-                          ? primaryTextColor
+                          ? whiteColor
                           : subtitleTextColor,
                       onTap: () {
                         categoryProvider.categorySelected = indexTemp;

@@ -15,7 +15,7 @@ class MyAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: backgroundColor3,
+      backgroundColor: backgroundColor1,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
       ),
@@ -48,7 +48,7 @@ class MyAlertDialog extends StatelessWidget {
                     text: 'No',
                     onTap: () => Navigator.pop(context),
                     height: 44,
-                    buttonColor: backgroundColor5,
+                    buttonColor: Colors.transparent,
                     fontColor: primaryColor,
                   ),
                   const SizedBox(
@@ -58,7 +58,6 @@ class MyAlertDialog extends StatelessWidget {
                     text: 'Yes',
                     onTap: onYesTapped,
                     height: 44,
-                    fontColor: blackTextColor,
                   ),
                 ],
               )

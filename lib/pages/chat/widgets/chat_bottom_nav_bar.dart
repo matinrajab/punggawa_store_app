@@ -27,7 +27,7 @@ class ChatBottomNavBar extends StatelessWidget {
     productProvider.uninitializedProduct = emptyProduct;
 
     return Container(
-      color: backgroundColor3,
+      color: backgroundColor1,
       padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

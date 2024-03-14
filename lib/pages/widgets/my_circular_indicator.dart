@@ -9,7 +9,7 @@ class MyCircularIndicator {
         width: 50,
         child: Center(
           child: CircularProgressIndicator(
-            color: primaryTextColor,
+            color: primaryColor,
           ),
         ),
       ),

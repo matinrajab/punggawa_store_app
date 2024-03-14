@@ -10,7 +10,7 @@ class CartBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 180,
-      color: backgroundColor3,
+      color: backgroundColor1,
       child: Column(
         children: [
           Padding(
@@ -63,14 +63,14 @@ class CartBottomNavBar extends StatelessWidget {
                       children: [
                         Text(
                           'Continue to Checkout',
-                          style: primaryTextStyle.copyWith(
+                          style: whiteTextStyle.copyWith(
                             fontSize: 16,
                             fontWeight: semiBold,
                           ),
                         ),
                         const Icon(
                           Icons.arrow_forward_rounded,
-                          color: primaryTextColor,
+                          color: whiteColor,
                         ),
                       ],
                     ),

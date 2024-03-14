@@ -46,7 +46,7 @@ class MyButton extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(
                 text,
-                style: primaryTextStyle.copyWith(
+                style: whiteTextStyle.copyWith(
                   fontSize: fontSize,
                   fontWeight: fontWeight,
                   color: fontColor,

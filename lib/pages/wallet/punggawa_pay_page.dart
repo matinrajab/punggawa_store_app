@@ -15,14 +15,14 @@ class PunggawaPayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor3,
+      backgroundColor: backgroundColor1,
       appBar: const MyAppBar(
         text: 'PunggawaPay',
         leadingIcon: backIcon,
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(pagePadding),
-        color: backgroundColor3,
+        color: backgroundColor1,
         child: MyButton(
           text: 'Top Up',
           onTap: () => Navigator.pushNamed(context, TopUpPage.routeName),

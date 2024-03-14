@@ -93,7 +93,7 @@ class AddAddressPage extends StatelessWidget {
         regionApiProvider.resetData();
       },
       child: Scaffold(
-        backgroundColor: backgroundColor3,
+        backgroundColor: backgroundColor1,
         appBar: MyAppBar(
           text: 'New Address',
           leadingIcon: backIcon,

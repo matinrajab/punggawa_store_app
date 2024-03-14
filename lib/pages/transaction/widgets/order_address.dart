@@ -19,7 +19,7 @@ class OrderAddress extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(10, 20, 20, 20),
       decoration: BoxDecoration(
         borderRadius: generalBorderRadius,
-        color: backgroundColor4,
+        color: backgroundColor2,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

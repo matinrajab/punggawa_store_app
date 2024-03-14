@@ -21,7 +21,7 @@ class WishlistPage extends StatelessWidget {
               List<ProductModel> wishlist = wishlistProvider.wishlist;
               return Container(
                 width: double.infinity,
-                color: backgroundColor3,
+                color: backgroundColor1,
                 child: wishlist.isEmpty
                     ? const EmptyItem(
                         iconAsset: 'assets/icon/empty_wishlist.png',

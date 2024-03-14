@@ -25,7 +25,7 @@ class AddressCard extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             borderRadius: generalBorderRadius,
-            color: backgroundColor4,
+            color: backgroundColor2,
           ),
           child: AddressCardContent(address: address),
         ),

@@ -92,7 +92,7 @@ class PaymentPage extends StatelessWidget {
         showBackDialog();
       },
       child: Scaffold(
-        backgroundColor: backgroundColor3,
+        backgroundColor: backgroundColor1,
         appBar: MyAppBar(
           text: 'Payment',
           leadingIcon: backIcon,

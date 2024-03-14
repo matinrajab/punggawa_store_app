@@ -50,7 +50,7 @@ class TopUpPage extends StatelessWidget {
       child: Form(
         key: _formKey,
         child: Scaffold(
-          backgroundColor: backgroundColor3,
+          backgroundColor: backgroundColor1,
           appBar: MyAppBar(
             text: 'Top Up',
             leadingIcon: backIcon,
@@ -61,7 +61,7 @@ class TopUpPage extends StatelessWidget {
           ),
           bottomNavigationBar: Container(
             padding: const EdgeInsets.all(pagePadding),
-            color: backgroundColor3,
+            color: backgroundColor1,
             child: MyButton(
               text: 'Confirm',
               fontWeight: semiBold,

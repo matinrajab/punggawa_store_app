@@ -49,7 +49,7 @@ class CheckoutPage extends StatelessWidget {
           context: context,
           builder: (BuildContext context) => MyAlertDialog(
             text:
-                'You don\'t have a shipping address yet, want to create a new one?',
+                'Want to create a new shipping address?',
             onYesTapped: () =>
                 Navigator.popAndPushNamed(context, AddAddressPage.routeName),
           ),
@@ -92,14 +92,14 @@ class CheckoutPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor3,
+      backgroundColor: backgroundColor1,
       appBar: const MyAppBar(
         text: 'Checkout Details',
         leadingIcon: backIcon,
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(pagePadding),
-        color: backgroundColor3,
+        color: backgroundColor1,
         child: MyButton(
           text: 'Checkout Now',
           onTap: handleCheckout,

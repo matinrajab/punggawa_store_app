@@ -36,7 +36,7 @@ class MySnackBar {
         duration: const Duration(seconds: 2),
         content: Text(
           message,
-          style: primaryTextStyle.copyWith(fontSize: 12),
+          style: whiteTextStyle.copyWith(fontSize: 12),
           textAlign: TextAlign.center,
         ),
       ),

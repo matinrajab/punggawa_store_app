@@ -44,10 +44,10 @@ class SignUpPage extends StatelessWidget {
       authProvider.isLoading = false;
     }
 
-    return Scaffold(
-      backgroundColor: backgroundColor1,
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor1,
+        body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(pagePadding),
             child: Column(

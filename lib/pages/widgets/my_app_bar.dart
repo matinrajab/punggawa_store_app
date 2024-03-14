@@ -18,10 +18,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: backgroundColor1,
+      backgroundColor: primaryColor,
       title: Text(
         text,
-        style: primaryTextStyle.copyWith(
+        style: whiteTextStyle.copyWith(
           fontSize: 18,
           fontWeight: medium,
         ),
@@ -32,7 +32,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: onLeadingPressed ?? () => Navigator.pop(context),
               icon: Icon(
                 leadingIcon,
-                color: primaryTextColor,
+                color: whiteColor,
               ),
             )
           : null,

@@ -16,10 +16,10 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor3,
+      backgroundColor: backgroundColor1,
       appBar: const MyAppBar(
         text: 'Your Cart',
-        leadingIcon: closeIcon,
+        leadingIcon: backIcon,
       ),
       bottomNavigationBar: Consumer<CartProvider>(
         builder: (context, cartProvider, _) => cartProvider.carts.isEmpty

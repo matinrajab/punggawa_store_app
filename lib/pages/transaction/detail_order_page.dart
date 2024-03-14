@@ -37,7 +37,7 @@ class DetailOrderPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor3,
+      backgroundColor: backgroundColor1,
       appBar: const MyAppBar(
         text: 'Order Details',
         leadingIcon: backIcon,
@@ -74,7 +74,11 @@ class DetailOrderPage extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          OrderAddress(name: transaction.name!, phone: transaction.phone!, address: transaction.address!),
+          OrderAddress(
+            name: transaction.name!,
+            phone: transaction.phone!,
+            address: transaction.address!,
+          ),
           const SizedBox(
             height: 30,
           ),

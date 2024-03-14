@@ -23,9 +23,9 @@ class ProductPreview extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.all(9),
       decoration: BoxDecoration(
-        border: Border.all(color: primaryColor),
+        border: Border.all(color: backgroundColor2),
         borderRadius: generalBorderRadius,
-        color: backgroundColor5,
+        color: backgroundColor2,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

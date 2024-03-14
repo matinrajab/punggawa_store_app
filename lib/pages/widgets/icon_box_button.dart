@@ -4,15 +4,15 @@ import 'package:shoe_store_app/shared/theme.dart';
 class IconBoxButton extends StatelessWidget {
   final double? size;
   final Color? color;
-  final String imageAsset;
+  final String imagePath;
   final double? imageWidth;
   final GestureTapCallback? onTap;
 
   const IconBoxButton({
     super.key,
     this.size = 50,
-    this.color = primaryColor,
-    required this.imageAsset,
+    this.color = backgroundColor1,
+    required this.imagePath,
     required this.imageWidth,
     required this.onTap,
   });
@@ -35,7 +35,7 @@ class IconBoxButton extends StatelessWidget {
           onTap: onTap,
           child: Center(
             child: Image.asset(
-              imageAsset,
+              imagePath,
               width: imageWidth,
             ),
           ),

@@ -34,7 +34,7 @@ class ProductPage extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
-                  color: backgroundColor1,
+                  color: primaryColor,
                 ),
               ),
             ],
@@ -48,7 +48,7 @@ class ProductPage extends StatelessWidget {
               ),
               Container(
                 decoration: const BoxDecoration(
-                  color: backgroundColor1,
+                  color: primaryColor,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
                 ),
                 child: Column(
@@ -64,6 +64,7 @@ class ProductPage extends StatelessWidget {
                               Expanded(
                                 child: TitleAndSubtitle(
                                   title: product.name!,
+                                  titleColor: whiteColor,
                                   subtitle: product.category!.name!,
                                   titleFontSize: 18,
                                   subtitleFontSize: 12,
@@ -84,6 +85,7 @@ class ProductPage extends StatelessWidget {
                           ),
                           TitleAndSubtitle(
                             title: 'Description',
+                            titleColor: whiteColor,
                             subtitle: product.description!,
                             titleFontSize: 14,
                             titleFontWeight: medium,

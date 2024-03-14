@@ -4,6 +4,7 @@ import 'package:shoe_store_app/shared/theme.dart';
 class TitleAndSubtitle extends StatelessWidget {
   final String title;
   final String subtitle;
+  final Color titleColor;
   final double? titleFontSize;
   final double? subtitleFontSize;
   final FontWeight? titleFontWeight;
@@ -14,6 +15,7 @@ class TitleAndSubtitle extends StatelessWidget {
     super.key,
     required this.title,
     required this.subtitle,
+    this.titleColor = primaryTextColor,
     this.titleFontSize = 24,
     this.subtitleFontSize,
     this.titleFontWeight = semiBold,
@@ -29,6 +31,7 @@ class TitleAndSubtitle extends StatelessWidget {
         Text(
           title,
           style: primaryTextStyle.copyWith(
+            color: titleColor,
             fontSize: titleFontSize,
             fontWeight: titleFontWeight,
           ),

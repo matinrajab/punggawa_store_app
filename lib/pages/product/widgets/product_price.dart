@@ -14,7 +14,7 @@ class ProductPrice extends StatelessWidget {
     return Container(
       height: 50,
       decoration: BoxDecoration(
-        color: backgroundColor2,
+        color: backgroundColor1.withOpacity(0.5),
         borderRadius: BorderRadius.circular(4),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16),

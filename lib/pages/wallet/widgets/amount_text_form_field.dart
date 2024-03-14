@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/providers/top_up_provider.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class AmountTextFormField extends StatelessWidget {
@@ -55,7 +56,7 @@ class AmountTextFormField extends StatelessWidget {
         errorBorder: outlineInputBorder,
         focusedErrorBorder: outlineInputBorder,
         filled: true,
-        fillColor: backgroundColor2,
+        fillColor: Colors.transparent,
         hintText: 'Amount',
         hintStyle: subtitleTextStyle,
       ),

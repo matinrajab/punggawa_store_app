@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/wallet/widgets/amount_option_item.dart';
 import 'package:shoe_store_app/providers/top_up_provider.dart';
-import 'package:shoe_store_app/shared/theme.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 
 class AmountOption extends StatelessWidget {
   final TextEditingController amountController;

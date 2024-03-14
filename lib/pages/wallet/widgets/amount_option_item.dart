@@ -23,7 +23,6 @@ class AmountOptionItem extends StatelessWidget {
         border: Border.all(
           color: isSelected ? primaryColor : backgroundColor2,
         ),
-        color: backgroundColor2,
         borderRadius: generalBorderRadius,
       ),
       child: Material(

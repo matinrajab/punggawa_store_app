@@ -47,12 +47,14 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor1,
-      body: Center(
-        child: Image.asset(
-          'assets/image/splash.png',
-          width: 130,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor1,
+        body: Center(
+          child: Image.asset(
+            'assets/image/splash.png',
+            width: 130,
+          ),
         ),
       ),
     );

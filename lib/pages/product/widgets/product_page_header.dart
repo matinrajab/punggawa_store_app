@@ -20,14 +20,14 @@ class ProductPageHeader extends StatelessWidget {
             onTap: () => Navigator.pop(context),
             child: const Icon(
               backIcon,
-              color: backgroundColor1,
+              color: primaryTextColor,
             ),
           ),
           GestureDetector(
             onTap: () => Navigator.pushNamed(context, CartPage.routeName),
             child: Image.asset(
               'assets/icon/cart_action.png',
-              width: 20,
+              width: 46,
             ),
           )
         ],

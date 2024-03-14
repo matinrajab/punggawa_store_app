@@ -22,7 +22,7 @@ class ProductPreviewBubble extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: isSender ? backgroundColor5 : backgroundColor4,
+        color: isSender ? primaryColor : secondaryColor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(isSender ? generalRadius : 0),
           topRight: Radius.circular(isSender ? 0 : generalRadius),
@@ -53,7 +53,7 @@ class ProductPreviewBubble extends StatelessWidget {
                   children: [
                     Text(
                       product.name!,
-                      style: primaryTextStyle,
+                      style: whiteTextStyle,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -80,8 +80,8 @@ class ProductPreviewBubble extends StatelessWidget {
                 text: 'Add to Cart',
                 onTap: () {},
                 height: 40,
-                buttonColor: backgroundColor5,
-                fontColor: primaryColor,
+                borderColor: whiteColor,
+                buttonColor: Colors.transparent,
               ),
               const SizedBox(
                 width: 8,
@@ -90,7 +90,8 @@ class ProductPreviewBubble extends StatelessWidget {
                 text: 'Buy Now',
                 onTap: () {},
                 height: 40,
-                fontColor: blackTextColor,
+                borderColor: tertiaryColor,
+                buttonColor: tertiaryColor,
               ),
             ],
           ),
