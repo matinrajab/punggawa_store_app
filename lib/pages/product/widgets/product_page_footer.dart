@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/pages/chat/detail_chat_page.dart';
-import 'package:shoe_store_app/pages/product/widgets/success_alert_dialog.dart';
 import 'package:shoe_store_app/pages/widgets/icon_box_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
@@ -50,9 +50,10 @@ class ProductPageFooter extends StatelessWidget {
               fontColor: tertiaryColor,
               onTap: () {
                 cartProvider.addCart(product);
-                showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => const SuccessAlertDialog(),
+                Fluttertoast.showToast(
+                  msg: "Added to cart",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
                 );
               },
             ),

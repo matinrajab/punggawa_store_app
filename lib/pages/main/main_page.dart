@@ -4,6 +4,7 @@ import 'package:shoe_store_app/pages/cart/cart_page.dart';
 import 'package:shoe_store_app/pages/chat/detail_chat_page.dart';
 import 'package:shoe_store_app/pages/home/home_page.dart';
 import 'package:shoe_store_app/pages/profile/profile_page.dart';
+import 'package:shoe_store_app/pages/widgets/cart_badge.dart';
 import 'package:shoe_store_app/pages/wishlist/wishlist_page.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
@@ -26,17 +27,19 @@ class MainPage extends StatelessWidget {
     return Consumer<PageProvider>(
       builder: (context, pageProvider, _) => Scaffold(
         backgroundColor: backgroundColor1,
-        floatingActionButton: FloatingActionButton(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(50),
+        floatingActionButton: CartBadge(
+          child: FloatingActionButton(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(50),
+              ),
             ),
-          ),
-          backgroundColor: tertiaryColor,
-          onPressed: () => Navigator.pushNamed(context, CartPage.routeName),
-          child: Image.asset(
-            'assets/icon/cart.png',
-            width: 20,
+            backgroundColor: tertiaryColor,
+            onPressed: () => Navigator.pushNamed(context, CartPage.routeName),
+            child: Image.asset(
+              'assets/icon/cart.png',
+              width: 20,
+            ),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
