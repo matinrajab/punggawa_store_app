@@ -51,9 +51,11 @@ class _SplashPageState extends State<SplashPage> {
       child: Scaffold(
         backgroundColor: backgroundColor1,
         body: Center(
-          child: Image.asset(
-            'assets/image/splash.png',
-            width: 130,
+          child: Padding(
+            padding: const EdgeInsets.all(66),
+            child: Image.asset(
+              'assets/image/splash.png',
+            ),
           ),
         ),
       ),

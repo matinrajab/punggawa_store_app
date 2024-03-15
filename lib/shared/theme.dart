@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const Color primaryColor = Color(0xff6C5ECF);
+const Color primaryColor = Color(0xff29206C);
 const Color secondaryColor = Color(0xff38ABBE);
 const Color tertiaryColor = Color(0xffFF8753);
 const Color alertColor = Color(0xffED6363);
