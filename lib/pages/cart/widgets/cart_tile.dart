@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
+import 'package:shoe_store_app/pages/widgets/my_alert_dialog.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
@@ -18,6 +19,19 @@ class CartTile extends StatelessWidget {
     final ProductModel product = cart.product!;
     CartProvider cartProvider =
         Provider.of<CartProvider>(context, listen: false);
+
+    deleteConfirmAlert() {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => MyAlertDialog(
+          text: 'Do you want to remove this product?',
+          onYesTapped: () {
+            Navigator.pop(context);
+            cartProvider.removeCart(cart);
+          },
+        ),
+      );
+    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -85,7 +99,13 @@ class CartTile extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => cartProvider.minQuantity(cart),
+                      onTap: () {
+                        if (cart.quantity > 1) {
+                          cartProvider.minQuantity(cart);
+                        } else {
+                          deleteConfirmAlert();
+                        }
+                      },
                       child: Image.asset(
                         'assets/button/min.png',
                         width: 16,
@@ -99,7 +119,7 @@ class CartTile extends StatelessWidget {
               height: 12,
             ),
             GestureDetector(
-              onTap: () => cartProvider.removeCart(cart),
+              onTap: deleteConfirmAlert,
               child: Row(
                 children: [
                   Image.asset(

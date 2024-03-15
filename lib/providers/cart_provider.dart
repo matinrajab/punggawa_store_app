@@ -40,9 +40,6 @@ class CartProvider with ChangeNotifier {
 
   minQuantity(CartModel cart) {
     cart.quantity--;
-    if(cart.quantity == 0){
-      _carts.remove(cart);
-    }
     notifyListeners();
   }
 
