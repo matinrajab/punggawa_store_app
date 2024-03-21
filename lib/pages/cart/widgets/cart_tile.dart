@@ -4,6 +4,7 @@ import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/pages/widgets/my_alert_dialog.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
+import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class CartTile extends StatelessWidget {
@@ -19,8 +20,12 @@ class CartTile extends StatelessWidget {
     final ProductModel product = cart.product!;
     CartProvider cartProvider =
         Provider.of<CartProvider>(context, listen: false);
+    CheckoutProvider checkoutProvider =
+        Provider.of<CheckoutProvider>(context, listen: false);
+    List<CartModel> checkouts = checkoutProvider.checkouts;
+    List<CartModel> cartSelected = cartProvider.cartSelected;
 
-    deleteConfirmAlert() {
+    removeConfirmAlert() {
       showDialog<String>(
         context: context,
         builder: (BuildContext context) => MyAlertDialog(
@@ -28,6 +33,7 @@ class CartTile extends StatelessWidget {
           onYesTapped: () {
             Navigator.pop(context);
             cartProvider.removeCart(cart);
+            cartProvider.unselect(cart);
           },
         ),
       );
@@ -36,7 +42,7 @@ class CartTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        padding: const EdgeInsets.fromLTRB(0, 10, 16, 10),
         decoration: BoxDecoration(
           borderRadius: generalBorderRadius,
           color: backgroundColor2,
@@ -45,6 +51,18 @@ class CartTile extends StatelessWidget {
           children: [
             Row(
               children: [
+                Checkbox(
+                  value: cartSelected.contains(cart),
+                  onChanged: (bool? value) {
+                    if (value != null) {
+                      value
+                          ? cartProvider.select(cart)
+                          : cartProvider.unselect(cart);
+                    }
+                  },
+                  activeColor: primaryColor,
+                  checkColor: whiteColor,
+                ),
                 ClipRRect(
                   borderRadius: generalBorderRadius,
                   child: Image.network(
@@ -103,7 +121,7 @@ class CartTile extends StatelessWidget {
                         if (cart.quantity > 1) {
                           cartProvider.minQuantity(cart);
                         } else {
-                          deleteConfirmAlert();
+                          removeConfirmAlert();
                         }
                       },
                       child: Image.asset(
@@ -118,25 +136,28 @@ class CartTile extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            GestureDetector(
-              onTap: deleteConfirmAlert,
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/icon/trash.png',
-                    width: 10,
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  Text(
-                    'Remove',
-                    style: alertTextStyle.copyWith(
-                      fontSize: 12,
-                      fontWeight: light,
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: GestureDetector(
+                onTap: removeConfirmAlert,
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/icon/trash.png',
+                      width: 10,
                     ),
-                  ),
-                ],
+                    const SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      'Remove',
+                      style: alertTextStyle.copyWith(
+                        fontSize: 12,
+                        fontWeight: light,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

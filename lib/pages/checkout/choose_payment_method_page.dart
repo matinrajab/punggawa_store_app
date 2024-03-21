@@ -5,7 +5,7 @@ import 'package:shoe_store_app/pages/checkout/widgets/payment_method_item.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
-import 'package:shoe_store_app/providers/cart_provider.dart';
+import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/providers/payment_method_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
@@ -20,8 +20,8 @@ class ChoosePaymentMethodPage extends StatelessWidget {
         Provider.of<PaymentMethodProvider>(context, listen: false);
     AuthProvider authProvider =
         Provider.of<AuthProvider>(context, listen: false);
-    CartProvider cartProvider =
-        Provider.of<CartProvider>(context, listen: false);
+    CheckoutProvider checkoutProvider =
+        Provider.of<CheckoutProvider>(context, listen: false);
     List<PaymentMethodModel> paymentMethods = paymentProvider.paymentMethods;
 
     return Scaffold(
@@ -41,7 +41,7 @@ class ChoosePaymentMethodPage extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 if (paymentMethod.name == 'Wallet') {
-                  if (authProvider.user.balance! < cartProvider.totalPrice()) {
+                  if (authProvider.user.balance! < checkoutProvider.totalPrice()) {
                     MySnackBar.failed(
                       context,
                       message: 'Your balance is not enough',

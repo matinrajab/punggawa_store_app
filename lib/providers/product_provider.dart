@@ -36,5 +36,3 @@ class ProductProvider with ChangeNotifier {
     }
   }
 }
-
-class UninitializedProductModel extends ProductModel {}

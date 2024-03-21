@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_page.dart';
+import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class CartBottomNavBar extends StatelessWidget {
   final double price;
-  const CartBottomNavBar({super.key, required this.price});
+
+  const CartBottomNavBar({
+    super.key,
+    required this.price,
+  });
 
   @override
   Widget build(BuildContext context) {
+    CheckoutProvider checkoutProvider =
+        Provider.of<CheckoutProvider>(context, listen: false);
+    List<CartModel> checkouts = checkoutProvider.checkouts;
+
     return Container(
       height: 180,
       color: backgroundColor1,
@@ -28,7 +40,7 @@ class CartBottomNavBar extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: semiBold,
                   ),
-                ),
+                )
               ],
             ),
           ),
@@ -55,7 +67,16 @@ class CartBottomNavBar extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   borderRadius: generalBorderRadius,
-                  onTap: () => Navigator.pushNamed(context, CheckoutPage.routeName),
+                  onTap: () {
+                    checkouts.isEmpty
+                        ? Fluttertoast.showToast(
+                            msg: "Please select items",
+                          )
+                        : Navigator.pushNamed(
+                            context,
+                            CheckoutPage.routeName,
+                          );
+                  },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(

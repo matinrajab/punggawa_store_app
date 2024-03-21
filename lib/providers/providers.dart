@@ -1,5 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/providers/region_api_provider.dart';
 import 'package:shoe_store_app/providers/address_category_provider.dart';
 import 'package:shoe_store_app/providers/address_provider.dart';
@@ -32,6 +33,9 @@ final List<SingleChildWidget> providers = [
   ),
   ChangeNotifierProvider(
     create: (context) => CartProvider(),
+  ),
+  ChangeNotifierProvider(
+    create: (context) => CheckoutProvider(),
   ),
   ChangeNotifierProvider(
     create: (context) => PaymentMethodProvider(),

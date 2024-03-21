@@ -49,3 +49,5 @@ class ProductModel {
         "galleries": List<dynamic>.from(galleries!.map((x) => x.toJson())),
       };
 }
+
+class UninitializedProductModel extends ProductModel {}

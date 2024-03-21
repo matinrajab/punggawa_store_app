@@ -4,10 +4,17 @@ import 'package:shoe_store_app/models/product_model.dart';
 
 class CartProvider with ChangeNotifier {
   List<CartModel> _carts = [];
+  List<CartModel> _cartSelected = [];
 
   List<CartModel> get carts => _carts;
-  set carts(List<CartModel> casrts) {
+  set carts(List<CartModel> carts) {
     _carts = carts;
+    notifyListeners();
+  }
+
+  List<CartModel> get cartSelected => _cartSelected;
+  set cartSelected(List<CartModel> cartSelected) {
+    _cartSelected = cartSelected;
     notifyListeners();
   }
 
@@ -48,19 +55,20 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  totalItems(){
-    int total = 0;
-    for (var cart in _carts) {
-      total += cart.quantity;
-    }
-    return total;
+  select(CartModel product) {
+    _cartSelected.add(product);
+    notifyListeners();
   }
 
-  totalPrice(){
-    double total = 0;
-    for (var cart in _carts) {
-      total += cart.quantity * cart.product!.price!;
+  unselect(CartModel product) {
+    _cartSelected.remove(product);
+    notifyListeners();
+  }
+
+  onCheckout() {
+    for (var element in _cartSelected) {
+      _carts.remove(element);
     }
-    return total;
+    _cartSelected.clear();
   }
 }

@@ -23,11 +23,11 @@ class ProductPrice extends StatelessWidget {
         children: [
           Text(
             'Price starts from',
-            style: primaryTextStyle,
+            style: primaryTextStyle.copyWith(color: primaryColor,),
           ),
           Text(
             '\$$price',
-            style: priceTextStyle.copyWith(
+            style: whiteTextStyle.copyWith(
               fontSize: 16,
               fontWeight: semiBold,
             ),

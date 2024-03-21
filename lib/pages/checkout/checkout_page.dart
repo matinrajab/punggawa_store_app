@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/address_model.dart';
+import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/models/payment_method_model.dart';
 import 'package:shoe_store_app/pages/address/add_address_page.dart';
 import 'package:shoe_store_app/pages/checkout/widgets/checkout_address.dart';
@@ -17,6 +18,7 @@ import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/address_provider.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
+import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/providers/payment_method_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
@@ -29,6 +31,8 @@ class CheckoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CheckoutProvider checkoutProvider =
+        Provider.of<CheckoutProvider>(context, listen: false);
     CartProvider cartProvider =
         Provider.of<CartProvider>(context, listen: false);
     TransactionProvider transactionProvider =
@@ -39,6 +43,8 @@ class CheckoutPage extends StatelessWidget {
         Provider.of<AuthProvider>(context, listen: false);
     PageProvider pageProvider =
         Provider.of<PageProvider>(context, listen: false);
+    List<CartModel> cartSelected = cartProvider.cartSelected;
+    List<CartModel> checkouts = checkoutProvider.checkouts;
 
     handleCheckout() async {
       AddressProvider addressProvider =
@@ -48,8 +54,7 @@ class CheckoutPage extends StatelessWidget {
         showDialog<String>(
           context: context,
           builder: (BuildContext context) => MyAlertDialog(
-            text:
-                'Want to create a new shipping address?',
+            text: 'Want to create a new shipping address?',
             onYesTapped: () =>
                 Navigator.popAndPushNamed(context, AddAddressPage.routeName),
           ),
@@ -61,12 +66,15 @@ class CheckoutPage extends StatelessWidget {
           paymentProvider.paymentMethods[paymentProvider.methodSelected];
       if (await transactionProvider.checkout(
         token: authProvider.user.token!,
-        carts: cartProvider.carts,
-        totalPrice: cartProvider.totalPrice(),
+        carts: checkouts,
+        totalPrice: checkoutProvider.totalPrice(),
         paymentMethod: paymentMethod,
         addressId: addresses[addressProvider.addressSelected].id!,
       )) {
-        cartProvider.carts.clear();
+        if (identical(checkouts, cartSelected)) {
+          cartProvider.onCheckout();
+        }
+        checkoutProvider.resetData();
         if (paymentMethod.name == 'Transfer') {
           Navigator.pushNamed(context, PaymentPage.routeName);
         } else {
@@ -117,7 +125,7 @@ class CheckoutPage extends StatelessWidget {
             ),
           ),
           Column(
-            children: cartProvider.carts
+            children: checkouts
                 .map(
                   (cart) => DetailTile(
                     cart: cart,
@@ -137,8 +145,8 @@ class CheckoutPage extends StatelessWidget {
             height: 30,
           ),
           PaymentSummary(
-            quantity: cartProvider.totalItems(),
-            productPrice: cartProvider.totalPrice(),
+            quantity: checkoutProvider.totalItems(),
+            productPrice: checkoutProvider.totalPrice(),
           ),
         ],
       ),

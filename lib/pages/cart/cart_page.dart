@@ -6,6 +6,7 @@ import 'package:shoe_store_app/pages/cart/widgets/cart_tile.dart';
 import 'package:shoe_store_app/pages/widgets/empty_item.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
+import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class CartPage extends StatelessWidget {
@@ -15,6 +16,9 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CheckoutProvider checkoutProvider =
+        Provider.of<CheckoutProvider>(context, listen: false);
+
     return Scaffold(
       backgroundColor: backgroundColor1,
       appBar: const MyAppBar(
@@ -22,11 +26,16 @@ class CartPage extends StatelessWidget {
         leadingIcon: backIcon,
       ),
       bottomNavigationBar: Consumer<CartProvider>(
-        builder: (context, cartProvider, _) => cartProvider.carts.isEmpty
-            ? const SizedBox()
-            : CartBottomNavBar(
-                price: cartProvider.totalPrice(),
-              ),
+        builder: (context, cartProvider, _) => Consumer<CheckoutProvider>(
+          builder: (context, checkoutProvider, _) {
+            checkoutProvider.checkouts = cartProvider.cartSelected;
+            return cartProvider.carts.isEmpty
+                ? const SizedBox()
+                : CartBottomNavBar(
+                    price: checkoutProvider.totalPrice(),
+                  );
+          },
+        ),
       ),
       body: Consumer<CartProvider>(
         builder: (context, cartProvider, _) {

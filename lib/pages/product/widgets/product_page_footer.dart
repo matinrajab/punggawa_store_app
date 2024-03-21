@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/pages/chat/detail_chat_page.dart';
+import 'package:shoe_store_app/pages/checkout/checkout_page.dart';
 import 'package:shoe_store_app/pages/widgets/icon_box_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
+import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class ProductPageFooter extends StatelessWidget {
@@ -20,6 +23,8 @@ class ProductPageFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     CartProvider cartProvider =
         Provider.of<CartProvider>(context, listen: false);
+    CheckoutProvider checkoutProvider =
+        Provider.of<CheckoutProvider>(context, listen: false);
 
     return Container(
       color: primaryColor,
@@ -29,7 +34,7 @@ class ProductPageFooter extends StatelessWidget {
         children: [
           IconBoxButton(
             imagePath: 'assets/icon/chat_primary.png',
-            imageWidth: 23,
+            imageWidth: 24,
             onTap: () => Navigator.pushNamed(
               context,
               DetailChatPage.routeName,
@@ -38,24 +43,31 @@ class ProductPageFooter extends StatelessWidget {
             size: 54,
           ),
           const SizedBox(
-            width: 16,
+            width: 8,
+          ),
+          IconBoxButton(
+            imagePath: 'assets/icon/cart_add.png',
+            imageWidth: 24,
+            onTap: () {
+              cartProvider.addCart(product);
+              Fluttertoast.showToast(
+                msg: "Added to cart",
+              );
+            },
+            size: 54,
+          ),
+          const SizedBox(
+            width: 8,
           ),
           Expanded(
             child: MyButton(
-              text: 'Add to Cart',
+              text: 'Buy Now',
               height: 54,
               fontWeight: semiBold,
-              borderColor: whiteColor,
-              buttonColor: whiteColor,
-              fontColor: tertiaryColor,
-              onTap: () {
-                cartProvider.addCart(product);
-                Fluttertoast.showToast(
-                  msg: "Added to cart",
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.CENTER,
-                );
-              },
+              borderColor: tertiaryColor,
+              buttonColor: tertiaryColor,
+              fontColor: whiteColor,
+              onTap: () {},
             ),
           ),
         ],
