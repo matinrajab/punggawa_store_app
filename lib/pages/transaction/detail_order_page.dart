@@ -29,7 +29,7 @@ class DetailOrderPage extends StatelessWidget {
     }
 
     totalPrice() {
-      double total = 0;
+      int total = 0;
       for (var item in transaction.items!) {
         total += item.quantity! * item.product!.price!;
       }

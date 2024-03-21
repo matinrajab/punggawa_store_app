@@ -5,6 +5,7 @@ import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/pages/widgets/my_alert_dialog.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/providers/checkout_provider.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class CartTile extends StatelessWidget {
@@ -89,7 +90,7 @@ class CartTile extends StatelessWidget {
                         height: 2,
                       ),
                       Text(
-                        '\$${product.price}',
+                        currencyFormat(product.price!),
                         style: priceTextStyle,
                       )
                     ],

@@ -5,10 +5,11 @@ import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_page.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/providers/checkout_provider.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class CartBottomNavBar extends StatelessWidget {
-  final double price;
+  final int price;
 
   const CartBottomNavBar({
     super.key,
@@ -62,7 +63,7 @@ class CartBottomNavBar extends StatelessWidget {
                       style: primaryTextStyle,
                     ),
                     Text(
-                      '\$$price',
+                      currencyFormat(price),
                       style: priceTextStyle.copyWith(
                         fontSize: 16,
                         fontWeight: semiBold,

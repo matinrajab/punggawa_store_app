@@ -26,7 +26,7 @@ class CheckoutProvider with ChangeNotifier {
   }
 
   totalPrice() {
-    double total = 0;
+    int total = 0;
     for (var checkouts in _checkouts) {
       total += checkouts.quantity * checkouts.product!.price!;
     }

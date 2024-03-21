@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class PaymentSummaryItem extends StatelessWidget {
@@ -21,7 +22,7 @@ class PaymentSummaryItem extends StatelessWidget {
           style: secondaryTextStyle.copyWith(fontSize: 12),
         ),
         Text(
-          information == '\$0.0' ? 'Free' : information,
+          information == currencyFormat(0) ? 'Free' : information,
           style: primaryTextStyle.copyWith(fontWeight: medium),
         )
       ],

@@ -9,8 +9,8 @@ class TransactionModel {
   String? phone;
   String? address;
   CategoryModel? addressCategory;
-  num? totalPrice;
-  num? shippingPrice;
+  int? totalPrice;
+  int? shippingPrice;
   String? status;
   List<ItemModel>? items;
 

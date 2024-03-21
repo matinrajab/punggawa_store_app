@@ -4,6 +4,7 @@ import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
 import 'package:shoe_store_app/pages/transaction/detail_order_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class OrderCard extends StatelessWidget {
@@ -71,7 +72,7 @@ class OrderCard extends StatelessWidget {
                           height: 2,
                         ),
                         Text(
-                          '\$${product.price}',
+                          currencyFormat(product.price!),
                           style: priceTextStyle.copyWith(
                             fontWeight: medium,
                           ),
@@ -123,7 +124,7 @@ class OrderCard extends StatelessWidget {
                         style: secondaryTextStyle.copyWith(fontSize: 12),
                       ),
                       Text(
-                        '\$${transaction.totalPrice}',
+                        currencyFormat(transaction.totalPrice!),
                         style: priceTextStyle.copyWith(fontSize: 12),
                       ),
                     ],

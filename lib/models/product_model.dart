@@ -4,7 +4,7 @@ import 'package:shoe_store_app/models/gallery_model.dart';
 class ProductModel {
   int? id;
   String? name;
-  num? price;
+  int? price;
   String? description;
   String? tags;
   DateTime? createdAt;

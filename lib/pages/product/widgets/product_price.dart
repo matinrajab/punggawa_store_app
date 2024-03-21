@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class ProductPrice extends StatelessWidget {
@@ -26,7 +27,7 @@ class ProductPrice extends StatelessWidget {
             style: primaryTextStyle.copyWith(color: primaryColor,),
           ),
           Text(
-            '\$$price',
+            currencyFormat(price),
             style: whiteTextStyle.copyWith(
               fontSize: 16,
               fontWeight: semiBold,

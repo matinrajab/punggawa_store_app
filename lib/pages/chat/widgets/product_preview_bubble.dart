@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class ProductPreviewBubble extends StatelessWidget {
@@ -61,7 +62,7 @@ class ProductPreviewBubble extends StatelessWidget {
                       height: 4,
                     ),
                     Text(
-                      '\$${product.price}',
+                      currencyFormat(product.price!),
                       style: priceTextStyle.copyWith(
                         fontWeight: medium,
                       ),

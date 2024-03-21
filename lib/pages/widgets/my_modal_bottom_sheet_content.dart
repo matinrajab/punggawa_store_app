@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class MyModalBottomSheetContent extends StatelessWidget {
@@ -48,7 +49,7 @@ class MyModalBottomSheetContent extends StatelessWidget {
                 height: 2,
               ),
               Text(
-                '\$${product.price}',
+                currencyFormat(product.price!),
                 style: priceTextStyle,
               )
             ],

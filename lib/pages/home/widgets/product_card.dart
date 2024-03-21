@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/product_model.dart';
 import 'package:shoe_store_app/pages/product/product_page.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class ProductCard extends StatelessWidget {
@@ -67,7 +68,7 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$${product.price}',
+                      currencyFormat(product.price!),
                       style: priceTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: semiBold,

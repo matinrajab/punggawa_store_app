@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/widgets/payment_summary_item.dart';
-import 'package:shoe_store_app/providers/cart_provider.dart';
+import 'package:shoe_store_app/shared/currency_format.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class PaymentSummary extends StatelessWidget {
   final int quantity;
-  final double productPrice;
+  final int productPrice;
 
   const PaymentSummary({
     super.key,
@@ -42,14 +41,14 @@ class PaymentSummary extends StatelessWidget {
           ),
           PaymentSummaryItem(
             type: 'Product Price',
-            information: '\$$productPrice',
+            information: currencyFormat(productPrice),
           ),
           const SizedBox(
             height: 13,
           ),
-          const PaymentSummaryItem(
+          PaymentSummaryItem(
             type: 'Shipping',
-            information: '\$0.0',
+            information: currencyFormat(0),
           ),
           const SizedBox(
             height: 11,
@@ -69,7 +68,7 @@ class PaymentSummary extends StatelessWidget {
                 style: priceTextStyle.copyWith(fontWeight: semiBold),
               ),
               Text(
-                '\$$productPrice',
+                currencyFormat(productPrice),
                 style: priceTextStyle.copyWith(fontWeight: semiBold),
               )
             ],

@@ -38,7 +38,7 @@ class TransactionProvider with ChangeNotifier {
   Future<bool> checkout({
     required String token,
     required List<CartModel> carts,
-    required double totalPrice,
+    required int totalPrice,
     required PaymentMethodModel paymentMethod,
     required int addressId,
   }) async {

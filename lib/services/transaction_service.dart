@@ -13,7 +13,7 @@ class TransactionService {
   checkout({
     required String token,
     required List<CartModel> carts,
-    required double totalPrice,
+    required int totalPrice,
     required PaymentMethodModel paymentMethod,
     required int addressId,
   }) async {
@@ -47,7 +47,7 @@ class TransactionService {
     print(response.body);
 
     if (response.statusCode == 200) {
-      if(paymentMethod.name == 'Transfer'){
+      if (paymentMethod.name == 'Transfer') {
         var data = jsonDecode(response.body)['data'];
         String snapToken = data['snapToken'];
         return snapToken;
