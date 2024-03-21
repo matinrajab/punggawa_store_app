@@ -62,7 +62,6 @@ class OrderPage extends StatelessWidget {
             ),
             OrderPageBody(
               status: shippingOrder,
-              textButton: 'Order Received',
             ),
             OrderPageBody(
               status: successOrder,

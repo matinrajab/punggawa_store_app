@@ -5,26 +5,25 @@ import 'package:shoe_store_app/models/transaction_model.dart';
 import 'package:shoe_store_app/pages/transaction/detail_order_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/shared/currency_format.dart';
+import 'package:shoe_store_app/shared/order_status_handle.dart';
 import 'package:shoe_store_app/shared/theme.dart';
+import 'package:shoe_store_app/shared/order_status.dart';
 
 class OrderCard extends StatelessWidget {
   final TransactionModel transaction;
-  final String textButton;
   final GestureTapCallback? onButtonTap;
-  final bool isButtonAppear;
 
   const OrderCard({
     super.key,
     required this.transaction,
-    this.textButton = '',
     this.onButtonTap,
-    this.isButtonAppear = false,
   });
 
   @override
   Widget build(BuildContext context) {
     List<ItemModel>? items = transaction.items;
     ProductModel product = items![0].product!;
+    String status = transaction.status!;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -131,15 +130,32 @@ class OrderCard extends StatelessWidget {
                   ),
                 ],
               ),
-              isButtonAppear
+              status != pendingOrder
                   ? Column(
                       children: [
                         const SizedBox(
                           height: 15,
                         ),
                         MyButton(
-                          text: textButton,
-                          onTap: onButtonTap,
+                          text: status == shippingOrder
+                              ? 'Order Received'
+                              : 'Buy Again',
+                          onTap: () {
+                            switch (status) {
+                              case shippingOrder:
+                                OrderStatusHandle.orderReceived(
+                                  context,
+                                  id: transaction.id!,
+                                );
+                                break;
+                              case successOrder:
+                                OrderStatusHandle.buyAgain(
+                                  context,
+                                  items: transaction.items!,
+                                );
+                                break;
+                            }
+                          },
                           height: 44,
                         ),
                       ],

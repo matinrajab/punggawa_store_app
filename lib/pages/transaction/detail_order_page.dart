@@ -3,9 +3,12 @@ import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/models/transaction_model.dart';
 import 'package:shoe_store_app/pages/transaction/widgets/title_and_desc.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
+import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/pages/widgets/payment_summary.dart';
 import 'package:shoe_store_app/pages/transaction/widgets/order_address.dart';
 import 'package:shoe_store_app/pages/widgets/detail_tile.dart';
+import 'package:shoe_store_app/shared/order_status.dart';
+import 'package:shoe_store_app/shared/order_status_handle.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class DetailOrderPage extends StatelessWidget {
@@ -18,23 +21,25 @@ class DetailOrderPage extends StatelessWidget {
     required this.transaction,
   });
 
+  totalItems() {
+    int total = 0;
+    for (var item in transaction.items!) {
+      total += item.quantity!;
+    }
+    return total;
+  }
+
+  totalPrice() {
+    int total = 0;
+    for (var item in transaction.items!) {
+      total += item.quantity! * item.product!.price!;
+    }
+    return total;
+  }
+
   @override
   Widget build(BuildContext context) {
-    totalItems() {
-      int total = 0;
-      for (var item in transaction.items!) {
-        total += item.quantity!;
-      }
-      return total;
-    }
-
-    totalPrice() {
-      int total = 0;
-      for (var item in transaction.items!) {
-        total += item.quantity! * item.product!.price!;
-      }
-      return total;
-    }
+    String status = transaction.status!;
 
     return Scaffold(
       backgroundColor: backgroundColor1,
@@ -69,7 +74,7 @@ class DetailOrderPage extends StatelessWidget {
           ),
           TitleAndDesc(
             title: 'Delivery Status',
-            desc: transaction.status!,
+            desc: status,
           ),
           const SizedBox(
             height: 30,
@@ -93,6 +98,31 @@ class DetailOrderPage extends StatelessWidget {
             title: 'Payment Method',
             desc: transaction.paymentMethod!.name!,
           ),
+          const SizedBox(
+            height: 30,
+          ),
+          status != pendingOrder
+              ? MyButton(
+                  text:
+                      status == shippingOrder ? 'Order Received' : 'Buy Again',
+                  onTap: () {
+                    switch (status) {
+                      case shippingOrder:
+                        OrderStatusHandle.orderReceived(
+                          context,
+                          id: transaction.id!,
+                        );
+                        break;
+                      case successOrder:
+                        OrderStatusHandle.buyAgain(
+                          context,
+                          items: transaction.items!,
+                        );
+                        break;
+                    }
+                  },
+                )
+              : const SizedBox(),
         ],
       ),
     );
