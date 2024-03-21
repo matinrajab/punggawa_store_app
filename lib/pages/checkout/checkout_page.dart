@@ -11,6 +11,7 @@ import 'package:shoe_store_app/pages/payment/payment_page.dart';
 import 'package:shoe_store_app/pages/transaction/order_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_alert_dialog.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
+import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
 import 'package:shoe_store_app/pages/widgets/payment_summary.dart';
 import 'package:shoe_store_app/pages/widgets/detail_tile.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
@@ -47,6 +48,7 @@ class CheckoutPage extends StatelessWidget {
     List<CartModel> checkouts = checkoutProvider.checkouts;
 
     handleCheckout() async {
+      checkoutProvider.isLoading = true;
       AddressProvider addressProvider =
           Provider.of<AddressProvider>(context, listen: false);
       List<AddressModel> addresses = addressProvider.addresses;
@@ -97,6 +99,7 @@ class CheckoutPage extends StatelessWidget {
           message: 'Gagal Checkout',
         );
       }
+      checkoutProvider.isLoading = false;
     }
 
     return Scaffold(
@@ -106,12 +109,17 @@ class CheckoutPage extends StatelessWidget {
         leadingIcon: backIcon,
       ),
       bottomNavigationBar: Container(
+        height: 110,
         padding: const EdgeInsets.all(pagePadding),
         color: backgroundColor1,
-        child: MyButton(
-          text: 'Checkout Now',
-          onTap: handleCheckout,
-          fontWeight: semiBold,
+        child: Consumer<CheckoutProvider>(
+          builder: (context, checkoutProvider, _) => checkoutProvider.isLoading
+              ? MyCircularIndicator.show()
+              : MyButton(
+                  text: 'Checkout Now',
+                  onTap: handleCheckout,
+                  fontWeight: semiBold,
+                ),
         ),
       ),
       body: ListView(

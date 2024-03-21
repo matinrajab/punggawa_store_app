@@ -16,9 +16,6 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CheckoutProvider checkoutProvider =
-        Provider.of<CheckoutProvider>(context, listen: false);
-
     return Scaffold(
       backgroundColor: backgroundColor1,
       appBar: const MyAppBar(

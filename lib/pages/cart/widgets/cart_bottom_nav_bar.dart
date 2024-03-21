@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/cart_model.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_page.dart';
+import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
@@ -16,36 +17,61 @@ class CartBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider =
+        Provider.of<CartProvider>(context, listen: false);
     CheckoutProvider checkoutProvider =
         Provider.of<CheckoutProvider>(context, listen: false);
+    List<CartModel> carts = cartProvider.carts;
+    List<CartModel> cartSelected = cartProvider.cartSelected;
     List<CartModel> checkouts = checkoutProvider.checkouts;
 
     return Container(
-      height: 180,
+      height: 170,
       color: backgroundColor1,
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: pagePadding),
+            padding: const EdgeInsets.only(left: 10, right: pagePadding),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Subtotal',
-                  style: primaryTextStyle,
+                Row(
+                  children: [
+                    Checkbox(
+                      value: carts.length == cartSelected.length,
+                      onChanged: (bool? value) {
+                        if (value != null) {
+                          value
+                              ? cartProvider.selectAll()
+                              : cartProvider.unselectAll();
+                        }
+                      },
+                      activeColor: primaryColor,
+                      checkColor: whiteColor,
+                    ),
+                    Text(
+                      'All',
+                      style: primaryTextStyle,
+                    ),
+                  ],
                 ),
-                Text(
-                  '\$$price',
-                  style: priceTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: semiBold,
-                  ),
-                )
+                Row(
+                  children: [
+                    Text(
+                      'Total ',
+                      style: primaryTextStyle,
+                    ),
+                    Text(
+                      '\$$price',
+                      style: priceTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: semiBold,
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
-          ),
-          const SizedBox(
-            height: 30,
           ),
           const Divider(
             thickness: 1,

@@ -7,6 +7,7 @@ import 'package:shoe_store_app/pages/chat/detail_chat_page.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_page.dart';
 import 'package:shoe_store_app/pages/widgets/icon_box_button.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
+import 'package:shoe_store_app/pages/widgets/my_modal_bottom_sheet.dart';
 import 'package:shoe_store_app/providers/cart_provider.dart';
 import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
@@ -25,6 +26,58 @@ class ProductPageFooter extends StatelessWidget {
         Provider.of<CartProvider>(context, listen: false);
     CheckoutProvider checkoutProvider =
         Provider.of<CheckoutProvider>(context, listen: false);
+
+    createCartTemp() {
+      cartProvider.cartTemp = CartModel(
+        product: product,
+        quantity: 1,
+      );
+    }
+
+    handleAddToCart() {
+      createCartTemp();
+      CartModel cart = cartProvider.cartTemp;
+
+      MyModalBottomSheet.show(
+        context,
+        cart: cart,
+        onAddTapped: () => cartProvider.addQuantity(cart),
+        onMinTapped: () {
+          if (cart.quantity > 1) {
+            cartProvider.minQuantity(cart);
+          }
+        },
+        textOnButton: 'Add to Cart',
+        onButtonTap: () {
+          cartProvider.addCart();
+          Navigator.pop(context);
+          Fluttertoast.showToast(
+            msg: "Added to cart",
+          );
+        },
+      );
+    }
+
+    handleBuyNow() {
+      createCartTemp();
+      CartModel cart = cartProvider.cartTemp;
+
+      MyModalBottomSheet.show(
+        context,
+        cart: cart,
+        onAddTapped: () => cartProvider.addQuantity(cart),
+        onMinTapped: () {
+          if (cart.quantity > 1) {
+            cartProvider.minQuantity(cart);
+          }
+        },
+        textOnButton: 'Buy Now',
+        onButtonTap: () {
+          checkoutProvider.checkouts = [cart];
+          Navigator.popAndPushNamed(context, CheckoutPage.routeName);
+        },
+      );
+    }
 
     return Container(
       color: primaryColor,
@@ -48,12 +101,7 @@ class ProductPageFooter extends StatelessWidget {
           IconBoxButton(
             imagePath: 'assets/icon/cart_add.png',
             imageWidth: 24,
-            onTap: () {
-              cartProvider.addCart(product);
-              Fluttertoast.showToast(
-                msg: "Added to cart",
-              );
-            },
+            onTap: handleAddToCart,
             size: 54,
           ),
           const SizedBox(
@@ -67,7 +115,7 @@ class ProductPageFooter extends StatelessWidget {
               borderColor: tertiaryColor,
               buttonColor: tertiaryColor,
               fontColor: whiteColor,
-              onTap: () {},
+              onTap: handleBuyNow,
             ),
           ),
         ],

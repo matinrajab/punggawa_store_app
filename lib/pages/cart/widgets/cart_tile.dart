@@ -20,9 +20,7 @@ class CartTile extends StatelessWidget {
     final ProductModel product = cart.product!;
     CartProvider cartProvider =
         Provider.of<CartProvider>(context, listen: false);
-    CheckoutProvider checkoutProvider =
-        Provider.of<CheckoutProvider>(context, listen: false);
-    List<CartModel> checkouts = checkoutProvider.checkouts;
+    Provider.of<CheckoutProvider>(context, listen: false);
     List<CartModel> cartSelected = cartProvider.cartSelected;
 
     removeConfirmAlert() {

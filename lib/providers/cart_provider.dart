@@ -5,6 +5,7 @@ import 'package:shoe_store_app/models/product_model.dart';
 class CartProvider with ChangeNotifier {
   List<CartModel> _carts = [];
   List<CartModel> _cartSelected = [];
+  late CartModel _cartTemp;
 
   List<CartModel> get carts => _carts;
   set carts(List<CartModel> carts) {
@@ -18,6 +19,12 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  CartModel get cartTemp => _cartTemp;
+  set cartTemp(CartModel cartTemp) {
+    _cartTemp = cartTemp;
+    notifyListeners();
+  }
+
   int findIndex(ProductModel product) {
     for (int i = 0; i < _carts.length; i++) {
       if (_carts[i].product!.id == product.id) {
@@ -27,15 +34,12 @@ class CartProvider with ChangeNotifier {
     return -1;
   }
 
-  addCart(ProductModel product) {
-    int index = findIndex(product);
+  addCart() {
+    int index = findIndex(_cartTemp.product!);
     if (index >= 0) {
-      _carts[index].quantity++;
+      _carts[index].quantity += _cartTemp.quantity;
     } else {
-      _carts.add(CartModel(
-        product: product,
-        quantity: 1,
-      ));
+      _carts.add(_cartTemp);
     }
     notifyListeners();
   }
@@ -62,6 +66,17 @@ class CartProvider with ChangeNotifier {
 
   unselect(CartModel product) {
     _cartSelected.remove(product);
+    notifyListeners();
+  }
+
+  selectAll() {
+    _cartSelected.clear();
+    _cartSelected.addAll(_carts);
+    notifyListeners();
+  }
+
+  unselectAll() {
+    _cartSelected.clear();
     notifyListeners();
   }
 
