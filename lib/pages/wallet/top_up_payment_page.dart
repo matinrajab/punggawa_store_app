@@ -12,6 +12,7 @@ import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/providers/top_up_provider.dart';
+import 'package:shoe_store_app/services/notification_service.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -59,6 +60,12 @@ class TopUpPaymentPage extends StatelessWidget {
             message: 'Something went wrong!',
           );
         } else {
+          if (message == 'ok') {
+            NotificationService().showNotification(
+              body:
+              'Successfully top up balance ${topUpProvider.textControllerValue}',
+            );
+          }
           await Provider.of<AuthProvider>(context, listen: false).fetch();
           pageProvider.currentIndex = 3;
           Navigator.pushNamedAndRemoveUntil(
@@ -73,6 +80,7 @@ class TopUpPaymentPage extends StatelessWidget {
           message: e.toString(),
         );
       }
+      topUpProvider.resetData();
     }
 
     showBackDialog() {

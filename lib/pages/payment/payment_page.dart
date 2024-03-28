@@ -11,6 +11,7 @@ import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
+import 'package:shoe_store_app/services/notification_service.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -58,6 +59,11 @@ class PaymentPage extends StatelessWidget {
             message: 'Something went wrong!',
           );
         } else {
+          if (message == 'ok') {
+            NotificationService().showNotification(
+              body: 'Transaction successful',
+            );
+          }
           await Provider.of<TransactionProvider>(context, listen: false)
               .getTransactions();
           pageProvider.currentIndex = 3;

@@ -23,6 +23,7 @@ import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/providers/payment_method_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
+import 'package:shoe_store_app/services/notification_service.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class CheckoutPage extends StatelessWidget {
@@ -88,6 +89,9 @@ class CheckoutPage extends StatelessWidget {
             OrderPage.routeName,
             ModalRoute.withName(MainPage.routeName),
             arguments: 1,
+          );
+          NotificationService().showNotification(
+            body: 'Transaction successful',
           );
         }
         if (paymentMethod.name == 'Wallet') {

@@ -4,6 +4,7 @@ import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_alert_dialog.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
+import 'package:shoe_store_app/providers/top_up_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 
 class PaymentBackDialog extends StatelessWidget {
@@ -13,6 +14,8 @@ class PaymentBackDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     PageProvider pageProvider =
         Provider.of<PageProvider>(context, listen: false);
+    TopUpProvider topUpProvider =
+        Provider.of<TopUpProvider>(context, listen: false);
 
     handleBack() async {
       await Provider.of<AuthProvider>(context, listen: false).fetch();
@@ -21,6 +24,7 @@ class PaymentBackDialog extends StatelessWidget {
       pageProvider.currentIndex = 0;
       Navigator.pushNamedAndRemoveUntil(
           context, MainPage.routeName, (route) => false);
+      topUpProvider.resetData();
     }
 
     return MyAlertDialog(

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shoe_store_app/my_http_overrides.dart';
 import 'package:shoe_store_app/providers/providers.dart';
 import 'package:shoe_store_app/routes/routes.dart';
+import 'package:shoe_store_app/services/notification_service.dart';
 import 'firebase_options.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -14,6 +15,7 @@ Future main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await NotificationService().initNotification();
   await dotenv.load(fileName: ".env");
   HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());

@@ -29,7 +29,6 @@ class TopUpPage extends StatelessWidget {
     handleConfirm() async {
       if (await topUpProvider.topUp()) {
         Navigator.pushNamed(context, TopUpPaymentPage.routeName);
-        topUpProvider.resetData();
       } else {
         MySnackBar.failed(
           context,
