@@ -16,7 +16,7 @@ class ProductService {
     print(response.body);
 
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body)['data'];
+      var data = jsonDecode(response.body)['data'];
       List<ProductModel> products = [];
       data.map((product) => products.add(ProductModel.fromJson(product))).toList();
 

@@ -90,6 +90,7 @@ class DetailOrderPage extends StatelessWidget {
           PaymentSummary(
             quantity: totalItems(),
             productPrice: totalPrice(),
+            shippingPrice: transaction.shippingPrice!,
           ),
           const SizedBox(
             height: 30,

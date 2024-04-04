@@ -47,6 +47,7 @@ class AddressProvider with ChangeNotifier {
     } catch (e) {
       print(e);
     }
+    notifyListeners();
   }
 
   Future<bool> storeAddress({required AddressModel address}) async {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store_app/models/address_model.dart';
+import 'package:shoe_store_app/models/city_model.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class AddressCardContent extends StatelessWidget {
@@ -12,6 +13,8 @@ class AddressCardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CityModel city = address.city!;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -42,7 +45,7 @@ class AddressCardContent extends StatelessWidget {
           ),
         ),
         Text(
-          '${address.district!.name}, ${address.city!.name}, ${address.province!.name}, ID ${address.postalCode!.name}',
+          '${city.cityType!.name} ${city.name}, ${address.province!.name}',
           style: secondaryTextStyle.copyWith(
             fontSize: 12,
           ),

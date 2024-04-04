@@ -6,11 +6,13 @@ import 'package:shoe_store_app/shared/theme.dart';
 class PaymentSummary extends StatelessWidget {
   final int quantity;
   final int productPrice;
+  final int shippingPrice;
 
   const PaymentSummary({
     super.key,
     required this.quantity,
     required this.productPrice,
+    required this.shippingPrice,
   });
 
   @override
@@ -48,7 +50,7 @@ class PaymentSummary extends StatelessWidget {
           ),
           PaymentSummaryItem(
             type: 'Shipping',
-            information: currencyFormat(0),
+            information: currencyFormat(shippingPrice),
           ),
           const SizedBox(
             height: 11,
@@ -68,7 +70,7 @@ class PaymentSummary extends StatelessWidget {
                 style: priceTextStyle.copyWith(fontWeight: semiBold),
               ),
               Text(
-                currencyFormat(productPrice),
+                currencyFormat(productPrice + shippingPrice),
                 style: priceTextStyle.copyWith(fontWeight: semiBold),
               )
             ],

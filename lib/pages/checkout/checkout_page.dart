@@ -35,6 +35,8 @@ class CheckoutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     CheckoutProvider checkoutProvider =
         Provider.of<CheckoutProvider>(context, listen: false);
+    AddressProvider addressProvider =
+        Provider.of<AddressProvider>(context, listen: false);
     CartProvider cartProvider =
         Provider.of<CartProvider>(context, listen: false);
     TransactionProvider transactionProvider =
@@ -47,12 +49,15 @@ class CheckoutPage extends StatelessWidget {
         Provider.of<PageProvider>(context, listen: false);
     List<CartModel> cartSelected = cartProvider.cartSelected;
     List<CartModel> checkouts = checkoutProvider.checkouts;
+    List<AddressModel> addresses = addressProvider.addresses;
+
+    if (addresses.isNotEmpty) {
+      AddressModel address = addresses[addressProvider.addressSelected];
+      checkoutProvider.getShippingPrice(
+          address.city!.cityId!, checkoutProvider.totalItems());
+    }
 
     handleCheckout() async {
-      checkoutProvider.isLoading = true;
-      AddressProvider addressProvider =
-          Provider.of<AddressProvider>(context, listen: false);
-      List<AddressModel> addresses = addressProvider.addresses;
       if (addresses.isEmpty) {
         showDialog<String>(
           context: context,
@@ -65,14 +70,17 @@ class CheckoutPage extends StatelessWidget {
         return;
       }
 
+      checkoutProvider.isLoading = true;
       PaymentMethodModel paymentMethod =
           paymentProvider.paymentMethods[paymentProvider.methodSelected];
+      AddressModel address = addresses[addressProvider.addressSelected];
       if (await transactionProvider.checkout(
         token: authProvider.user.token!,
         carts: checkouts,
         totalPrice: checkoutProvider.totalPrice(),
+        shippingPrice: checkoutProvider.shippingPrice,
         paymentMethod: paymentMethod,
-        addressId: addresses[addressProvider.addressSelected].id!,
+        addressId: address.id!,
       )) {
         if (identical(checkouts, cartSelected)) {
           cartProvider.onCheckout();
@@ -156,9 +164,14 @@ class CheckoutPage extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          PaymentSummary(
-            quantity: checkoutProvider.totalItems(),
-            productPrice: checkoutProvider.totalPrice(),
+          Consumer<CheckoutProvider>(
+            builder: (context, checkoutProvider, _) => PaymentSummary(
+              quantity: checkoutProvider.totalItems(),
+              productPrice: checkoutProvider.totalPrice(),
+              shippingPrice: addressProvider.addresses.isNotEmpty
+                  ? checkoutProvider.shippingPrice
+                  : 0,
+            ),
           ),
         ],
       ),

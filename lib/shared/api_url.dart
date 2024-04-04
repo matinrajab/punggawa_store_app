@@ -1,6 +1,7 @@
 import 'package:shoe_store_app/config/config.dart';
 
 var baseUrl = Config.baseUrl;
+var rajaOngkirUrl = Config.rajaOngkirUrl;
 
 var productsUrl = '$baseUrl/products';
 var productCategoriesUrl = '$baseUrl/product-categories';
@@ -24,3 +25,7 @@ var checkoutUrl = '$baseUrl/checkout';
 var topUpUrl = '$baseUrl/top-up';
 var transactionStatusUrl = '$baseUrl/transaction-status';
 var addBonusUrl = '$baseUrl/bonus';
+
+var getProvinceUrl = '$rajaOngkirUrl/province';
+var getCityUrl = '$rajaOngkirUrl/city';
+var costUrl = '$rajaOngkirUrl/cost';

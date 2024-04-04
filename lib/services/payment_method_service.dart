@@ -16,7 +16,7 @@ class PaymentMethodService {
     print(response.body);
 
     if(response.statusCode == 200){
-      List data = jsonDecode(response.body)['data'];
+      var data = jsonDecode(response.body)['data'];
       List<PaymentMethodModel> paymentMethods = [];
       data.map((category) => paymentMethods.add(PaymentMethodModel.fromJson(category))).toList();
 

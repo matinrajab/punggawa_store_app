@@ -14,7 +14,7 @@ class CategoryService {
     print(response.body);
 
     if(response.statusCode == 200){
-      List data = jsonDecode(response.body)['data'];
+      var data = jsonDecode(response.body)['data'];
       List<CategoryModel> categories = [];
       data.map((category) => categories.add(CategoryModel.fromJson(category))).toList();
 

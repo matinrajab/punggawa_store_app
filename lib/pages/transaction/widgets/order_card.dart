@@ -123,7 +123,7 @@ class OrderCard extends StatelessWidget {
                         style: secondaryTextStyle.copyWith(fontSize: 12),
                       ),
                       Text(
-                        currencyFormat(transaction.totalPrice!),
+                        currencyFormat(transaction.totalPrice! + transaction.shippingPrice!),
                         style: priceTextStyle.copyWith(fontSize: 12),
                       ),
                     ],

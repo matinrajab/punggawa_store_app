@@ -1,14 +1,13 @@
 import 'package:shoe_store_app/models/category_model.dart';
-import 'package:shoe_store_app/models/region_model.dart';
+import 'package:shoe_store_app/models/city_model.dart';
+import 'package:shoe_store_app/models/province_model.dart';
 
 class AddressModel {
   int? id;
   String? name;
   String? phone;
-  RegionModel? province;
-  RegionModel? city;
-  RegionModel? district;
-  RegionModel? postalCode;
+  ProvinceModel? province;
+  CityModel? city;
   String? detail;
   String? additional;
   CategoryModel? addressCategory;
@@ -19,8 +18,6 @@ class AddressModel {
     this.phone,
     this.province,
     this.city,
-    this.district,
-    this.postalCode,
     this.detail,
     this.additional,
     this.addressCategory,
@@ -31,10 +28,8 @@ class AddressModel {
     name: json["name"],
     phone: json["phone"],
     detail: json["detail"],
-    province: RegionModel.fromJson(json["province"]),
-    city: RegionModel.fromJson(json["city"]),
-    district: RegionModel.fromJson(json["district"]),
-    postalCode: RegionModel.fromJson(json["postal_code"]),
+    province: ProvinceModel.fromJson(json["province"]),
+    city: CityModel.fromJson(json["city"]),
     additional: json["additional"],
     addressCategory: CategoryModel.fromJson(json["address_category"]),
   );
@@ -45,8 +40,6 @@ class AddressModel {
     "phone": phone,
     "province": province!.toJson(),
     "city": city!.toJson(),
-    "district": district!.toJson(),
-    "postal_code": postalCode!.toJson(),
     "detail": detail,
     "additional": additional,
     "address_category": addressCategory!.toJson(),

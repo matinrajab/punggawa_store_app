@@ -26,7 +26,7 @@ class AddressService {
     print(response.body);
 
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body)['data'];
+      var data = jsonDecode(response.body)['data'];
       List<AddressModel> addresses = [];
       data
           .map((transaction) =>
@@ -49,14 +49,11 @@ class AddressService {
       'Authorization': token!,
     };
     var body = jsonEncode({
-      'province_name': address.province!.name,
-      'province_id': address.province!.idFromApi,
+      'province': address.province!.name,
+      'province_id': address.province!.provinceId,
+      'city_type_id': address.city!.cityType!.id,
       'city_name': address.city!.name,
-      'city_id': address.city!.idFromApi,
-      'district_name': address.district!.name,
-      'district_id': address.district!.idFromApi,
-      'postal_code_name': address.postalCode!.name,
-      'postal_code_id': address.postalCode!.idFromApi,
+      'city_id': address.city!.cityId,
       'address_category_id': address.addressCategory!.id,
       'name': address.name,
       'phone': address.phone,
@@ -82,20 +79,16 @@ class AddressService {
     final String? token = prefs.getString('token');
 
     var url = '$updateAddressUrl/${address.id}';
-    print(':::$url');
     var headers = {
       'Content-Type': 'application/json',
       'Authorization': token!,
     };
     var body = jsonEncode({
-      'province_name': address.province!.name,
-      'province_id': address.province!.idFromApi,
+      'province': address.province!.name,
+      'province_id': address.province!.provinceId,
+      'city_type_id': address.city!.cityType!.id,
       'city_name': address.city!.name,
-      'city_id': address.city!.idFromApi,
-      'district_name': address.district!.name,
-      'district_id': address.district!.idFromApi,
-      'postal_code_name': address.postalCode!.name,
-      'postal_code_id': address.postalCode!.idFromApi,
+      'city_id': address.city!.cityId,
       'address_category_id': address.addressCategory!.id,
       'name': address.name,
       'phone': address.phone,

@@ -6,6 +6,7 @@ import 'package:shoe_store_app/pages/address/widgets/address_card.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
 import 'package:shoe_store_app/providers/address_provider.dart';
+import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class SelectAddressPage extends StatelessWidget {
@@ -15,6 +16,9 @@ class SelectAddressPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CheckoutProvider checkoutProvider =
+        Provider.of<CheckoutProvider>(context, listen: false);
+
     return Scaffold(
       backgroundColor: backgroundColor1,
       appBar: const MyAppBar(
@@ -35,8 +39,13 @@ class SelectAddressPage extends StatelessWidget {
                   int indexTemp = index++;
                   return AddressCard(
                     address: address,
-                    onTap: () {
+                    onTap: () async {
                       addressProvider.addressSelected = indexTemp;
+                      AddressModel address =
+                          addresses[addressProvider.addressSelected];
+
+                      await checkoutProvider.getShippingPrice(
+                          address.city!.cityId!, checkoutProvider.totalItems());
                       Navigator.pop(context);
                     },
                   );

@@ -5,9 +5,11 @@ import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/providers/address_category_provider.dart';
 import 'package:shoe_store_app/providers/address_provider.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
+import 'package:shoe_store_app/providers/checkout_provider.dart';
 import 'package:shoe_store_app/providers/product_category_provider.dart';
 import 'package:shoe_store_app/providers/payment_method_provider.dart';
 import 'package:shoe_store_app/providers/product_provider.dart';
+import 'package:shoe_store_app/providers/raja_ongkir_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
@@ -35,6 +37,8 @@ class _SplashPageState extends State<SplashPage> {
         .getCategories();
     await Provider.of<PaymentMethodProvider>(context, listen: false)
         .getPaymentMethods();
+    await Provider.of<RajaOngkirProvider>(context, listen: false)
+        .getProvinces();
     if (await Provider.of<AuthProvider>(context, listen: false).fetch()) {
       await Provider.of<TransactionProvider>(context, listen: false)
           .getTransactions();

@@ -39,6 +39,7 @@ class TransactionProvider with ChangeNotifier {
     required String token,
     required List<CartModel> carts,
     required int totalPrice,
+    required int shippingPrice,
     required PaymentMethodModel paymentMethod,
     required int addressId,
   }) async {
@@ -48,6 +49,7 @@ class TransactionProvider with ChangeNotifier {
         carts: carts,
         addressId: addressId,
         totalPrice: totalPrice,
+        shippingPrice: shippingPrice,
         paymentMethod: paymentMethod,
       );
 

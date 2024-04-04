@@ -14,6 +14,7 @@ class TransactionService {
     required String token,
     required List<CartModel> carts,
     required int totalPrice,
+    required int shippingPrice,
     required PaymentMethodModel paymentMethod,
     required int addressId,
   }) async {
@@ -34,7 +35,7 @@ class TransactionService {
           .toList(),
       'status': paymentMethod.name == 'Transfer' ? pendingOrder : shippingOrder,
       'total_price': totalPrice,
-      'shipping_price': 0,
+      'shipping_price': shippingPrice,
       'payment_method_id': paymentMethod.id,
     });
 
@@ -102,7 +103,7 @@ class TransactionService {
     print(response.body);
 
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body)['data'];
+      var data = jsonDecode(response.body)['data'];
       List<TransactionModel> transactions = [];
       data
           .map((transaction) =>

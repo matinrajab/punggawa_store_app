@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shoe_store_app/models/region_api_model.dart';
+import 'package:shoe_store_app/models/city_api_model.dart';
+import 'package:shoe_store_app/models/province_api_model.dart';
 import 'package:shoe_store_app/pages/address/select_region_page.dart';
 import 'package:shoe_store_app/pages/widgets/my_text_field.dart';
-import 'package:shoe_store_app/providers/region_api_provider.dart';
+import 'package:shoe_store_app/providers/raja_ongkir_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class AddressField extends StatelessWidget {
@@ -30,36 +31,29 @@ class AddressField extends StatelessWidget {
         const SizedBox(
           height: 12,
         ),
-        Consumer<RegionApiProvider>(
-          builder: (context, regionApiProvider, _) {
-            RegionApiModel province = regionApiProvider.province;
-            RegionApiModel city = regionApiProvider.city;
-            RegionApiModel district = regionApiProvider.district;
-            RegionApiModel postalCode = regionApiProvider.postalCode;
+        Consumer<RajaOngkirProvider>(
+          builder: (context, rajaOngkirProvider, _) {
+            ProvinceApiModel province = rajaOngkirProvider.province;
+            CityApiModel city = rajaOngkirProvider.city;
 
             return GestureDetector(
-              onTap: () async {
-                province.text == ''
-                    ? await regionApiProvider.getAddress('provinsi/get/')
-                    : await regionApiProvider.getAddress(
-                        'kodepos/get/?d_kabkota_id=${city.id}&d_kecamatan_id=${district.id}');
-                Navigator.pushNamed(context, SelectRegionPage.routeName);
-              },
+              onTap: () =>
+                  Navigator.pushNamed(context, SelectRegionPage.routeName),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
                       Expanded(
-                        child: province.text == ''
+                        child: province.provinceId == null
                             ? Text(
-                                'Province, City, District, Postal Code',
+                                'Province, City',
                                 style:
                                     secondaryTextStyle.copyWith(fontSize: 14),
                                 overflow: TextOverflow.ellipsis,
                               )
                             : Text(
-                                '${province.text}\n${city.text}\n${district.text}\n${postalCode.text}',
+                                '${province.province}\n${city.type} ${city.cityName}',
                                 style: primaryTextStyle.copyWith(fontSize: 14),
                               ),
                       ),
@@ -74,10 +68,10 @@ class AddressField extends StatelessWidget {
                     height: 4,
                   ),
                   Divider(
-                      color: regionApiProvider.isRequiredAppear
+                      color: rajaOngkirProvider.isRequiredAppear
                           ? redColor
                           : secondaryTextColor),
-                  regionApiProvider.isRequiredAppear
+                  rajaOngkirProvider.isRequiredAppear
                       ? const Text(
                           'Required',
                           style: TextStyle(color: redColor, fontSize: 12),
@@ -90,7 +84,7 @@ class AddressField extends StatelessWidget {
         ),
         MyTextField(
           controller: detailController,
-          hintText: 'Street/Building Name, House No.',
+          hintText: 'Address details',
           textValidator: 'Required',
         ),
         const SizedBox(

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/widgets/my_alert_dialog.dart';
 import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
 import 'package:shoe_store_app/pages/widgets/my_snack_bar.dart';
-import 'package:shoe_store_app/providers/region_api_provider.dart';
+import 'package:shoe_store_app/providers/raja_ongkir_provider.dart';
 import 'package:shoe_store_app/providers/address_provider.dart';
 
 class DeleteAddressAlertDialog extends StatelessWidget {
@@ -19,14 +19,14 @@ class DeleteAddressAlertDialog extends StatelessWidget {
     handleDelete() async {
       AddressProvider addressProvider =
           Provider.of<AddressProvider>(context, listen: false);
-      RegionApiProvider regionApiProvider =
-          Provider.of<RegionApiProvider>(context, listen: false);
+      RajaOngkirProvider rajaOngkirProvider =
+          Provider.of<RajaOngkirProvider>(context, listen: false);
 
       addressProvider.isAlertLoading = true;
       if (await addressProvider.deleteAddress(id: id)) {
         await addressProvider.getAddresses();
         Navigator.pop(context);
-        regionApiProvider.resetData();
+        rajaOngkirProvider.resetData();
       } else {
         MySnackBar.failed(
           context,
