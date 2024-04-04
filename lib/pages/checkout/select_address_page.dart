@@ -44,8 +44,8 @@ class SelectAddressPage extends StatelessWidget {
                       AddressModel address =
                           addresses[addressProvider.addressSelected];
 
-                      await checkoutProvider.getShippingPrice(
-                          address.city!.cityId!, checkoutProvider.totalItems());
+                      await checkoutProvider
+                          .getShippingPrice(address.city!.cityId!);
                       Navigator.pop(context);
                     },
                   );

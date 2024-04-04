@@ -41,11 +41,11 @@ class CheckoutProvider with ChangeNotifier {
     return total;
   }
 
-  Future<void> getShippingPrice(String cityId, int totalItems) async {
+  Future<void> getShippingPrice(String cityId) async {
     try {
       int shippingPrice = await RajaOngkirService().getShippingPrice(
         destinationId: cityId,
-        totalItems: totalItems,
+        totalItems: totalItems(),
       );
 
       _shippingPrice = shippingPrice;

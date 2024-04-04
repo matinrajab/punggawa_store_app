@@ -70,12 +70,9 @@ class AddAddressPage extends StatelessWidget {
       )) {
         await addressProvider.getAddresses();
         List<AddressModel> addresses = addressProvider.addresses;
-        if (addresses.length == 1) {
-          AddressModel address = addresses[0];
+        AddressModel address = addresses[0];
 
-          await checkoutProvider.getShippingPrice(
-              address.city!.cityId!, checkoutProvider.totalItems());
-        }
+        await checkoutProvider.getShippingPrice(address.city!.cityId!);
         Navigator.pop(context);
         rajaOngkirProvider.resetData();
       } else {

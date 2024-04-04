@@ -50,7 +50,7 @@ class PaymentSummary extends StatelessWidget {
           ),
           PaymentSummaryItem(
             type: 'Shipping',
-            information: currencyFormat(shippingPrice),
+            information: shippingPrice == -1 ? 'Unidentified' : currencyFormat(shippingPrice),
           ),
           const SizedBox(
             height: 11,

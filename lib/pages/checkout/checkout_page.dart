@@ -50,14 +50,15 @@ class CheckoutPage extends StatelessWidget {
     List<CartModel> cartSelected = cartProvider.cartSelected;
     List<CartModel> checkouts = checkoutProvider.checkouts;
     List<AddressModel> addresses = addressProvider.addresses;
+    addressProvider.addressSelected = 0;
 
     if (addresses.isNotEmpty) {
       AddressModel address = addresses[addressProvider.addressSelected];
-      checkoutProvider.getShippingPrice(
-          address.city!.cityId!, checkoutProvider.totalItems());
+      checkoutProvider.getShippingPrice(address.city!.cityId!);
     }
 
     handleCheckout() async {
+      List<AddressModel> addresses = addressProvider.addresses;
       if (addresses.isEmpty) {
         showDialog<String>(
           context: context,
@@ -85,7 +86,6 @@ class CheckoutPage extends StatelessWidget {
         if (identical(checkouts, cartSelected)) {
           cartProvider.onCheckout();
         }
-        checkoutProvider.resetData();
         if (paymentMethod.name == 'Transfer') {
           Navigator.pushNamed(context, PaymentPage.routeName);
         } else {
@@ -105,6 +105,7 @@ class CheckoutPage extends StatelessWidget {
         if (paymentMethod.name == 'Wallet') {
           await Provider.of<AuthProvider>(context, listen: false).fetch();
         }
+        checkoutProvider.resetData();
       } else {
         MySnackBar.failed(
           context,
@@ -170,7 +171,7 @@ class CheckoutPage extends StatelessWidget {
               productPrice: checkoutProvider.totalPrice(),
               shippingPrice: addressProvider.addresses.isNotEmpty
                   ? checkoutProvider.shippingPrice
-                  : 0,
+                  : -1,
             ),
           ),
         ],

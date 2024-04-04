@@ -26,11 +26,6 @@ class EditProfilePage extends StatelessWidget {
             child: Consumer<AuthProvider>(
               builder: (context, authProvider, _) {
                 UserModel user = authProvider.user;
-                List<Map<String, String>> fields = [
-                  {'title': 'Name', 'value': user.name!},
-                  {'title': 'Username', 'value': user.username!},
-                  {'title': 'Email', 'value': user.email!},
-                ];
                 return Column(
                   children: [
                     ClipRRect(
@@ -46,14 +41,21 @@ class EditProfilePage extends StatelessWidget {
                       height: 30,
                     ),
                     Column(
-                      children: fields
-                          .map(
-                            (field) => EditProfileTextForm(
-                              title: field['title']!,
-                              value: field['value']!,
-                            ),
-                          )
-                          .toList(),
+                      children: [
+                        EditProfileTextForm(
+                          title: 'Name',
+                          value: user.name!,
+                        ),
+                        EditProfileTextForm(
+                          title: 'Username',
+                          value: user.username!,
+                        ),
+                        EditProfileTextForm(
+                          title: 'Email',
+                          value: user.email!,
+                          readOnly: true,
+                        ),
+                      ],
                     ),
                   ],
                 );

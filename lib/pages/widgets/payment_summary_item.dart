@@ -22,7 +22,7 @@ class PaymentSummaryItem extends StatelessWidget {
           style: secondaryTextStyle.copyWith(fontSize: 12),
         ),
         Text(
-          information == currencyFormat(0) ? 'Free' : information,
+          information,
           style: primaryTextStyle.copyWith(fontWeight: medium),
         )
       ],

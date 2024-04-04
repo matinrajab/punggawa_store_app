@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/auth/sign_up_page.dart';
 import 'package:shoe_store_app/pages/auth/widgets/auth_text_form.dart';
 import 'package:shoe_store_app/pages/auth/widgets/footer.dart';
+import 'package:shoe_store_app/pages/auth/widgets/continue_with_google_button.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
@@ -26,7 +27,7 @@ class SignInPage extends StatelessWidget {
     AuthProvider authProvider =
         Provider.of<AuthProvider>(context, listen: false);
 
-    handleLogin() async {
+    handleSignIn() async {
       authProvider.isLoading = true;
       if (await authProvider.login(
         email: _emailController.text.trim(),
@@ -87,9 +88,23 @@ class SignInPage extends StatelessWidget {
                       ? MyCircularIndicator.show()
                       : MyButton(
                           text: 'Sign In',
-                          onTap: handleLogin,
+                          onTap: handleSignIn,
                         ),
                 ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Text(
+                      'Or',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: medium,
+                      ),
+                    ),
+                  ),
+                ),
+                const ContinueWithGoogleButton(),
                 Footer(
                   text: 'Don\'t have an account?',
                   textButton: 'Sign up',

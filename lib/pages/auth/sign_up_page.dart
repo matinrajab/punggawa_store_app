@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/pages/auth/widgets/auth_text_form.dart';
 import 'package:shoe_store_app/pages/auth/widgets/footer.dart';
+import 'package:shoe_store_app/pages/auth/widgets/continue_with_google_button.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
@@ -105,6 +106,20 @@ class SignUpPage extends StatelessWidget {
                           onTap: handleSignUp,
                         ),
                 ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Text(
+                      'Or',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: medium,
+                      ),
+                    ),
+                  ),
+                ),
+                const ContinueWithGoogleButton(),
                 Footer(
                   text: 'Already have an account?',
                   textButton: 'Sign In',

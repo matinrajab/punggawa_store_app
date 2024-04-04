@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoe_store_app/models/user_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:shoe_store_app/shared/api_url.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   late SharedPreferences prefs;
@@ -72,6 +74,26 @@ class AuthService {
       return user;
     } else {
       throw Exception('Login Failed');
+    }
+  }
+
+  Future<GoogleSignInAccount> signInWithGoogle() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
+    final GoogleSignInAccount? account = await googleSignIn.signIn();
+    if (account != null) {
+      final GoogleSignInAuthentication auth = await account.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: auth.idToken,
+        accessToken: auth.accessToken,
+      );
+      await firebaseAuth.signInWithCredential(credential);
+      googleSignIn.signOut();
+
+      return account;
+    } else {
+      throw Exception('Continue with Google Failed');
     }
   }
 
