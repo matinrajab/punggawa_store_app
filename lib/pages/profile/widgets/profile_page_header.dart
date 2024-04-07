@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shoe_store_app/pages/profile/widgets/logout_alert_dialog.dart';
+import 'package:shoe_store_app/pages/widgets/logout_button.dart';
 import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
@@ -10,13 +10,6 @@ class ProfilePageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    onLogoutTapped() {
-      showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => const LogoutAlertDialog(),
-      );
-    }
-
     return AppBar(
       backgroundColor: primaryColor,
       flexibleSpace: Padding(
@@ -45,13 +38,7 @@ class ProfilePageHeader extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton(
-              onPressed: onLogoutTapped,
-              icon: Image.asset(
-                'assets/button/exit.png',
-                height: 20,
-              ),
-            ),
+            const LogoutButton(),
           ],
         ),
       ),

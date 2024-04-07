@@ -8,8 +8,8 @@ import 'package:shoe_store_app/providers/auth_provider.dart';
 import 'package:shoe_store_app/providers/page_provider.dart';
 import 'package:shoe_store_app/providers/transaction_provider.dart';
 
-class LogoutAlertDialog extends StatelessWidget {
-  const LogoutAlertDialog({super.key});
+class LogoutButton extends StatelessWidget {
+  const LogoutButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,22 @@ class LogoutAlertDialog extends StatelessWidget {
       }
     }
 
-    return MyAlertDialog(
-      text: 'Are you sure you want to logout?',
-      onYesTapped: handleLogout,
+    onLogoutTapped() {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => MyAlertDialog(
+          text: 'Are you sure you want to logout?',
+          onYesTapped: handleLogout,
+        ),
+      );
+    }
+
+    return IconButton(
+      onPressed: onLogoutTapped,
+      icon: Image.asset(
+        'assets/button/exit.png',
+        height: 20,
+      ),
     );
   }
 }

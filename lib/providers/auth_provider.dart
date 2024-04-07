@@ -9,6 +9,8 @@ class AuthProvider with ChangeNotifier {
   String _passwordTemp = '';
   bool _isLoading = false;
   bool _isGoogleLoading = false;
+  List<UserModel> _users = [];
+  int _userIndexSelected = 0;
 
   UserModel get user => _user;
   set user(UserModel user) {
@@ -31,6 +33,18 @@ class AuthProvider with ChangeNotifier {
   bool get isGoogleLoading => _isGoogleLoading;
   set isGoogleLoading(bool isGoogleLoading) {
     _isGoogleLoading = isGoogleLoading;
+    notifyListeners();
+  }
+
+  List<UserModel> get users => _users;
+  set users(List<UserModel> users) {
+    _users = users;
+    notifyListeners();
+  }
+
+  int get userIndexSelected => _userIndexSelected;
+  set userIndexSelected(int userIndexSelected) {
+    _userIndexSelected = userIndexSelected;
     notifyListeners();
   }
 
@@ -106,6 +120,16 @@ class AuthProvider with ChangeNotifier {
       return true;
     } catch (e) {
       return false;
+    }
+  }
+
+  Future<void> getUsers() async {
+    try {
+      List<UserModel> users = await AuthService().getUsers();
+
+      _users = users;
+    } catch (e) {
+      print(e);
     }
   }
 

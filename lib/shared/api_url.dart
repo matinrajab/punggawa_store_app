@@ -11,6 +11,7 @@ var paymentMethodsUrl = '$baseUrl/payment-methods';
 var registerUrl = '$baseUrl/register';
 var loginUrl = '$baseUrl/login';
 
+var getUsersUrl = '$baseUrl/users';
 var fetchUserUrl = '$baseUrl/user';
 var updateProfileUrl = '$baseUrl/user';
 var logoutUrl = '$baseUrl/logout';

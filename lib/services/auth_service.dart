@@ -130,6 +130,33 @@ class AuthService {
     }
   }
 
+  Future<List<UserModel>> getUsers() async {
+    prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    var url = getUsersUrl;
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token!,
+    };
+
+    var response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body)['data'];
+      List<UserModel> users = [];
+      data.map((user) => users.add(UserModel.fromJson(user))).toList();
+
+      return users;
+    } else {
+      throw Exception('Get Users Failed');
+    }
+  }
+
   Future<UserModel> fetch() async {
     prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');

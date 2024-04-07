@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shoe_store_app/shared/currency_format.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class PaymentSummaryItem extends StatelessWidget {

@@ -18,10 +18,13 @@ class ChatTile extends StatelessWidget {
       onTap: onTap,
       child: Column(
         children: [
+          const SizedBox(
+            height: 5,
+          ),
           Row(
             children: [
               Image.asset(
-                'assets/icon/shop_logo.png',
+                'assets/image/profile.png',
                 height: 54,
               ),
               const SizedBox(
@@ -32,10 +35,9 @@ class ChatTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Shoe Store',
+                      message.userName!,
                       style: primaryTextStyle.copyWith(
                         fontSize: 15,
-                        fontWeight: regular,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -43,27 +45,26 @@ class ChatTile extends StatelessWidget {
                       message.message!,
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
-                        fontWeight: light,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
               ),
-              Text(
-                'Now',
-                style: secondaryTextStyle.copyWith(
-                  fontSize: 10,
-                  fontWeight: regular,
-                ),
-              ),
+              // Text(
+              //   'Now',
+              //   style: secondaryTextStyle.copyWith(
+              //     fontSize: 10,
+              //     fontWeight: regular,
+              //   ),
+              // ),
             ],
           ),
           const SizedBox(
-            height: 12,
+            height: 5,
           ),
           const Divider(
-            color: Color(0xff2B2939),
+            color: subtitleTextColor,
           ),
         ],
       ),

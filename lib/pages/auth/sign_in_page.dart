@@ -4,6 +4,7 @@ import 'package:shoe_store_app/pages/auth/sign_up_page.dart';
 import 'package:shoe_store_app/pages/auth/widgets/auth_text_form.dart';
 import 'package:shoe_store_app/pages/auth/widgets/footer.dart';
 import 'package:shoe_store_app/pages/auth/widgets/continue_with_google_button.dart';
+import 'package:shoe_store_app/pages/chat_admin/admin_chat_page.dart';
 import 'package:shoe_store_app/pages/main/main_page.dart';
 import 'package:shoe_store_app/pages/widgets/title_and_subtitle.dart';
 import 'package:shoe_store_app/pages/widgets/my_button.dart';
@@ -33,12 +34,22 @@ class SignInPage extends StatelessWidget {
         email: _emailController.text.trim(),
         password: _passwordController.text,
       )) {
-        await Provider.of<TransactionProvider>(context, listen: false)
-            .getTransactions();
-        Navigator.pushNamedAndRemoveUntil(
-            context, MainPage.routeName, (route) => false);
-        await Provider.of<AddressProvider>(context, listen: false)
-            .getAddresses();
+        if (authProvider.user.role == 'user') {
+          await Provider.of<TransactionProvider>(context, listen: false)
+              .getTransactions();
+          Navigator.pushNamedAndRemoveUntil(
+              context, MainPage.routeName, (route) => false);
+          await Provider.of<AddressProvider>(context, listen: false)
+              .getAddresses();
+        } else {
+          await authProvider.getUsers();
+          // Navigator.pushNamed(
+          //   context,
+          //   AdminDetailChatPage.routeName,
+          //   arguments: UninitializedProductModel(),
+          // );
+          Navigator.pushReplacementNamed(context, AdminChatPage.routeName);
+        }
       } else {
         MySnackBar.failed(
           context,

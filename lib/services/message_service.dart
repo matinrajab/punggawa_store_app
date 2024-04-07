@@ -6,6 +6,26 @@ import 'package:shoe_store_app/models/user_model.dart';
 class MessageService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  Stream<List<MessageModel>> getAllMessages() {
+    CollectionReference messages = firestore.collection('messages');
+    try {
+      return messages.snapshots().map((QuerySnapshot list) {
+        var result = list.docs.map<MessageModel>((DocumentSnapshot message) {
+          print(message.data());
+          return MessageModel.fromJson(message.data() as Map<String, dynamic>);
+        }).toList();
+        result.sort(
+          (MessageModel a, MessageModel b) =>
+              a.createdAt!.compareTo(b.createdAt!),
+        );
+
+        return result;
+      });
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   Stream<List<MessageModel>> getMessagesByUserId({int? userId}) {
     CollectionReference messages = firestore.collection('messages');
     try {

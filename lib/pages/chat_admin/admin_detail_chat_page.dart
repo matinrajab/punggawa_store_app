@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/message_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
+import 'package:shoe_store_app/models/user_model.dart';
 import 'package:shoe_store_app/pages/chat/widgets/chat_bottom_nav_bar.dart';
 import 'package:shoe_store_app/pages/chat/widgets/chat_bubble.dart';
 import 'package:shoe_store_app/pages/widgets/my_circular_indicator.dart';
@@ -10,12 +11,12 @@ import 'package:shoe_store_app/providers/product_provider.dart';
 import 'package:shoe_store_app/services/message_service.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
-class DetailChatPage extends StatelessWidget {
-  static const routeName = '/detail-chat';
+class AdminDetailChatPage extends StatelessWidget {
+  static const routeName = '/admin-detail-chat';
 
   ProductModel product;
 
-  DetailChatPage({
+  AdminDetailChatPage({
     super.key,
     required this.product,
   });
@@ -28,11 +29,12 @@ class DetailChatPage extends StatelessWidget {
         Provider.of<AuthProvider>(context, listen: false);
     ProductProvider productProvider =
         Provider.of<ProductProvider>(context, listen: false);
+    UserModel user = authProvider.users[authProvider.userIndexSelected];
 
     handleAddMessage() async {
       await MessageService().addMessage(
-        user: authProvider.user,
-        isFromUser: true,
+        user: user,
+        isFromUser: false,
         message: _messageController.text,
         product: productProvider.uninitializedProduct
             ? UninitializedProductModel()
@@ -58,7 +60,7 @@ class DetailChatPage extends StatelessWidget {
         title: Row(
           children: [
             Image.asset(
-              'assets/icon/shop_online.png',
+              'assets/image/profile.png',
               height: 45,
             ),
             const SizedBox(
@@ -69,7 +71,7 @@ class DetailChatPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Punggawa Store',
+                    user.name!,
                     style: whiteTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,
@@ -85,25 +87,20 @@ class DetailChatPage extends StatelessWidget {
       body: Stack(
         children: [
           StreamBuilder<List<MessageModel>>(
-            stream: MessageService()
-                .getMessagesByUserId(userId: authProvider.user.id),
+            stream: MessageService().getMessagesByUserId(userId: user.id),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return ListView(
                   padding: const EdgeInsets.symmetric(horizontal: pagePadding),
                   reverse: true,
                   children: [
-                    Consumer<ProductProvider>(
-                      builder: (context, productProvider, _) => SizedBox(
-                        height: productProvider.uninitializedProduct ? 80 : 180,
-                      ),
-                    ),
+                    const SizedBox(height: 80,),
                     Column(
                       children: snapshot.data!
                           .map(
                             (MessageModel message) => ChatBubble(
                               text: message.message!,
-                              isFromUser: message.isFromUser!,
+                              isFromUser: !message.isFromUser!,
                               product: message.product,
                             ),
                           )
