@@ -44,6 +44,9 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.all(pagePadding),
             child: WalletCard(),
           ),
+          // SizedBox(
+          //   height: 12,
+          // ),
           Padding(
             padding: const EdgeInsets.only(left: pagePadding, bottom: 14),
             child: Consumer<ProductCategoryProvider>(

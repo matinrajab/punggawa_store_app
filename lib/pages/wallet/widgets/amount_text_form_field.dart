@@ -1,6 +1,7 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/providers/top_up_provider.dart';
 import 'package:shoe_store_app/shared/currency_format.dart';
@@ -41,9 +42,11 @@ class AmountTextFormField extends StatelessWidget {
       },
       inputFormatters: <TextInputFormatter>[
         CurrencyTextInputFormatter(
-          locale: 'id',
-          symbol: 'Rp ',
-          decimalDigits: 0,
+          NumberFormat.currency(
+            locale: 'id',
+            symbol: 'Rp ',
+            decimalDigits: 0,
+          ),
         ),
       ],
       keyboardType: TextInputType.number,
