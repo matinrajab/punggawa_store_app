@@ -89,7 +89,37 @@ class FilterProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  boolIsMatch(ProductModel product, FilterModel filter) {
+  getResultAndOr(String logic, List<bool> values){
+    if(logic == 'OR'){
+      for(var value in values){
+        if(value == true){
+          return true;
+        }
+      }
+      return false;
+    }else if(logic == 'AND'){
+      for(var value in values){
+        if(value == false){
+          return false;
+        }
+      }
+      return true;
+    }
+  }
+
+  bool isMatchAllFilter(ProductModel product){
+    List<bool> resultOuts = [];
+    for(int i = 0; i < _filterGroup.length; i++){
+      List<bool> resultGroups = [];
+      for(int j = 0; j < _filterGroup[i].length; j++){
+        resultGroups.add(isMatchEachFilter(product, _filterGroup[i][j]));
+      }
+      resultOuts.add(getResultAndOr(_logicGroupSelected[i], resultGroups));
+    }
+    return getResultAndOr(_logicSelected, resultOuts);
+  }
+
+  isMatchEachFilter(ProductModel product, FilterModel filter) {
     if (filter.section == 'Name') {
       final productName = product.name!.toLowerCase();
       final input = filter.value.toLowerCase();
@@ -109,7 +139,7 @@ class FilterProvider with ChangeNotifier {
       }
     } else if (filter.section == 'Price') {
       final productPrice = product.price!;
-      final input = filter.value;
+      final input = int.parse(filter.value);
       switch (filter.operation) {
         case '=':
           return productPrice == input;
