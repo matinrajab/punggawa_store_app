@@ -1,6 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:shoe_store_app/providers/checkout_provider.dart';
+import 'package:shoe_store_app/providers/filter_provider.dart';
 import 'package:shoe_store_app/providers/raja_ongkir_provider.dart';
 import 'package:shoe_store_app/providers/address_category_provider.dart';
 import 'package:shoe_store_app/providers/address_provider.dart';
@@ -57,5 +58,8 @@ final List<SingleChildWidget> providers = [
   ),
   ChangeNotifierProvider(
     create: (context) => TopUpProvider(),
+  ),
+  ChangeNotifierProvider(
+    create: (context) => FilterProvider(),
   ),
 ];

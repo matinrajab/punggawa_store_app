@@ -70,7 +70,14 @@ class ProductTile extends StatelessWidget {
                         fontSize: 14,
                         fontWeight: medium,
                       ),
-                    )
+                    ),
+                    Expanded(
+                      child: Text(
+                        '${product.createdAt!.year}-${product.createdAt!.month}-${product.createdAt!.day}',
+                        style: secondaryTextStyle.copyWith(
+                            fontSize: 12, fontWeight: regular),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoe_store_app/models/category_model.dart';
 import 'package:shoe_store_app/models/product_model.dart';
+import 'package:shoe_store_app/pages/filter/advanced_filter_page.dart';
 import 'package:shoe_store_app/pages/home/widgets/fake_search_product_text_field.dart';
 import 'package:shoe_store_app/pages/widgets/product_category_filter.dart';
 import 'package:shoe_store_app/pages/home/widgets/product_card.dart';
@@ -30,23 +31,38 @@ class HomePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(
               left: 30,
-              top: 30,
+              right: 10,
+              top: 10,
             ),
-            child: Image.asset(
-              'assets/image/header_logo.png',
-              alignment: Alignment.centerLeft,
-              height: 30,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(
+                  'assets/image/header_logo.png',
+                  alignment: Alignment.centerLeft,
+                  height: 30,
+                ),
+                IconButton(
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    AdvancedFilterPage.routeName,
+                  ),
+                  icon: Icon(Icons.filter_list_rounded),
+                )
+              ],
             ),
           ),
-          const FakeSearchProductTextField(),
+          SizedBox(
+            height: 12,
+          ),
           const ProductCategoryFilter(),
-          const Padding(
-            padding: EdgeInsets.all(pagePadding),
-            child: WalletCard(),
-          ),
-          // SizedBox(
-          //   height: 12,
+          // const Padding(
+          //   padding: EdgeInsets.all(pagePadding),
+          //   child: WalletCard(),
           // ),
+          SizedBox(
+            height: 12,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: pagePadding, bottom: 14),
             child: Consumer<ProductCategoryProvider>(

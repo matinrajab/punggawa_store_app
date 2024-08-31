@@ -14,6 +14,7 @@ import 'package:shoe_store_app/pages/chat_admin/admin_detail_chat_page.dart';
 import 'package:shoe_store_app/pages/checkout/checkout_page.dart';
 import 'package:shoe_store_app/pages/checkout/choose_payment_method_page.dart';
 import 'package:shoe_store_app/pages/checkout/select_address_page.dart';
+import 'package:shoe_store_app/pages/filter/advanced_filter_page.dart';
 import 'package:shoe_store_app/pages/search_product/search_product_page.dart';
 import 'package:shoe_store_app/pages/payment/payment_page.dart';
 import 'package:shoe_store_app/pages/product/product_page.dart';
@@ -63,4 +64,5 @@ final Map<String, WidgetBuilder> routes = {
   AddAddressPage.routeName: (context) => AddAddressPage(),
   EditAddressPage.routeName: (context) => EditAddressPage(),
   SelectRegionPage.routeName: (context) => const SelectRegionPage(),
+  AdvancedFilterPage.routeName: (context) => const AdvancedFilterPage(),
 };
