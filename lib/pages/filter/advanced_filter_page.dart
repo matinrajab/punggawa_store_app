@@ -132,6 +132,26 @@ class AdvancedFilterPage extends StatelessWidget {
             ),
           ),
         ),
+        ListTile(
+          tileColor: backgroundColor1,
+          leading: Icon(Icons.delete_outline_rounded),
+          title: Text('Remove'),
+          shape: Border.symmetric(
+              horizontal: BorderSide(color: unselectedColor)),
+          onTap: () {
+            filterProvider.removeFilterGroup(order);
+          },
+        ),
+        ListTile(
+          tileColor: backgroundColor1,
+          leading: Icon(Icons.copy),
+          title: Text('Duplicate'),
+          shape: Border.symmetric(
+              horizontal: BorderSide(color: unselectedColor)),
+          onTap: () {
+            filterProvider.duplicateFilterGroup(order);
+          },
+        ),
       ],
     );
   }

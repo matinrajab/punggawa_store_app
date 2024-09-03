@@ -64,10 +64,33 @@ class FilterProvider with ChangeNotifier {
   }
   void setValueFilterInGroup(int idx1, idx2, dynamic value) {
     _filterGroup[idx1][idx2].value = value;
+    _textController[idx1][idx2].text = value;
     notifyListeners();
   }
 
   List<List<TextEditingController>> get textController => _textController;
+
+  void duplicateFilterRule(int idx1, int idx2){
+    _filterGroup[idx1].insert(idx2 + 1, _filterGroup[idx1][idx2]);
+    notifyListeners();
+  }
+
+  void removeFilterRule(int idx1, int idx2){
+    _filterGroup[idx1].removeAt(idx2);
+    notifyListeners();
+  }
+
+  void duplicateFilterGroup(int idx1){
+    _filterGroup.insert(idx1 + 1, _filterGroup[idx1]);
+    _logicGroupSelected.insert(idx1 + 1, _logicGroupSelected[idx1]);
+    notifyListeners();
+  }
+
+  void removeFilterGroup(int idx1){
+    _filterGroup.removeAt(idx1);
+    _logicGroupSelected.removeAt(idx1);
+    notifyListeners();
+  }
 
   void addFilterInGroup(int idx){
     _filterGroup[idx].add(FilterModel(section: 'Name', operation: 'Is', value: ''));

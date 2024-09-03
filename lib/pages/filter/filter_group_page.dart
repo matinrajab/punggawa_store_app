@@ -1,9 +1,10 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shoe_store_app/models/filter_model.dart';
+import 'package:shoe_store_app/models/category_model.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/providers/filter_provider.dart';
+import 'package:shoe_store_app/providers/product_category_provider.dart';
 import 'package:shoe_store_app/shared/theme.dart';
 
 class FilterGroupPage extends StatelessWidget {
@@ -41,7 +42,7 @@ class FilterGroupPage extends StatelessWidget {
                       showSelectedItems: true,
                     ),
                     items: filterProvider.logic,
-                    selectedItem: filterProvider.logicGroupSelected[order-1],
+                    selectedItem: filterProvider.logicGroupSelected[order - 1],
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       baseStyle: TextStyle(color: primaryTextColor),
                       dropdownSearchDecoration: InputDecoration(
@@ -58,11 +59,14 @@ class FilterGroupPage extends StatelessWidget {
                       ),
                     ),
                     onChanged: (value) {
-                      filterProvider.setLogicGroupSelected(order-1, value!);
+                      filterProvider.setLogicGroupSelected(order - 1, value!);
                     },
                   ),
-                  for(int i = 0; i < filterProvider.filterGroup[order-1].length; i++)
-                    filterBuild(context, filterProvider.textController[order-1][i], i+1)
+                  for (int i = 0;
+                      i < filterProvider.filterGroup[order - 1].length;
+                      i++)
+                    filterBuild(context,
+                        filterProvider.textController[order - 1][i], i + 1)
                 ],
               );
             },
@@ -77,7 +81,7 @@ class FilterGroupPage extends StatelessWidget {
             shape: Border.symmetric(
                 horizontal: BorderSide(color: unselectedColor)),
             onTap: () {
-              filterProvider.addFilterInGroup(order-1);
+              filterProvider.addFilterInGroup(order - 1);
             },
           ),
         ],
@@ -85,11 +89,59 @@ class FilterGroupPage extends StatelessWidget {
     );
   }
 
-  Widget textFormBuild(context, textController, int idx1, int idx2) {
+  Future<void> _selectDate(context, textController, int idx1, int idx2) async {
     FilterProvider filterProvider =
-    Provider.of<FilterProvider>(context, listen: false);
+      Provider.of<FilterProvider>(context, listen: false);
 
-    return TextFormField(
+    DateTime? _picked = await showDatePicker(
+      context: context,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      initialDate: DateTime.now(),
+    );
+
+    if(_picked != null){
+      String value = _picked.toString().split(' ')[0];
+      textController.text = value;
+      filterProvider.setValueFilterInGroup(idx1, idx2, value);
+    }
+  }
+
+  Widget buildInputValue(context, textController, int idx1, int idx2, String section) {
+    FilterProvider filterProvider =
+        Provider.of<FilterProvider>(context, listen: false);
+    ProductCategoryProvider categoryProvider =
+      Provider.of<ProductCategoryProvider>(context, listen: false);
+
+    List<String> categories = categoryProvider.categories.map((category){
+      return category.name!;
+    }).toList();
+
+    return section == 'Category' ? DropdownSearch<String>(
+      popupProps: PopupProps.menu(
+        showSelectedItems: true,
+      ),
+      items: categories,
+      selectedItem: filterProvider.filterGroup[idx1][idx2].value,
+      dropdownDecoratorProps: DropDownDecoratorProps(
+        baseStyle: TextStyle(color: primaryTextColor),
+        dropdownSearchDecoration: InputDecoration(
+          labelStyle: TextStyle(color: primaryTextColor),
+          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: generalBorderRadius,
+            borderSide: BorderSide(color: secondaryTextColor),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: generalBorderRadius,
+            borderSide: BorderSide(color: primaryColor),
+          ),
+        ),
+      ),
+      onChanged: (value) {
+        filterProvider.setValueFilterInGroup(idx1, idx2, value!);
+      },
+    ) : TextFormField(
       controller: textController,
       onChanged: (value) {
         filterProvider.setValueFilterInGroup(idx1, idx2, value);
@@ -110,6 +162,11 @@ class FilterGroupPage extends StatelessWidget {
         hintText: 'Value',
         hintStyle: subtitleTextStyle,
       ),
+      keyboardType: section == 'Price' ? TextInputType.number : TextInputType.text,
+      readOnly: section == 'Create at',
+      onTap: section == 'Create at' ? (){
+        _selectDate(context, textController, idx1, idx2);
+      } : (){},
     );
   }
 
@@ -129,7 +186,7 @@ class FilterGroupPage extends StatelessWidget {
             showSelectedItems: true,
           ),
           items: filterProvider.filterOptions.keys.toList(),
-          selectedItem: filterProvider.filterGroup[order-1][idx-1].section,
+          selectedItem: filterProvider.filterGroup[order - 1][idx - 1].section,
           dropdownDecoratorProps: DropDownDecoratorProps(
             baseStyle: TextStyle(color: primaryTextColor),
             dropdownSearchDecoration: InputDecoration(
@@ -146,15 +203,20 @@ class FilterGroupPage extends StatelessWidget {
             ),
           ),
           onChanged: (value) {
-            filterProvider.setSectionFilterInGroup(order-1, idx-1, value!);
+            filterProvider.setSectionFilterInGroup(order - 1, idx - 1, value!);
+            filterProvider.setOperationFilterInGroup(order - 1, idx - 1, filterProvider.filterOptions[filterProvider.filterGroup[order - 1][idx - 1].section]![0]);
+            filterProvider.setValueFilterInGroup(order - 1, idx - 1, '');
           },
         ),
         DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
           ),
-          items: filterProvider.filterOptions[filterProvider.filterGroup[order-1][idx-1].section]!.toList(),
-          selectedItem: filterProvider.filterGroup[order-1][idx-1].operation,
+          items: filterProvider.filterOptions[
+                  filterProvider.filterGroup[order - 1][idx - 1].section]!
+              .toList(),
+          selectedItem:
+              filterProvider.filterGroup[order - 1][idx - 1].operation,
           dropdownDecoratorProps: DropDownDecoratorProps(
             baseStyle: TextStyle(color: primaryTextColor),
             dropdownSearchDecoration: InputDecoration(
@@ -171,10 +233,32 @@ class FilterGroupPage extends StatelessWidget {
             ),
           ),
           onChanged: (value) {
-            filterProvider.setOperationFilterInGroup(order-1, idx-1, value!);
+            filterProvider.setOperationFilterInGroup(
+                order - 1, idx - 1, value!);
           },
         ),
-        textFormBuild(context, textController, order-1, idx-1),
+        buildInputValue(context, textController, order - 1, idx - 1, filterProvider.filterGroup[order - 1][idx - 1].section),
+        SizedBox(height: 0,),
+        ListTile(
+          tileColor: backgroundColor1,
+          leading: Icon(Icons.delete_outline_rounded),
+          title: Text('Remove'),
+          shape: Border.symmetric(
+              horizontal: BorderSide(color: unselectedColor)),
+          onTap: () {
+            filterProvider.removeFilterRule(order - 1, idx - 1);
+          },
+        ),
+        ListTile(
+          tileColor: backgroundColor1,
+          leading: Icon(Icons.copy),
+          title: Text('Duplicate'),
+          shape: Border.symmetric(
+              horizontal: BorderSide(color: unselectedColor)),
+          onTap: () {
+            filterProvider.removeFilterRule(order - 1, idx - 1);
+          },
+        ),
       ],
     );
   }

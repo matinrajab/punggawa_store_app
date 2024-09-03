@@ -21,13 +21,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     ProductProvider productProvider =
         Provider.of<ProductProvider>(context, listen: false);
-    ProductCategoryProvider categoryProvider =
-        Provider.of<ProductCategoryProvider>(context, listen: false);
-    FilterProvider filterProvider =
-        Provider.of<FilterProvider>(context, listen: false);
 
     List<ProductModel> products = productProvider.products;
-    List<CategoryModel> categories = categoryProvider.categories;
 
     return SafeArea(
       child: ListView(
