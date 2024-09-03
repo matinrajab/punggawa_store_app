@@ -1,7 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shoe_store_app/models/category_model.dart';
 import 'package:shoe_store_app/pages/widgets/my_app_bar.dart';
 import 'package:shoe_store_app/providers/filter_provider.dart';
 import 'package:shoe_store_app/providers/product_category_provider.dart';
